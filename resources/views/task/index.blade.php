@@ -11,6 +11,7 @@
                     <tr>
                         <th>#</th>
                         <th>Name</th>
+                        <th>Task List</th>
                         <th>Created At</th>
                         <th>Updated At</th>
                         <th></th>
@@ -19,6 +20,7 @@
                         <tr>
                             <td>{{ $task->id }}</td>
                             <td>{{ $task->name }}</td>
+                            <td>{{ $task->task_list->name }}</td>
                             <td>{{ $task->created_at }}</td>
                             <td>{{ $task->updated_at }}</td>
                             <td align="center">

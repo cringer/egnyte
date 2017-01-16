@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
 use App\Task;
+use App\TaskList;
+use App\Http\Requests;
 
 class TaskController extends Controller
 {
@@ -21,7 +22,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
+        $tasks = Task::orderBy('title', 'asc')->get();
+        // User::find(1)->phone;
 
         return view('task.index', compact('tasks'));
     }
@@ -33,7 +35,9 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        $tasklists = TaskList::all();
+
+        return view('task.create', compact('tasklists'));
     }
 
     /**
@@ -44,7 +48,16 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'task_list_id' => 'required|exists:task_lists,id'
+        ]);
+
+        $task = Task::create($request->all());
+
+        flash()->success("$task->name has been created!");
+
+        return redirect('task');
     }
 
     /**
@@ -55,7 +68,9 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        //
+        $task = Task::findOrFail($id);
+
+        return view('task.show', compact('task'));
     }
 
     /**
@@ -66,7 +81,15 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        //
+        $task = task::findOrFail($id);
+        $tasklists = TaskList::all();
+
+        foreach ($tasklists as $tasklist)
+        {
+            $tasklistsArray[$tasklist->id] = $tasklist->name;
+        }
+
+        return view('task.edit', compact('task', 'tasklistsArray'));
     }
 
     /**
@@ -78,7 +101,19 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'task_list_id' => 'required|exists:task_lists,id'
+        ]);
+
+        $task = Task::find($id);
+        $task->name = $request->input('name');
+        $task->task_list_id = $request->input('task_list_id');
+        $task->save();
+
+        flash()->success("$task->name has been updated!");
+
+        return redirect('task');
     }
 
     /**

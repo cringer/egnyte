@@ -5,12 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\NotifyGroup;
+use App\Position;
 use App\TaskGroup;
-use App\TaskList;
-use App\Task;
 
-class TaskListController extends Controller
+class TaskGroupController extends Controller
 {
     public function __construct()
     {
@@ -24,9 +22,9 @@ class TaskListController extends Controller
      */
     public function index()
     {
-        $tasklists = TaskList::all();
+        $taskgroups = TaskGroup::all();
 
-        return view('tasklist.index', compact('tasklists'));
+        return view('taskgroup.index', compact('taskgroups'));
     }
 
     /**
@@ -36,10 +34,9 @@ class TaskListController extends Controller
      */
     public function create()
     {
-        $task_groups = TaskGroup::orderBy('title', 'asc')->get();
-        $notify_groups = NotifyGroup::orderBy('name', 'asc')->get();
+        $positions = Position::orderBy('title', 'asc')->get();
 
-        return view('tasklist.create', compact('task_groups', 'notify_groups'));
+        return view('taskgroup.create', compact('positions'));
     }
 
     /**
@@ -51,16 +48,15 @@ class TaskListController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'task_group_id' => 'required|exists:task_groups,id',
             'name' => 'required',
-            'icon' => 'required'
+            'position_id' => 'required|exists:positions,id'
         ]);
 
-        $task_list = TaskList::create($request->all());
+        $task_group = TaskGroup::create($request->all());
 
-        flash()->success("$task_list->name has been added!");
+        flash()->success("$task_group->name has been added!");
 
-        return redirect('tasklist');
+        return redirect('taskgroup');
     }
 
     /**
@@ -71,10 +67,9 @@ class TaskListController extends Controller
      */
     public function show($id)
     {
-        $tasklist = TaskList::findOrFail($id);
-        $tasks = TaskList::find($id)->tasks;
+        $taskgroup = TaskGroup::findOrFail($id);
 
-        return view('tasklist.show', compact('tasklist', 'tasks'));
+        return view('taskgroup.show', compact('taskgroup'));
     }
 
     /**
@@ -85,7 +80,10 @@ class TaskListController extends Controller
      */
     public function edit($id)
     {
-        //
+        $taskgroup = TaskGroup::findOrFail($id);
+        $positions = Position::all();
+
+        return view('taskgroup.edit', compact('taskgroup', 'positions'));
     }
 
     /**

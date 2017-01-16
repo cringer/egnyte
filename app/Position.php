@@ -13,8 +13,8 @@ class Position extends Model
      */
     protected $fillable = ['task_group_id', 'title', 'slug', 'color'];
 
-    protected function task_lists()
+    protected function task_group()
     {
-        return $this->belongsToMany(TaskList::class);
+        return $this->hasOne(TaskGroup::class);
     }
 }

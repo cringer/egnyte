@@ -1,9 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePositionsTable extends Migration
+class CreateNotifyGroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +13,10 @@ class CreatePositionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('positions', function (Blueprint $table) {
+        Schema::create('notify_groups', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('task_group_id')->nullable();
-            $table->string('title')->unique();
-            $table->string('slug')->unique();
-            $table->string('color');
+            $table->integer('task_list_id');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreatePositionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('positions');
+        Schema::dropIfExists('notify_groups');
     }
 }

@@ -40,6 +40,7 @@ Route::resource('position', 'PositionController');
 Route::resource('status', 'StatusController');
 Route::resource('task', 'TaskController');
 Route::resource('tasklist', 'TaskListController');
+Route::resource('taskgroup', 'TaskGroupController');
 Route::resource('user', 'UserController');
 
 // Api Routes...

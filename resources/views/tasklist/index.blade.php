@@ -12,6 +12,8 @@
                         <th>#</th>
                         <th>Name</th>
                         <th>Icon</th>
+                        <th>Task Group</th>
+                        <th>Notify Group</th>
                         <th>Created At</th>
                         <th>Updated At</th>
                         <th></th>
@@ -21,6 +23,8 @@
                             <td>{{ $tasklist->id }}</td>
                             <td>{{ $tasklist->name }}</td>
                             <td>{{ $tasklist->icon }}</td>
+                            <td>{{ $tasklist->task_group->name }}</td>
+                            <td>{{ $tasklist->notify_group ?: 'null'}}</td>
                             <td>{{ $tasklist->created_at }}</td>
                             <td>{{ $tasklist->updated_at }}</td>
                             <td align="center">
