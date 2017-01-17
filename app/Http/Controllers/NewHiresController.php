@@ -52,7 +52,7 @@ class NewHiresController extends Controller
             'hire_date' => 'required'
         ]);
 
-        $newhire = NewHire::create($request->all());}
+        $newhire = NewHire::create($request->all());
 
         // Get the task group by the position_id
         // $task_group = TaskGroup::where('position_id', $request->input('position_id'))->first();
