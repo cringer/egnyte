@@ -21,11 +21,11 @@ class AuthController extends Controller
         // get read-only validation data
         $hostname = get_hostname();
         $request->merge(['hostname' => $hostname]);
-        
+
         $this->validate($request, [
             'name' => 'present',
             'email' => 'present|email|unique:users',
-            'hostname' => 'required|unique:users'     
+            'hostname' => 'required|unique:users'
         ]);
 
         Auth::login(User::create($request->all()));
