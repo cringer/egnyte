@@ -16,6 +16,7 @@ class CreateTaskListsTable extends Migration
             $table->increments('id');
             $table->integer('task_group_id');
             $table->integer('notify_group_id')->nullable();
+            $table->integer('user_id');
             $table->string('name');
             $table->string('icon');
             $table->timestamps();

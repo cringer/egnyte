@@ -17,12 +17,12 @@ class TaskList extends Model
 
     public function tasks()
     {
-        return $this->hasMany(Task::class);
+        return $this->belongsToMany(Task::class);
     }
 
-    public function task_group()
+    public function position()
     {
-        return $this->belongsTo(TaskGroup::class);
+        return $this->hasOne(Position::class);
     }
 
     public function notify_group()
