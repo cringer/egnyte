@@ -22,9 +22,9 @@ class TaskGroupController extends Controller
      */
     public function index()
     {
-        $taskgroups = TaskGroup::all();
+        $taskgroups = TaskGroup::orderBy('title', 'asc')->get();
 
-        return view('taskgroup.index', compact('taskgroups'));
+        return view('taskgroup.index', compact('taskgroups', 'positionArray'));
     }
 
     /**
@@ -82,8 +82,12 @@ class TaskGroupController extends Controller
     {
         $taskgroup = TaskGroup::findOrFail($id);
         $positions = Position::all();
+        
+        foreach ($positions as $position) {
+            $positionsArray[$position->id] = $position->title;
+        }
 
-        return view('taskgroup.edit', compact('taskgroup', 'positions'));
+        return view('taskgroup.edit', compact('taskgroup', 'positionsArray'));
     }
 
     /**
@@ -95,7 +99,19 @@ class TaskGroupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'position_id' => 'required|exists:positions,id'
+        ]);
+
+        $task_group = TaskGroup::find($id);
+        $task_group->name = $request->input('name');
+        $task_group->position_id = $request->input('position_id');
+        $task_group->save();
+
+        flash()->success("$task_group->name has been updated!");
+
+        return redirect('taskgroup');
     }
 
     /**

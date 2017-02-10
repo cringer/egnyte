@@ -9,6 +9,7 @@ use App\NotifyGroup;
 use App\TaskGroup;
 use App\TaskList;
 use App\Task;
+use App\User;
 
 class TaskListController extends Controller
 {
@@ -24,7 +25,7 @@ class TaskListController extends Controller
      */
     public function index()
     {
-        $tasklists = TaskList::all();
+        $tasklists = TaskList::orderBy('name', 'asc')->get();
 
         return view('tasklist.index', compact('tasklists'));
     }
@@ -37,9 +38,11 @@ class TaskListController extends Controller
     public function create()
     {
         $task_groups = TaskGroup::orderBy('title', 'asc')->get();
-        $notify_groups = NotifyGroup::orderBy('name', 'asc')->get();
+        $notify_groups = [];
+        // $notify_groups = NotifyGroup::orderBy('name', 'asc')->get();
+        $users = User::orderBy('name', 'asc')->get();
 
-        return view('tasklist.create', compact('task_groups', 'notify_groups'));
+        return view('tasklist.create', compact('task_groups', 'notify_groups', 'users'));
     }
 
     /**
@@ -52,6 +55,7 @@ class TaskListController extends Controller
     {
         $this->validate($request, [
             'task_group_id' => 'required|exists:task_groups,id',
+            'user_id' => 'required',
             'name' => 'required',
             'icon' => 'required'
         ]);
@@ -85,7 +89,20 @@ class TaskListController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tasklist = TaskList::findOrFail($id);
+        $notify_groups = [];
+        $taskgroups = TaskGroup::all();
+        $users = User::all();
+        
+        foreach ($taskgroups as $taskgroup) {
+            $taskgroupsArray[$taskgroup->id] = $taskgroup->name;
+        }
+
+        foreach ($users as $user) {
+            $usersArray[$user->id] = $user->name;
+        }
+
+        return view('tasklist.edit', compact('tasklist', 'taskgroupsArray', 'usersArray', 'notify_groups'));
     }
 
     /**
@@ -97,7 +114,23 @@ class TaskListController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'task_group_id' => 'required|exists:task_groups,id',
+            'user_id' => 'required',
+            'name' => 'required',
+            'icon' => 'required'
+        ]);
+
+        $task_list = TaskList::find($id);
+        $task_list->task_group_id = $request->input('task_group_id');
+        $task_list->user_id = $request->input('user_id');
+        $task_list->name = $request->input('name');
+        $task_list->icon = $request->input('icon');
+        $task_list->save();
+
+        flash()->success("$task_list->name has been updated!");
+
+        return redirect('tasklist');
     }
 
     /**

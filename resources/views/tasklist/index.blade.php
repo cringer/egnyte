@@ -13,6 +13,7 @@
                         <th>Name</th>
                         <th>Icon</th>
                         <th>Task Group</th>
+                        <th>Assigned User</th>
                         <th>Notify Group</th>
                         <th>Created At</th>
                         <th>Updated At</th>
@@ -24,11 +25,13 @@
                             <td>{{ $tasklist->name }}</td>
                             <td>{{ $tasklist->icon }}</td>
                             <td>{{ $tasklist->task_group->name }}</td>
+                            <td>{{ $tasklist->user->name }}</td>
                             <td>{{ $tasklist->notify_group ?: 'null'}}</td>
                             <td>{{ $tasklist->created_at }}</td>
                             <td>{{ $tasklist->updated_at }}</td>
                             <td align="center">
                                 {!! Form::open(['route' => ['tasklist.destroy', $tasklist->id], 'method' => 'delete']) !!}
+                                    <a href="{{ url("tasklist/$tasklist->id") }}"><i class="fa fa-btn fa-eye"></i></a>
                                     <a href="{{ url("tasklist/$tasklist->id/edit") }}"><i class="fa fa-btn fa-pencil-square"></i></a>&nbsp;
                                     <a href="{{ url("tasklist/$tasklist->id/edit") }}"><i class="fa fa-btn fa-trash"></i></a>
                                 {!! Form::close() !!}
@@ -37,7 +40,7 @@
                     @endforeach
                 </table>
                 <a href="{{ route('tasklist.create') }}" class="btn btn-primary" role="button">
-                    <i class="fa fa-btn fa-plus"></i> Add New Task
+                    <i class="fa fa-btn fa-plus"></i> Add New Task LIst
                 </a>
             </ul>
         </div>

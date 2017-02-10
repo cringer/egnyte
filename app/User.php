@@ -18,4 +18,9 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'hostname',
     ];
+
+    public function tasklist()
+    {
+        return $this->hasMany(Tasklist::class);
+    }
 }

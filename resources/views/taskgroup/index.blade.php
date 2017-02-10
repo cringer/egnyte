@@ -25,6 +25,7 @@
                             <td>{{ $taskgroup->updated_at }}</td>
                             <td align="center">
                                 {!! Form::open(['route' => ['taskgroup.destroy', $taskgroup->id], 'method' => 'delete']) !!}
+                                    <a href="{{ url("taskgroup/$taskgroup->id") }}"><i class="fa fa-btn fa-eye"></i></a>&nbsp;
                                     <a href="{{ url("taskgroup/$taskgroup->id/edit") }}"><i class="fa fa-btn fa-pencil-square"></i></a>&nbsp;
                                     <a href="{{ url("taskgroup/$taskgroup->id/edit") }}"><i class="fa fa-btn fa-trash"></i></a>
                                 {!! Form::close() !!}
@@ -33,7 +34,7 @@
                     @endforeach
                 </table>
                 <a href="{{ route('taskgroup.create') }}" class="btn btn-primary" role="button">
-                    <i class="fa fa-btn fa-plus"></i> Add New Task
+                    <i class="fa fa-btn fa-plus"></i> Add New Task Group
                 </a>
             </ul>
         </div>

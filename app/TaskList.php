@@ -12,17 +12,27 @@ class TaskList extends Model
      * @var array
      */
     protected $fillable = [
-        'task_group_id', 'notify_group_id', 'name', 'icon'
+        'task_group_id', 'notify_group_id', 'user_id', 'name', 'icon'
     ];
 
     public function tasks()
     {
-        return $this->belongsToMany(Task::class);
+        return $this->hasMany(Task::class);
     }
 
     public function position()
     {
-        return $this->hasOne(Position::class);
+        return $this->belongsTo(Position::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function task_group()
+    {
+        return $this->belongsTo(TaskGroup::class);
     }
 
     public function notify_group()
