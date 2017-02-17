@@ -1,5 +1,5 @@
 {
-    "name": "codenex/egnyte",
+    "name": "aperio/egnyte",
     "description": "New hire onboarding application",
     "keywords": ["new hire", "onboarding"],
     "license": "proprietary",
@@ -52,5 +52,10 @@
     },
     "config": {
         "preferred-install": "dist"
-    }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
 }
