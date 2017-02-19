@@ -12,12 +12,7 @@
 */
 
 Route::get('test', function () {
-    $position = App\Position::first();
 
-    foreach ($position->task_lists as $tasklist) {
-        $task_list_array[] = $tasklist;
-    };
-    return $task_list_array;
 });
 
 Route::get('/', function () {

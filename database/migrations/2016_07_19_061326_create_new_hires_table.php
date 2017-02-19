@@ -16,9 +16,9 @@ class CreateNewHiresTable extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('slug')->unique();
-            $table->integer('position_id');
-            $table->integer('status_id');
-            $table->integer('location_id');
+            $table->integer('position_id')->unsigned();
+            $table->integer('status_id')->unsigned();
+            $table->integer('location_id')->unsigned();
             $table->date('hire_date');
             $table->timestamps();
         });

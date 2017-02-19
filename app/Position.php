@@ -7,12 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class Position extends Model
 {
     /**
-     * The attributes that are mass assignable.
+     * The attributes that are not mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['task_group_id', 'title', 'slug', 'color'];
+    protected $guarded = [];
 
+    public function new_hires()
+    {
+        return $this->hasMany(NewHires::class);
+    }
+    
     protected function task_lists()
     {
         return $this->hasMany(TaskList::class);

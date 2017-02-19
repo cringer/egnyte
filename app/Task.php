@@ -7,16 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Task extends Model
 {
     /**
-     * The attributes that are mass assignable.
+     * The attributes that are not mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'task_list_id', 'name', 'notes'
-    ];
+    protected $guarded = [];
 
-    public function task_list()
+    public function task_lists()
     {
-        return $this->belongsTo(TaskList::class);
+        return $this->belongsToMany(TaskList::class);
     }
 }

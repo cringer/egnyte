@@ -15,7 +15,6 @@ class CreateNotifyEmailsTable extends Migration
     {
         Schema::create('notify_emails', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('notify_group_id');
             $table->string('name');
             $table->string('email');
             $table->timestamps();

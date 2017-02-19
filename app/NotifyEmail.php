@@ -3,16 +3,18 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\NotifyGroup;
 
 class NotifyEmail extends Model
 {
-    protected $fillable = [
-        'notify_group_id', 'name', 'email'
-    ];
+    /**
+     * The attributes that are not mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = [];
 
     public function notify_group()
     {
-        return $this->belongsTo(NotifyGroup::class);
+        return $this->belongsToMany(NotifyGroup::class);
     }
 }

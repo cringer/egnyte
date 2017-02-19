@@ -49,12 +49,11 @@ class UserController extends Controller
             'hostname' => 'required|unique:users'     
         ]);
 
+        $request->slug = generateSlug($request->name);
+
         User::create($request->all());
 
-        $name = $request->input('name');
-        $hostname = $request->input('hostname');
-
-        flash()->success("name has been registered on $hostname!");
+        flash()->success("$request->name has been registered on $request->hostname!");
 
         return redirect('user');
     }

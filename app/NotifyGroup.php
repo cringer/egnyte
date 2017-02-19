@@ -6,9 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class NotifyGroup extends Model
 {
-    protected $fillable = [
-        'task_list_id', 'name'
-    ];
+    /**
+     * The attributes that are not mass assignable.
+     *
+     * @var array
+     */
+    protected $gaurded = [];
 
     public function task_list()
     {
@@ -17,6 +20,6 @@ class NotifyGroup extends Model
 
     public function notify_emails()
     {
-        return $this->hasMany(NotifyEmail::class);
+        return $this->belongsToMany(NotifyEmail::class);
     }
 }

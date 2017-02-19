@@ -14,7 +14,6 @@ class CreatePositionsTable extends Migration
     {
         Schema::create('positions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('task_group_id')->nullable();
             $table->string('title')->unique();
             $table->string('slug')->unique();
             $table->string('color');

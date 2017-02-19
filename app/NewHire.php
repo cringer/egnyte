@@ -7,13 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class NewHire extends Model
 {
     /**
-     * The attributes that are mass assignable.
+     * The attributes that are not mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'slug', 'position_id', 'status_id', 'location_id', 'hire_date'
-    ];
+    protected $guarded = [];
 
     public function position()
     {

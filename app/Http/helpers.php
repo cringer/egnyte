@@ -1,16 +1,42 @@
 <?php
 
-function get_hostname()
+function get_hostname($value = null)
 {
-	// get hostname of machine
-    $hostname = strtolower(gethostbyaddr($_SERVER['REMOTE_ADDR']));
-
-    // if fqdn we need to get the length
-    $length = strpos($hostname, ".");
-    
-    if ($length) {
-        $hostname = substr($hostname, 0, $length);
+    if (App::environment() == 'testing') {
+        $remoteAddr = $value;
+    } else {
+        // Get FQDN from IP
+        $remoteAddr = gethostbyaddr($_SERVER['REMOTE_ADDR']);
     }
 
-    return $hostname;
+    // Get hostname from FQDN
+    if (is_string($remoteAddr)) {
+        if (preg_match('/(\w+)\.\w+\.\w+/i', $remoteAddr, $matches)) {
+            return $matches[1];
+        }
+        else {
+            return $remoteAddr;
+        }
+    }
+    elseif (is_array($remoteAddr)) {
+        foreach ($remoteAddr as $addr) {
+            if (preg_match('/(\w+)\.\w+\.\w+/i', $addr, $matches)) {
+                return $matches[1];
+            }
+        }
+    }
+}
+
+function generateSlug($item)
+{
+    if (is_array($item)) {
+        $slugs = array_map(function ($items) {
+            return strtolower(str_replace(' ', '-', $items));             
+        }, $item);
+
+        return $slugs;     
+    }
+    elseif (is_string($item)) {
+        return strtolower(str_replace(' ', '-', $item));
+    }
 }
