@@ -1,13 +1,9 @@
 <?php
 
-function fetchHostByAddr($ip = null)
+function fetchHostByAddr($fqdn = null)
 {
-    if ($ip) {
-        $remoteAddr = $ip;
-    } else {
-        // Get FQDN from IP
-        $remoteAddr = gethostbyaddr($_SERVER['REMOTE_ADDR']);
-    }
+    // Set $remoteAddr to $fqdn or fectch based on IP
+    $remoteAddr = $fqdn ?: gethostbyaddr($_SERVER['REMOTE_ADDR']);
 
     // Get hostname from FQDN
     if (is_string($remoteAddr)) {
