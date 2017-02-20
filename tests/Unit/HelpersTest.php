@@ -11,11 +11,13 @@ class HelpersTest extends TestCase
 	/** @test */
 	public function can_get_hostname()
 	{
-        $hostname = get_hostname('machine1.testdomain.local');
-	    $hostnameA = get_hostname(['machine2.testdomain.local', 'testdomain.local', 'localhost']);
+        $hostname = fetchHostByAddr('machine1.testdomain.local');
+	    $hostnameA = fetchHostByAddr(['machine2.testdomain.local', 'testdomain.local', 'localhost']);
+	    $hostnameB = fetchHostByAddr(['testdomain.local', 'machine3.testdomain.local', 'localhost']);
 
 		$this->assertEquals('machine1', $hostname);
 		$this->assertEquals('machine2', $hostnameA);
+		$this->assertEquals('machine3', $hostnameB);
 	}
 
 	/** @test */

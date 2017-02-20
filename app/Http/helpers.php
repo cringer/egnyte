@@ -1,9 +1,9 @@
 <?php
 
-function get_hostname($value = null)
+function fetchHostByAddr($ip = null)
 {
-    if (App::environment() == 'testing') {
-        $remoteAddr = $value;
+    if ($ip) {
+        $remoteAddr = $ip;
     } else {
         // Get FQDN from IP
         $remoteAddr = gethostbyaddr($_SERVER['REMOTE_ADDR']);

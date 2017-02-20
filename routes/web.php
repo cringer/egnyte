@@ -11,6 +11,14 @@
 |
 */
 
+Route::get('destroy', function() {
+	Auth::logout();
+
+	if (!Auth::check()) {
+    	echo 'User is logged out!';
+	}
+});
+
 Route::get('test', function () {
 
 });

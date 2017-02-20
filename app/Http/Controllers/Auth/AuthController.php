@@ -11,7 +11,7 @@ class AuthController extends Controller
 {
     public function showRegistrationForm()
     {
-        $hostname = get_hostname();
+        $hostname = fetchHostByAddr();
 
         return view('auth.register')->with('hostname', $hostname);
     }
@@ -19,12 +19,14 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         // get read-only validation data
-        $hostname = get_hostname();
-        $request->merge(['hostname' => $hostname]);
+        $hostname = fetchHostByAddr();
+        $slug = generateSlug($request->name);
+        $request->merge(['hostname' => $hostname, 'slug' => $slug]);
 
         $this->validate($request, [
-            'name' => 'present',
-            'email' => 'present|email|unique:users',
+            'name' => 'nullable',
+            'email' => 'nullable|unique:users',
+            'slug' => 'required|unique:users',
             'hostname' => 'required|unique:users'
         ]);
 
@@ -37,7 +39,7 @@ class AuthController extends Controller
 
     public function login()
     {
-        $hostname = get_hostname();
+        $hostname = fetchHostByAddr();
 
         $user = User::where('hostname', $hostname)->first();
 
