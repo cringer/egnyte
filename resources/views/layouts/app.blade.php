@@ -59,24 +59,6 @@
                         <li><a href="{{ url('/register') }}">Register</a></li>
                     @endif
 
-                    @can('modify_settings')
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                <i class="fa fa-btn fa-cogs"></i>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ route('location.index') }}">Locations</a></li>
-                                <li><a href="{{ route('position.index') }}">Positions</a></li>
-                                <li><a href="{{ route('status.index') }}">Statuses</a></li>
-                                <li><a href="{{ route('user.index') }}">Users</a></li>
-                                <li><a href="{{ route('taskgroup.index') }}">Task Groups</a></li>
-                                <li><a href="{{ route('tasklist.index') }}">Task Lists</a></li>
-                                <li><a href="{{ route('task.index') }}">Tasks</a></li>
-                            </ul>
-                        </li>
-                    @endcan
-
                     @if (Auth::check())
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -84,6 +66,9 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                @hasrole('admin')
+                                    <li><a href="{{ url('/admin') }}"><i class="fa fa-btn fa-dashboard"></i>Dashboard</a></li>
+                                @endhasrole
                                 <li><a href="{{ url('/settings') }}"><i class="fa fa-btn fa-user"></i>Settings</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>

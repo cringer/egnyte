@@ -74,3 +74,17 @@ $factory->define(App\TaskGroup::class, function (Faker\Generator $faker) {
         'position_id' => 1
     ];
 });
+
+$factory->define(Spatie\Permission\Models\Role::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word,
+        
+    ];
+});
+
+$factory->define(Spatie\Permission\Models\Permission::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word,
+        
+    ];
+});
