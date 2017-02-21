@@ -36,12 +36,6 @@ Route::get('logout', 'Auth\AuthController@logout')->name('logout');
 Route::get('register', 'Auth\AuthController@showRegistrationForm');
 Route::post('register', 'Auth\AuthController@register');
 
-Route::resource('location', 'LocationController');
-Route::resource('position', 'PositionController');
-Route::resource('status', 'StatusController');
-Route::resource('task', 'TaskController');
-Route::resource('tasklist', 'TaskListController');
-
 Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function () {
 	Route::get('/', function () {
 		return view('admin.dashboard');
@@ -49,4 +43,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function () 
     Route::resource('role', 'RoleController');
     Route::resource('permission', 'PermissionController');
     Route::resource('user', 'UserController');
+    Route::resource('location', 'LocationController');
+	Route::resource('position', 'PositionController');
+	Route::resource('status', 'StatusController');
+	Route::resource('task', 'TaskController');
+	Route::resource('tasklist', 'TaskListController');
 });

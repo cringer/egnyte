@@ -5,12 +5,12 @@
         <li><a href="{{ route('permission.index') }}">Permissions</a></li>
     </ul>
     <ul class="nav nav-sidebar">
-        <li><a href="">Locations</a></li>
-        <li><a href="">Positions</a></li>
-        <li><a href="">Status</a></li>
+        <li><a href="{{ route('location.index') }}">Locations</a></li>
+        <li><a href="{{ route('position.index') }}">Positions</a></li>
+        <li><a href="{{ route('status.index') }}">Status</a></li>
     </ul>
     <ul class="nav nav-sidebar">
-        <li><a href="">Task Lists</a></li>
-        <li><a href="">Tasks</a></li>
+        <li><a href="{{ route('tasklist.index') }}">Task Lists</a></li>
+        <li><a href="{{ route('task.index') }}">Tasks</a></li>
     </ul>
 </div>
