@@ -22,7 +22,7 @@ class UserController extends Controller
     {
         $users = User::orderBy('name', 'asc')->get();
 
-        return view('user.index', compact('users'));
+        return view('admin.user.index', compact('users'));
     }
 
     /**
@@ -32,7 +32,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.create');
+        return view('admin.user.create');
     }
 
     /**
