@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class NotifyEmail extends Model
+class Contact extends Model
 {
     /**
      * The attributes that are not mass assignable.
@@ -13,8 +13,8 @@ class NotifyEmail extends Model
      */
     protected $guarded = [];
 
-    public function notify_group()
+    public function notify_groups()
     {
-        return $this->belongsToMany(NotifyGroup::class);
+    	return $this->belongsToMany(NotifyGroup::class);
     }
 }

@@ -18,12 +18,13 @@
 							<th>Id</th>
 							<th>Name</th>
 							<th>Icon</th>
+							<th>Alert Days</th>
 							<th>Position</th>
 							<th>User</th>
 							<th>Notify Group</th>
-							<th>Created</th>
-							<th>Modified</th>
-							<th>&nbsp</th>
+							<th>Created At</th>
+							<th>Updated At</th>
+							<th>Actions</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -32,12 +33,20 @@
 							<td>{{ $tasklist->id }}</td>
 							<td>{{ $tasklist->name }}</td>
 							<td>{{ $tasklist->icon }}</td>
+							<td>{{ $tasklist->alert_days }}</td>
 							<td>{{ $tasklist->position->name }}</td>
 							<td>{{ $tasklist->user->name }}</td>
 							<td>Notify</td>
 							<td>{{ $tasklist->created_at</td>
-							<td>{{ $tasklist->modified_at</td>
-							<td>2</td>
+							<td>{{ $tasklist->updated_at</td>
+							<td>
+								<a href="{{ route('tasklist.show', ['tasklist' => $tasklist->id]) }}" class="btn btn-xs btn-default">
+									<i class="fa fa-edit"></i> Edit
+								</a>
+								<a href="{{ route('tasklist.destroy', ['tasklist' => $tasklist->id]) }}" class="btn btn-xs btn-default">
+									<i class="fa fa-trash"></i> Delete
+								</a>
+							</td>
 						</tr>
 						@endforeach
 					</tbody>

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Status;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class StatusController extends Controller
+class NotifyGroupController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,7 @@ class StatusController extends Controller
      */
     public function index()
     {
-        $statuses = Status::all();
-
-        return view('admin.status.index', compact('statuses'));
+        //
     }
 
     /**
@@ -27,7 +24,7 @@ class StatusController extends Controller
      */
     public function create()
     {
-        return view('admin.status.create');
+        //
     }
 
     /**
@@ -38,17 +35,7 @@ class StatusController extends Controller
      */
     public function store(Request $request)
     {
-
-        $this->validate($request, [
-            'name' => 'required',
-            'acronym' => 'required|unique:statuses'
-        ]);
-
-        $status = Status::create($request->all());
-
-        flash()->success("$status->name has been added!");
-
-        return redirect()->route('status.index');
+        //
     }
 
     /**
@@ -59,9 +46,7 @@ class StatusController extends Controller
      */
     public function show($id)
     {
-        $status = Status::findOrFail($id);
-
-        return view('admin.status.show', compact('status'));
+        //
     }
 
     /**
@@ -72,9 +57,7 @@ class StatusController extends Controller
      */
     public function edit($id)
     {
-        $status = Status::findOrFail($id);
-
-        return view('admin.status.edit', compact('status'));
+        //
     }
 
     /**
@@ -86,19 +69,7 @@ class StatusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'status' => 'required',
-            'slug' => "required|unique:statuses,null,$id"
-        ]);
-
-        $status = Status::find($id);
-        $status->status = $request->input('status');
-        $status->slug = $request->input('slug');
-        $status->save();
-
-        flash()->success("$status->status has been updated!");
-
-        return redirect('status');
+        //
     }
 
     /**
@@ -109,11 +80,6 @@ class StatusController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
-        $status = Status::destroy($id);
-
-        flash()->success("$status->status has been removed!");
-
-        return redirect('status');
+        //
     }
 }

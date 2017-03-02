@@ -19,8 +19,8 @@
 							<th>Name</th>
 							<th>Acronym</th>
 							<th>Color</th>
-							<th>Created</th>
-							<th>Updated</th>
+							<th>Created At</th>
+							<th>Updated At</th>
 							<th>Actions</th>
 						</tr>
 					</thead>

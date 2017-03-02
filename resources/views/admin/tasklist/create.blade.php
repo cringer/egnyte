@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-    <h1 class="page-header">Add users</h1>Breadcrumb
+    <h1 class="page-header">Add Tasklist</h1>Breadcrumb
 </div>
 
 <div class="col-sm-6 col-sm-offset-4 main">
@@ -16,7 +16,7 @@
                 {{ csrf_field() }}
 
                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                    <label for="name" class="col-md-4 control-label">Title</label>
+                    <label for="name" class="col-md-4 control-label">Name</label>
 
                     <div class="col-md-6">
                         <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}">
@@ -37,7 +37,43 @@
 
                         @if ($errors->has('icon'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('name') }}</strong>
+                            <strong>{{ $errors->first('icon') }}</strong>
+                        </span>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="form-group{{ $errors->has('alert_days') ? ' has-error' : '' }}">
+                    <label for="alert_days" class="col-md-4 control-label">Alert Days</label>
+
+                    <div class="col-md-6">
+                        <input id="alert_days" type="text" class="form-control" name="alert_days" value="{{ old('alert_days') }}">
+
+                        @if ($errors->has('alert_days'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('alert_days') }}</strong>
+                        </span>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="form-group{{ $errors->has('position') ? ' has-error' : '' }}">
+                    <label for="position_id" class="col-md-4 control-label">Position</label>
+
+                    <div class="col-md-6">
+                        <select class="form-control" name="position_id">
+                            <option selected disabled>Select Position...</option>
+
+                            @foreach ($positions as $position)
+                            <option value="{{ $position->id }}" {{ old('position') == $position->id ? 'selected' : '' }}>
+                                {{ $position->name }}
+                            </option>
+                            @endforeach
+                        </select>
+
+                        @if ($errors->has('position'))
+                        <span class="help-block">
+                            <strong>{{$errors->first('position') }}</strong>
                         </span>
                         @endif
                     </div>

@@ -13,4 +13,8 @@
         <li><a href="{{ route('tasklist.index') }}">Task Lists</a></li>
         <li><a href="{{ route('task.index') }}">Tasks</a></li>
     </ul>
+    <ul class="nav nav-sidebar">
+        <li><a href="{{ route('notifygroup.index') }}">Notify Groups</a></li>
+        <li><a href="{{ route('contact.index') }}">Contacts</a></li>
+    </ul>
 </div>

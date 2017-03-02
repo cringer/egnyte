@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\User;
 use App\Task;
+use App\Position;
 use App\TaskList;
 use App\NotifyGroup;
 use Illuminate\Http\Request;
@@ -30,10 +31,9 @@ class TaskListController extends Controller
      */
     public function create()
     {
-        $notify_groups = [];
         $notify_groups = NotifyGroup::orderBy('name', 'asc')->get();
         $users = User::orderBy('name', 'asc')->get();
-        $positions = [];
+        $positions = Position::orderBy('name', 'asc')->get();
 
         return view('admin.tasklist.create', compact('notify_groups', 'users', 'positions'));
     }
@@ -47,18 +47,19 @@ class TaskListController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'name' => 'required',
+            'icon' => 'required',
+            'alert_days' => 'required',
             'position_id' => 'required|exists:positions,id',
             'user_id' => 'required|exists:users,id',
-            'notify_group_id' => 'required|exists:notify_groups,id',
-            'name' => 'required',
-            'icon' => 'required'
+            'notify_group_id' => 'required|exists:notify_groups,id'
         ]);
 
         $task_list = TaskList::create($request->all());
 
         flash()->success("$task_list->name has been added!");
 
-        return redirect('tasklist');
+        return redirect()->route('tasklist.index');
     }
 
     /**

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNotifyEmailNotifyGroupTable extends Migration
+class CreateContactNotifyGroupTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,19 @@ class CreateNotifyEmailNotifyGroupTable extends Migration
      */
     public function up()
     {
-        Schema::create('notify_email_notify_group', function (Blueprint $table) {
-            $table->integer('notify_email_id')->unsigned();
+        Schema::create('contact_notify_group', function (Blueprint $table) {
+            $table->integer('contact_id')->unsigned();
             $table->integer('notify_group_id')->unsigned();
 
-            $table->foreign('notify_email_id')
+            $table->foreign('contact_id')
                 ->references('id')
-                ->on('notify_emails');
+                ->on('contacts');
 
             $table->foreign('notify_group_id')
                 ->references('id')
                 ->on('notify_groups');
 
-            $table->primary(['notify_email_id', 'notify_group_id']);
+            $table->primary(['contact_id', 'notify_group_id']);
         });
     }
 

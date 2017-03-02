@@ -13,9 +13,9 @@ class TaskList extends Model
      */
     protected $fillable = [];
 
-    public function position()
+    public function positions()
     {
-        return $this->belongsTo(Position::class);
+        return $this->belongsToMany(Position::class);
     }
 
     public function tasks()

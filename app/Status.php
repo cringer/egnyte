@@ -11,5 +11,5 @@ class Status extends Model
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $guarded = [];
 }

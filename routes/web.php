@@ -48,4 +48,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function () 
 	Route::resource('status', 'Admin\StatusController');
 	Route::resource('task', 'Admin\TaskController');
 	Route::resource('tasklist', 'Admin\TaskListController');
+	Route::resource('contact', 'Admin\ContactController');
+	Route::resource('notifygroup', 'Admin\NotifyGroupController');
 });

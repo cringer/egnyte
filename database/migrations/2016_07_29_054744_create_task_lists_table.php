@@ -14,11 +14,12 @@ class CreateTaskListsTable extends Migration
     {
         Schema::create('task_lists', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->string('icon');
+            $table->integer('alert_days')->unsigned();
             $table->integer('position_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->integer('notify_group_id')->unsigned();
-            $table->string('name');
-            $table->string('icon');
             $table->timestamps();
         });
     }
