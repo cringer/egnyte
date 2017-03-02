@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Status;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 
-class RoleController extends Controller
+class StatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
+        $statuses = Status::all();
 
-        return view('admin.role.index', ['roles' => $roles]);
+        return view('status.index', compact('statuses'));
     }
 
     /**
@@ -27,7 +27,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('status.create');
     }
 
     /**
@@ -38,14 +38,16 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $user = Auth::user();
+        $this->validate($request, [
+            'status' => 'required',
+            'slug' => 'required|unique:statuses'
+        ]);
 
-        if ($user->hasRole('admin')) {
-            $role = Role::create(['name' => $request->name]);
-            return response()->json([], 201);
-        }
+        $status = Status::create($request->all());
 
-        return response()->json([], 302);    
+        flash()->success("$status->status has been added!");
+
+        return redirect('status');
     }
 
     /**
@@ -56,7 +58,9 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        //
+        $status = Status::findOrFail($id);
+
+        return view('status.show', compact('status'));
     }
 
     /**
@@ -67,7 +71,9 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $status = Status::findOrFail($id);
+
+        return view('status.edit', compact('status'));
     }
 
     /**
@@ -79,7 +85,19 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'status' => 'required',
+            'slug' => "required|unique:statuses,null,$id"
+        ]);
+
+        $status = Status::find($id);
+        $status->status = $request->input('status');
+        $status->slug = $request->input('slug');
+        $status->save();
+
+        flash()->success("$status->status has been updated!");
+
+        return redirect('status');
     }
 
     /**
@@ -90,6 +108,11 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        dd($id);
+        $status = Status::destroy($id);
+
+        flash()->success("$status->status has been removed!");
+
+        return redirect('status');
     }
 }

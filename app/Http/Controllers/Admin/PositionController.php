@@ -1,20 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Position;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-use App\Http\Requests;
-use App\Location;
-
-class LocationController extends Controller
+class PositionController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -22,9 +15,9 @@ class LocationController extends Controller
      */
     public function index()
     {
-        $locations = Location::all();
+        $positions = Position::all();
 
-        return view('location.index', compact('locations'));
+        return view('admin.position.index', compact('positions'));
     }
 
     /**
@@ -34,7 +27,7 @@ class LocationController extends Controller
      */
     public function create()
     {
-        return view('location.create');
+        return view('admin.position.create');
     }
 
     /**
@@ -46,15 +39,16 @@ class LocationController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'site' => 'required',
-            'slug' => 'required|unique:locations'
+            'name' => 'required',
+            'acronym' => 'required|unique:positions',
+            'color' => 'required'
         ]);
 
-        $location = Location::create($request->all());
+        $position = Position::create($request->all());
 
-        flash()->success("$location->site has been added!");
+        flash()->success("$position->name has been added!");
 
-        return redirect('location');
+        return redirect()->route('position.index');
     }
 
     /**
@@ -65,9 +59,9 @@ class LocationController extends Controller
      */
     public function show($id)
     {
-        $location = Location::findOrFail($id);
+        $position = Position::findOrFail($id);
 
-        return view('location.show', compact('location'));
+        return view('admin.position.show', compact('position'));
     }
 
     /**
@@ -78,9 +72,9 @@ class LocationController extends Controller
      */
     public function edit($id)
     {
-        $location = Location::findOrFail($id);
+        $position = Position::findOrFail($id);
 
-        return view('location.edit', compact('location'));
+        return view('admin.position.edit', compact('position'));
     }
 
     /**
@@ -93,18 +87,20 @@ class LocationController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'site' => 'required',
-            'slug' => "required|unique:locations,null,$id"
+            'title' => 'required',
+            'slug' => "required|unique:positions,null,$id",
+            'color' => 'required'
         ]);
 
-        $location = Location::find($id);
-        $location->site = $request->input('site');
-        $location->slug = $request->input('slug');
-        $location->save();
+        $position = Position::find($id);
+        $position->title = $request->input('title');
+        $position->slug = $request->input('slug');
+        $position->color = $request->input('color');
+        $position->save();
 
-        flash()->success("$location->site has been updated!");
+        flash()->success("$position->title has been updated!");
 
-        return redirect('location');
+        return redirect('position');
     }
 
     /**
@@ -115,10 +111,10 @@ class LocationController extends Controller
      */
     public function destroy($id)
     {
-        $location = Location::destroy($id);
+        $position = Position::destroy($id);
 
-        flash()->success("$location->site has been deleted!");
+        flash()->success("$position->title has been removed!");
 
-        return redirect('location');
+        return redirect('position');
     }
 }

@@ -1,19 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-use App\Http\Requests;
-use App\Status;
-
-class StatusController extends Controller
+class UserController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -21,9 +15,9 @@ class StatusController extends Controller
      */
     public function index()
     {
-        $statuses = Status::all();
+        $users = User::orderBy('name', 'asc')->get();
 
-        return view('status.index', compact('statuses'));
+        return view('admin.user.index', compact('users'));
     }
 
     /**
@@ -33,7 +27,7 @@ class StatusController extends Controller
      */
     public function create()
     {
-        return view('status.create');
+        return view('admin.user.create');
     }
 
     /**
@@ -43,17 +37,20 @@ class StatusController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {      
         $this->validate($request, [
-            'status' => 'required',
-            'slug' => 'required|unique:statuses'
+            'name' => 'present',
+            'email' => 'present|email|unique:users',
+            'hostname' => 'required|unique:users'     
         ]);
 
-        $status = Status::create($request->all());
+        $request->slug = generateSlug($request->name);
 
-        flash()->success("$status->status has been added!");
+        User::create($request->all());
 
-        return redirect('status');
+        flash()->success("$request->name has been registered on $request->hostname!");
+
+        return redirect('user');
     }
 
     /**
@@ -64,9 +61,7 @@ class StatusController extends Controller
      */
     public function show($id)
     {
-        $status = Status::findOrFail($id);
-
-        return view('status.show', compact('status'));
+        //
     }
 
     /**
@@ -77,9 +72,7 @@ class StatusController extends Controller
      */
     public function edit($id)
     {
-        $status = Status::findOrFail($id);
-
-        return view('status.edit', compact('status'));
+        //
     }
 
     /**
@@ -91,19 +84,7 @@ class StatusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'status' => 'required',
-            'slug' => "required|unique:statuses,null,$id"
-        ]);
-
-        $status = Status::find($id);
-        $status->status = $request->input('status');
-        $status->slug = $request->input('slug');
-        $status->save();
-
-        flash()->success("$status->status has been updated!");
-
-        return redirect('status');
+        //
     }
 
     /**
@@ -114,11 +95,6 @@ class StatusController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
-        $status = Status::destroy($id);
-
-        flash()->success("$status->status has been removed!");
-
-        return redirect('status');
+        //
     }
 }

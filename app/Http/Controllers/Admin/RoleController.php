@@ -1,18 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\User;
-use App\Http\Requests;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 
-class UserController extends Controller
+class RoleController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -20,9 +16,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('name', 'asc')->get();
+        $roles = Role::all();
 
-        return view('admin.user.index', compact('users'));
+        return view('admin.role.index', ['roles' => $roles]);
     }
 
     /**
@@ -32,7 +28,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user.create');
+        //
     }
 
     /**
@@ -42,20 +38,15 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {      
-        $this->validate($request, [
-            'name' => 'present',
-            'email' => 'present|email|unique:users',
-            'hostname' => 'required|unique:users'     
-        ]);
+    {
+        $user = Auth::user();
 
-        $request->slug = generateSlug($request->name);
+        if ($user->hasRole('admin')) {
+            $role = Role::create(['name' => $request->name]);
+            return response()->json([], 201);
+        }
 
-        User::create($request->all());
-
-        flash()->success("$request->name has been registered on $request->hostname!");
-
-        return redirect('user');
+        return response()->json([], 302);    
     }
 
     /**

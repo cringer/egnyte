@@ -25,8 +25,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('newhire', 'NewHiresController@index');
-Route::post('newhire', 'NewHiresController@store');
+Route::get('newhire', 'Admin\NewHiresController@index');
+Route::post('newhire', 'Admin\NewHiresController@store');
 
 // Authentication Routes...
 Route::get('login', 'Auth\AuthController@login');
@@ -40,12 +40,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function () 
 	Route::get('/', function () {
 		return view('admin.dashboard');
 	});
-    Route::resource('role', 'RoleController');
-    Route::resource('permission', 'PermissionController');
-    Route::resource('user', 'UserController');
-    Route::resource('location', 'LocationController');
-	Route::resource('position', 'PositionController');
-	Route::resource('status', 'StatusController');
-	Route::resource('task', 'TaskController');
-	Route::resource('tasklist', 'TaskListController');
+    Route::resource('role', 'Admin\RoleController');
+    Route::resource('permission', 'Admin\PermissionController');
+    Route::resource('user', 'Admin\UserController');
+    Route::resource('location', 'Admin\LocationController');
+	Route::resource('position', 'Admin\PositionController');
+	Route::resource('status', 'Admin\StatusController');
+	Route::resource('task', 'Admin\TaskController');
+	Route::resource('tasklist', 'Admin\TaskListController');
 });

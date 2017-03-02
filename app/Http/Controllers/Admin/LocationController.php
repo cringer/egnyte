@@ -1,20 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Location;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-use App\Task;
-use App\TaskList;
-use App\Http\Requests;
-
-class TaskController extends Controller
+class LocationController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -22,10 +15,9 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::orderBy('title', 'asc')->get();
-        // User::find(1)->phone;
+        $locations = Location::all();
 
-        return view('task.index', compact('tasks'));
+        return view('admin.location.index', compact('locations'));
     }
 
     /**
@@ -35,9 +27,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        $tasklists = TaskList::all();
-
-        return view('task.create', compact('tasklists'));
+        return view('admin.location.create');
     }
 
     /**
@@ -48,16 +38,20 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+        // Generate slug from name
+        $slug = generateSlug($request->input('name'));
+        $request->merge(['slug' => $slug]);
+
         $this->validate($request, [
-            'name' => 'required',
-            'task_list_id' => 'required|exists:task_lists,id'
+            'name' => 'required|unique:locations',
+            'slug' => 'required|unique:locations'
         ]);
 
-        $task = Task::create($request->all());
+        $location = Location::create($request->all());
 
-        flash()->success("$task->name has been created!");
+        flash()->success("$location->name has been added!");
 
-        return redirect('task');
+        return redirect()->route('location.index');
     }
 
     /**
@@ -68,9 +62,9 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        $task = Task::findOrFail($id);
+        $location = Location::findOrFail($id);
 
-        return view('task.show', compact('task'));
+        return view('admin.location.show', compact('location'));
     }
 
     /**
@@ -81,15 +75,9 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        $task = task::findOrFail($id);
-        $tasklists = TaskList::all();
+        $location = Location::findOrFail($id);
 
-        foreach ($tasklists as $tasklist)
-        {
-            $tasklistsArray[$tasklist->id] = $tasklist->name;
-        }
-
-        return view('task.edit', compact('task', 'tasklistsArray'));
+        return view('admin.location.edit', compact('location'));
     }
 
     /**
@@ -102,18 +90,18 @@ class TaskController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'task_list_id' => 'required|exists:task_lists,id'
+            'site' => 'required',
+            'slug' => "required|unique:locations,null,$id"
         ]);
 
-        $task = Task::find($id);
-        $task->name = $request->input('name');
-        $task->task_list_id = $request->input('task_list_id');
-        $task->save();
+        $location = Location::find($id);
+        $location->site = $request->input('site');
+        $location->slug = $request->input('slug');
+        $location->save();
 
-        flash()->success("$task->name has been updated!");
+        flash()->success("$location->site has been updated!");
 
-        return redirect('task');
+        return redirect('location');
     }
 
     /**
@@ -124,6 +112,10 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $location = Location::destroy($id);
+
+        flash()->success("$location->site has been deleted!");
+
+        return redirect('location');
     }
 }

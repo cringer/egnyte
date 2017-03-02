@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Task;
+use App\TaskList;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-use App\Http\Requests;
-use App\Position;
-
-class PositionController extends Controller
+class TaskController extends Controller
 {
     public function __construct()
     {
@@ -21,9 +21,10 @@ class PositionController extends Controller
      */
     public function index()
     {
-        $positions = Position::all();
+        $tasks = Task::orderBy('title', 'asc')->get();
+        // User::find(1)->phone;
 
-        return view('position.index', compact('positions'));
+        return view('task.index', compact('tasks'));
     }
 
     /**
@@ -33,7 +34,9 @@ class PositionController extends Controller
      */
     public function create()
     {
-        return view('position.create');
+        $tasklists = TaskList::all();
+
+        return view('task.create', compact('tasklists'));
     }
 
     /**
@@ -45,16 +48,15 @@ class PositionController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required',
-            'slug' => 'required|unique:positions',
-            'color' => 'required'
+            'name' => 'required',
+            'task_list_id' => 'required|exists:task_lists,id'
         ]);
 
-        $position = Position::create($request->all());
+        $task = Task::create($request->all());
 
-        flash()->success("$position->title has been added!");
+        flash()->success("$task->name has been created!");
 
-        return redirect('position');
+        return redirect('task');
     }
 
     /**
@@ -65,9 +67,9 @@ class PositionController extends Controller
      */
     public function show($id)
     {
-        $position = Position::findOrFail($id);
+        $task = Task::findOrFail($id);
 
-        return view('position.show', compact('position'));
+        return view('task.show', compact('task'));
     }
 
     /**
@@ -78,9 +80,15 @@ class PositionController extends Controller
      */
     public function edit($id)
     {
-        $position = Position::findOrFail($id);
+        $task = task::findOrFail($id);
+        $tasklists = TaskList::all();
 
-        return view('position.edit', compact('position'));
+        foreach ($tasklists as $tasklist)
+        {
+            $tasklistsArray[$tasklist->id] = $tasklist->name;
+        }
+
+        return view('task.edit', compact('task', 'tasklistsArray'));
     }
 
     /**
@@ -93,20 +101,18 @@ class PositionController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'title' => 'required',
-            'slug' => "required|unique:positions,null,$id",
-            'color' => 'required'
+            'name' => 'required',
+            'task_list_id' => 'required|exists:task_lists,id'
         ]);
 
-        $position = Position::find($id);
-        $position->title = $request->input('title');
-        $position->slug = $request->input('slug');
-        $position->color = $request->input('color');
-        $position->save();
+        $task = Task::find($id);
+        $task->name = $request->input('name');
+        $task->task_list_id = $request->input('task_list_id');
+        $task->save();
 
-        flash()->success("$position->title has been updated!");
+        flash()->success("$task->name has been updated!");
 
-        return redirect('position');
+        return redirect('task');
     }
 
     /**
@@ -117,10 +123,6 @@ class PositionController extends Controller
      */
     public function destroy($id)
     {
-        $position = Position::destroy($id);
-
-        flash()->success("$position->title has been removed!");
-
-        return redirect('position');
+        //
     }
 }

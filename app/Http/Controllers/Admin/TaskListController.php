@@ -1,23 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use App\NotifyGroup;
-use App\TaskGroup;
-use App\TaskList;
-use App\Task;
 use App\User;
+use App\Task;
+use App\TaskList;
+use App\NotifyGroup;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class TaskListController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -27,7 +20,7 @@ class TaskListController extends Controller
     {
         $tasklists = TaskList::orderBy('name', 'asc')->get();
 
-        return view('tasklist.index', compact('tasklists'));
+        return view('admin.tasklist.index', compact('tasklists'));
     }
 
     /**
@@ -37,12 +30,12 @@ class TaskListController extends Controller
      */
     public function create()
     {
-        $task_groups = TaskGroup::orderBy('title', 'asc')->get();
         $notify_groups = [];
-        // $notify_groups = NotifyGroup::orderBy('name', 'asc')->get();
+        $notify_groups = NotifyGroup::orderBy('name', 'asc')->get();
         $users = User::orderBy('name', 'asc')->get();
+        $positions = [];
 
-        return view('tasklist.create', compact('task_groups', 'notify_groups', 'users'));
+        return view('admin.tasklist.create', compact('notify_groups', 'users', 'positions'));
     }
 
     /**
@@ -54,8 +47,9 @@ class TaskListController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'task_group_id' => 'required|exists:task_groups,id',
-            'user_id' => 'required',
+            'position_id' => 'required|exists:positions,id',
+            'user_id' => 'required|exists:users,id',
+            'notify_group_id' => 'required|exists:notify_groups,id',
             'name' => 'required',
             'icon' => 'required'
         ]);
@@ -91,7 +85,6 @@ class TaskListController extends Controller
     {
         $tasklist = TaskList::findOrFail($id);
         $notify_groups = [];
-        $taskgroups = TaskGroup::all();
         $users = User::all();
         
         foreach ($taskgroups as $taskgroup) {

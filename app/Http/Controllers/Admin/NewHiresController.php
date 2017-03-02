@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Location;
 use App\NewHire;
 use App\Position;
 use App\Status;
 use App\User;
-use App\TaskGroup;
 use App\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\Controller;
 
 class NewHiresController extends Controller
 {
