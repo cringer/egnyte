@@ -24,12 +24,16 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach ($tasks as $tasks)
+						@foreach ($tasks as $task)
 						<tr>
 							<td>{{ $task->id }}</td>
 							<td>{{ $task->name }}</td>
-							<td>{{ $task->tasklist->name }}</td>
-							<td>{{ $task->createed_at }}</td>
+							<td>
+								@foreach ($task->tasklists as $tasklist)
+									{{ $tasklist->name }}
+								@endforeach
+							</td>
+							<td>{{ $task->created_at }}</td>
 							<td>{{ $task->updated_at }}</td>
 							<td>
 								<a href="{{ route('task.show', ['task' => $task->id]) }}" class="btn btn-xs btn-default">

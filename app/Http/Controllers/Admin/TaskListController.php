@@ -31,11 +31,10 @@ class TaskListController extends Controller
      */
     public function create()
     {
-        $notify_groups = NotifyGroup::orderBy('name', 'asc')->get();
         $users = User::orderBy('name', 'asc')->get();
         $positions = Position::orderBy('name', 'asc')->get();
 
-        return view('admin.tasklist.create', compact('notify_groups', 'users', 'positions'));
+        return view('admin.tasklist.create', compact('users', 'positions'));
     }
 
     /**
@@ -51,11 +50,16 @@ class TaskListController extends Controller
             'icon' => 'required',
             'alert_days' => 'required',
             'position_id' => 'required|exists:positions,id',
-            'user_id' => 'required|exists:users,id',
-            'notify_group_id' => 'required|exists:notify_groups,id'
+            'user_id' => 'required|exists:users,id'
         ]);
 
-        $task_list = TaskList::create($request->all());
+        $task_list = TaskList::create([
+            'name' => $request->name,
+            'icon' => $request->icon,
+            'alert_days' => $request->alert_days,
+            'user_id' => $request->user_id
+        ]);
+        $task_list->positions()->attach($request->position_id);
 
         flash()->success("$task_list->name has been added!");
 

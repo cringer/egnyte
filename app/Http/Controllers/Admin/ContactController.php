@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Contact;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,9 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        $contacts = Contact::all();
+
+        return view('admin.contact.index', compact('contacts'));
     }
 
     /**
@@ -24,7 +27,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.contact.create');
     }
 
     /**
@@ -35,7 +38,16 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|unique:contacts'
+        ]);
+
+        $contact = Contact::create($request->all());
+
+        flash()->success("$contact->name has been added!");
+
+        return redirect()->route('contact.index');
     }
 
     /**

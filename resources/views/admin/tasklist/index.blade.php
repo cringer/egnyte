@@ -34,11 +34,15 @@
 							<td>{{ $tasklist->name }}</td>
 							<td>{{ $tasklist->icon }}</td>
 							<td>{{ $tasklist->alert_days }}</td>
-							<td>{{ $tasklist->position->name }}</td>
+							<td>
+							@foreach ($tasklist->positions as $position)
+								{{ $position->name }}
+							@endforeach
+							</td>
 							<td>{{ $tasklist->user->name }}</td>
-							<td>Notify</td>
-							<td>{{ $tasklist->created_at</td>
-							<td>{{ $tasklist->updated_at</td>
+							<td>{{ $tasklist->notify_group->name}}</td>
+							<td>{{ $tasklist->created_at }}</td>
+							<td>{{ $tasklist->updated_at }}</td>
 							<td>
 								<a href="{{ route('tasklist.show', ['tasklist' => $tasklist->id]) }}" class="btn btn-xs btn-default">
 									<i class="fa fa-edit"></i> Edit

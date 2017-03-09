@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-    <h1 class="page-header">Add Tasklist</h1>Breadcrumb
+    <h1 class="page-header">Add Tasklist</h1>
 </div>
 
 <div class="col-sm-6 col-sm-offset-4 main">
@@ -12,7 +12,7 @@
             Add a new Task List
         </div>
         <div class="panel panel-body">
-            <form class="form-horizontal" role="form" method="POST" action="{{ url('/tasklist') }}">
+            <form class="form-horizontal" role="form" method="POST" action="{{ route('tasklist.store') }}">
                 {{ csrf_field() }}
 
                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -101,7 +101,7 @@
                     </div>
                 </div>
 
-                <div class="form-group{{ $errors->has('notify_group') ? ' has-error' : '' }}">
+                {{-- <div class="form-group{{ $errors->has('notify_group') ? ' has-error' : '' }}">
                     <label for="notify_group" class="col-md-4 control-label">Notify Group</label>
 
                     <div class="col-md-6">
@@ -121,7 +121,7 @@
                         </span>
                         @endif
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-4">

@@ -13,7 +13,7 @@ class Task extends Model
      */
     protected $guarded = [];
 
-    public function task_lists()
+    public function tasklists()
     {
         return $this->belongsToMany(TaskList::class);
     }

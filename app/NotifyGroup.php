@@ -13,9 +13,9 @@ class NotifyGroup extends Model
      */
     protected $guarded = [];
 
-    public function task_lists()
+    public function task_list()
     {
-        return $this->belongsToMany(TaskList::class);
+        return $this->belongsTo(TaskList::class);
     }
 
     public function contacts()

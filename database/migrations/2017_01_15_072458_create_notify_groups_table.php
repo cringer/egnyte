@@ -15,7 +15,7 @@ class CreateNotifyGroupsTable extends Migration
     {
         Schema::create('notify_groups', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('task_list_id')->unsigned();
+            $table->integer('task_list_id')->unsigned()->nullable();
             $table->string('name');
             $table->timestamps();
         });

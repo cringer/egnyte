@@ -22,9 +22,8 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::orderBy('title', 'asc')->get();
-        // User::find(1)->phone;
 
-        return view('task.index', compact('tasks'));
+        return view('admin.task.index', compact('tasks'));
     }
 
     /**
@@ -36,7 +35,7 @@ class TaskController extends Controller
     {
         $tasklists = TaskList::all();
 
-        return view('task.create', compact('tasklists'));
+        return view('admin.task.create', compact('tasklists'));
     }
 
     /**
@@ -52,11 +51,14 @@ class TaskController extends Controller
             'task_list_id' => 'required|exists:task_lists,id'
         ]);
 
-        $task = Task::create($request->all());
+        $task = Task::create([
+            'name' => $request->name
+        ]);
+        $task->tasklists()->attach($request->task_list_id);
 
         flash()->success("$task->name has been created!");
 
-        return redirect('task');
+        return redirect()->route('task.index');
     }
 
     /**

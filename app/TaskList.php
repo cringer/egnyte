@@ -11,7 +11,7 @@ class TaskList extends Model
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $guarded = [];
 
     public function positions()
     {
@@ -26,5 +26,10 @@ class TaskList extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function notify_group()
+    {
+        return $this->hasOne(NotifyGroup::class);
     }
 }

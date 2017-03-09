@@ -20,6 +20,6 @@ class Position extends Model
     
     protected function task_lists()
     {
-        return $this->hasMany(TaskList::class);
+        return $this->belongsToMany(TaskList::class);
     }
 }

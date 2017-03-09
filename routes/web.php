@@ -12,13 +12,27 @@
 */
 
 Route::get('test', function() {
-	Auth::logout();
-
-	if (!Auth::check()) {
-    	echo 'User is logged out!';
-	} else {
-		echo 'User is logged in!';
+	// $notifygroup = App\NotifyGroup::find(1);
+	$notifygroup = App\NotifyGroup::findOrFail(1);
+	// $notifygroups = App\NotifyGroup::all();
+	foreach ($notifygroup->contacts as $contact) {
+		echo $contact->name;
 	}
+
+	// foreach ($notifygroups as $notifygroup) {
+	// 	foreach ($notifygroup->contacts as $contact) {
+	// 		echo $contact->name;
+	// 	}
+	// }
+
+	// $tasklists = App\TaskList::orderBy('name', 'asc')->get();
+
+	// foreach ($tasklists as $tasklist) {
+	// 	var_dump($tasklist);
+		// foreach ($tasklist->positions as $position) {
+		// 	echo $position->name;
+		// }
+	// }
 });
 
 Route::get('/', function () {
