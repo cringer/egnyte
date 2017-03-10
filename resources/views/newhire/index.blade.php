@@ -9,9 +9,17 @@
             @foreach ($newhires as $newhire)
                 <a href="newhire/{{ $newhire->slug }}">
                     <li class="list-group-item">
-                        <strong>{{ $newhire->name }}</strong> - <span class="label label-default" style="background: {{ $newhire->position->color }}">{{ strtoupper($newhire->position->slug) }}</span><br />
-                        <i class="fa fa-btn fa-building-o"></i>{{ $newhire->location->site }} - {{ $newhire->status->status }}<br />
-                        <i class="fa fa-btn fa-calendar"></i>&nbsp;{{ $newhire->hire_date }}</i>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <strong>{{ $newhire->name }}</strong> - <span class="label label-default" style="background: {{ $newhire->position->color }}">{{ strtoupper($newhire->position->acronym) }}</span><br />
+                                <i class="fa fa-btn fa-building-o"></i>{{ $newhire->location->name }} - {{ $newhire->status->name }}<br />
+                                <i class="fa fa-btn fa-calendar"></i>&nbsp;{{ $newhire->hire_date }}</i>
+                            </div>
+                            <div class="col-md-4">
+                                <i class="fa fa-btn fa-building-o"></i>
+                                <i class="fa fa-btn fa-building-o"></i>
+                            </div>
+                        </div>
                     </li>
                 </a>
                 <br />

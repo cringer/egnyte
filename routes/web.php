@@ -12,27 +12,47 @@
 */
 
 Route::get('test', function() {
-	// $notifygroup = App\NotifyGroup::find(1);
-	$notifygroup = App\NotifyGroup::findOrFail(1);
-	// $notifygroups = App\NotifyGroup::all();
-	foreach ($notifygroup->contacts as $contact) {
-		echo $contact->name;
-	}
+	$tasklists = App\Position::find(1)->task_lists()->get();
+	dd($tasklists);
+	// $roles = App\User::find(1)->roles()->orderBy('name')->get();
+	// $position = 1;
 
-	// foreach ($notifygroups as $notifygroup) {
-	// 	foreach ($notifygroup->contacts as $contact) {
-	// 		echo $contact->name;
+	// function lookup()
+	// {
+	// 	$position = App\Position::find(1);
+
+	// 	foreach ($position->task_lists as $tasklist) {
+
 	// 	}
+
+	// 	return true;
 	// }
 
-	// $tasklists = App\TaskList::orderBy('name', 'asc')->get();
+	// $numbers = array(1,2,3);
+	// dd(lookup($numbers));
+
+
+	// $tasklists = array();
+	// $tasks = array();
+
+	// $position = App\Position::find(1);
+
+	// foreach ($position->task_lists as $tasklist) {
+	// 	$tasklists[] = $tasklist->id;
+	// };
+
+	// // dd($tasklists);
 
 	// foreach ($tasklists as $tasklist) {
-	// 	var_dump($tasklist);
-		// foreach ($tasklist->positions as $position) {
-		// 	echo $position->name;
-		// }
-	// }
+	// 	$tasks = App\Tasklist::find($tasklist)->tasks()->get();
+	// };
+
+	// $tasks = App\Taskslist::find($tasklist)
+
+	// $numbers = array(1,2,3);
+	// $tasklists[1] = $numbers;
+	// $tasklists = App\Position::find(1)->task_lists()->get();
+	dd($tasks);
 });
 
 Route::get('/', function () {

@@ -40,7 +40,7 @@
 							@endforeach
 							</td>
 							<td>{{ $tasklist->user->name }}</td>
-							<td>{{ $tasklist->notify_group->name}}</td>
+							<td>Notify</td>
 							<td>{{ $tasklist->created_at }}</td>
 							<td>{{ $tasklist->updated_at }}</td>
 							<td>

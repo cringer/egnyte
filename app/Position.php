@@ -15,10 +15,13 @@ class Position extends Model
 
     public function new_hires()
     {
-        return $this->hasMany(NewHires::class);
+        return $this->hasMany(NewHire::class);
     }
     
-    protected function task_lists()
+    /**
+     * The tasklists that belong to the position.
+     */
+    public function task_lists()
     {
         return $this->belongsToMany(TaskList::class);
     }

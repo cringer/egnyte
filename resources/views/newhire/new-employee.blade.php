@@ -25,7 +25,7 @@
 
                         @foreach ($positions as $position)
                             <option value="{{ $position->id }}" {{ old('position_id') == $position->id ? 'selected' : '' }}>
-                                {{ $position->title }}
+                                {{ $position->name }}
                             </option>
                         @endforeach
                     </select>
@@ -45,7 +45,7 @@
 
                         @foreach ($statuses as $status)
                             <option value="{{ $status->id }}" {{ old('status_id') == $status->id ? 'selected' : '' }}>
-                                {{ $status->status }}
+                                {{ $status->name }}
                             </option>
                         @endforeach
                     </select>
@@ -78,14 +78,14 @@
 
                         @foreach ($locations as $location)
                             <option value="{{ $location->id }}" {{ old('location_id') == $location->id ? 'selected' : '' }}>
-                                {{ $location->site }}
+                                {{ $location->name }}
                             </option>
                         @endforeach
                     </select>
 
                     @if ($errors->has('location_id'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('location') }}</strong>
+                            <strong>{{ $errors->first('location_id') }}</strong>
                         </span>
                     @endif
                 </div>

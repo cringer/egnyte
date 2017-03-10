@@ -13,11 +13,17 @@ class TaskList extends Model
      */
     protected $guarded = [];
 
+    /**
+     * The positions that belong to the task list.
+     */
     public function positions()
     {
         return $this->belongsToMany(Position::class);
     }
 
+    /**
+     * The tasks that belong to the task list.
+     */
     public function tasks()
     {
         return $this->belongsToMany(Task::class);
