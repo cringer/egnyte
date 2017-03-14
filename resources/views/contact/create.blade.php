@@ -5,9 +5,9 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Add Position</div>
+                <div class="panel-heading">Add Contact</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/position') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/contact') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -24,29 +24,15 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('acronym') ? ' has-error' : '' }}">
-                            <label for="acronym" class="col-md-4 control-label">Acronym</label>
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-4 control-label">Email</label>
 
                             <div class="col-md-6">
-                                <input id="acronym" type="text" class="form-control" name="acronym">
+                                <input id="email" type="text" class="form-control" name="email">
 
-                                @if ($errors->has('acronym'))
+                                @if ($errors->has('email'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('acronym') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                         <div class="form-group{{ $errors->has('color') ? ' has-error' : '' }}">
-                            <label for="color" class="col-md-4 control-label">Color</label>
-
-                            <div class="col-md-6">
-                                <input id="color" type="text" class="form-control" name="color">
-
-                                @if ($errors->has('color'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('color') }}</strong>
+                                        <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
                             </div>

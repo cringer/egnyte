@@ -12,52 +12,16 @@
 */
 
 Route::get('test', function() {
-	$tasklists = App\Position::find(1)->task_lists()->get();
-	dd($tasklists);
-	// $roles = App\User::find(1)->roles()->orderBy('name')->get();
-	// $position = 1;
 
-	// function lookup()
-	// {
-	// 	$position = App\Position::find(1);
-
-	// 	foreach ($position->task_lists as $tasklist) {
-
-	// 	}
-
-	// 	return true;
-	// }
-
-	// $numbers = array(1,2,3);
-	// dd(lookup($numbers));
-
-
-	// $tasklists = array();
-	// $tasks = array();
-
-	// $position = App\Position::find(1);
-
-	// foreach ($position->task_lists as $tasklist) {
-	// 	$tasklists[] = $tasklist->id;
-	// };
-
-	// // dd($tasklists);
-
-	// foreach ($tasklists as $tasklist) {
-	// 	$tasks = App\Tasklist::find($tasklist)->tasks()->get();
-	// };
-
-	// $tasks = App\Taskslist::find($tasklist)
-
-	// $numbers = array(1,2,3);
-	// $tasklists[1] = $numbers;
-	// $tasklists = App\Position::find(1)->task_lists()->get();
-	dd($tasks);
 });
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('contact', 'ContactController');
+Route::resource('position', 'PositionController');
+Route::resource('department', 'DepartmentController');
 
 Route::get('newhire', 'Admin\NewHiresController@index');
 Route::post('newhire', 'Admin\NewHiresController@store');
@@ -70,7 +34,7 @@ Route::get('logout', 'Auth\AuthController@logout')->name('logout');
 Route::get('register', 'Auth\AuthController@showRegistrationForm');
 Route::post('register', 'Auth\AuthController@register');
 
-Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function () {
+Route::name('admin.')->prefix('admin')->middleware('role:admin')->group(function () {
 	Route::get('/', function () {
 		return view('admin.dashboard');
 	});

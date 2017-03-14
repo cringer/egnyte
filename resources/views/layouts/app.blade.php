@@ -53,6 +53,18 @@
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <i class="fa fa-btn fa-cogs"></i>
+                        </a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ url('/contact') }}"><i class="fa fa-btn fa-envelope-o"></i>Contacts</a></li>
+                            <li><a href="{{ url('/position') }}"><i class="fa fa-btn fa-diamond"></i>Positions</a></li>
+                            <li><a href="{{ url('/department') }}"><i class="fa fa-btn fa-cube"></i>Department</a></li>
+                        </ul>
+                    </li>
+
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
@@ -97,6 +109,7 @@
     <script>
         $('div.alert').delay(3000).fadeOut(350);
     </script>
+    @yield('footer_scripts')
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 </body>
 </html>

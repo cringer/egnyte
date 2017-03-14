@@ -25,4 +25,12 @@ class Position extends Model
     {
         return $this->belongsToMany(TaskList::class);
     }
+
+    /**
+     * Get the department that owns the position.
+     */
+    public function department()
+    {
+        return $this->belongsTo('Department::class');
+    }
 }

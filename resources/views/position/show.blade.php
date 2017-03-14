@@ -10,8 +10,8 @@
                 <table class="table table-bordered table-hover table-striped">
                     <tr>
                         <th>#</th>
-                        <th>Title</th>
-                        <th>Slug</th>
+                        <th>Name</th>
+                        <th>Acronym</th>
                         <th>Color</th>
                         <th>Created At</th>
                         <th>Updated At</th>
@@ -19,8 +19,8 @@
                     </tr>
                     <tr>
                         <td>{{ $position->id }}</td>
-                        <td>{{ $position->title }}</td>
-                        <td>{{ $position->slug }}</td>
+                        <td>{{ $position->name }}</td>
+                        <td>{{ $position->acronym }}</td>
                         <td>{{ $position->color }}</td>
                         <td>{{ $position->created_at }}</td>
                         <td>{{ $position->updated_at }}</td>

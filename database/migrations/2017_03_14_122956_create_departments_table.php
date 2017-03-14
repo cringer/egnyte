@@ -1,9 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePositionsTable extends Migration
+class CreateDepartmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +13,9 @@ class CreatePositionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('positions', function (Blueprint $table) {
+        Schema::create('departments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('department_id')->unsigned()->nullable();
             $table->string('name')->unique();
-            $table->string('acronym')->unique();
-            $table->string('color');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreatePositionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('positions');
+        Schema::dropIfExists('departments');
     }
 }
