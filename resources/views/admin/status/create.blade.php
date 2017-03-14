@@ -11,7 +11,7 @@
 			Add a new Status
 		</div>
 		<div class="panel panel-body">
-			<form class="form-horizontal" role="form" method="POST" action="{{ route('status.store') }}">
+			<form class="form-horizontal" role="form" method="POST" action="{{ route('admin.status.store') }}">
 	            {{ csrf_field() }}
 
 	            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">

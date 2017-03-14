@@ -40,10 +40,10 @@
 								@endforeach
 							</td>
 							<td>
-								<a href="{{ route('user.show', ['user' => $user->id]) }}" class="btn btn-xs btn-default">
+								<a href="{{ route('admin.user.show', ['user' => $user->id]) }}" class="btn btn-xs btn-default">
 									<i class="fa fa-edit"></i> Edit
 								</a>
-								<a href="{{ route('user.destroy', ['user' => $user->id]) }}" class="btn btn-xs btn-default">
+								<a href="{{ route('admin.user.destroy', ['user' => $user->id]) }}" class="btn btn-xs btn-default">
 									<i class="fa fa-trash"></i> Delete
 								</a>
 							</td>

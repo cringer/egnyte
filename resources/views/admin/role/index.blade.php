@@ -6,7 +6,7 @@
 
     <div class="panel panel-default">
     	<div class="panel-heading">
-    		<a href="{{ route('role.create') }}" class="btn btn-primary">
+    		<a href="{{ route('admin.role.create') }}" class="btn btn-primary">
     			<i class="fa fa-plus"></i> Add Role
 			</a>
 		</div>
@@ -30,10 +30,10 @@
 								@endforeach
 							</td>
 							<td>
-								<a href="{{ route('role.show', ['role' => $role->id]) }}" class="btn btn-xs btn-default">
+								<a href="{{ route('admin.role.show', ['role' => $role->id]) }}" class="btn btn-xs btn-default">
 									<i class="fa fa-edit"></i> Edit
 								</a>
-								<a href="{{ route('role.destroy', ['role' => $role->id]) }}" class="btn btn-xs btn-default">
+								<a href="{{ route('admin.role.destroy', ['role' => $role->id]) }}" class="btn btn-xs btn-default">
 									<i class="fa fa-trash"></i> Delete
 								</a>
 							</td>

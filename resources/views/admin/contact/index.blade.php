@@ -32,10 +32,10 @@
 							<td>{{ $contact->created_at }}</td>
 							<td>{{ $contact->updated_at }}</td>
 							<td>
-								<a href="{{ route('contact.show', ['contact' => $contact->id]) }}" class="btn btn-xs btn-default">
+								<a href="{{ route('admin.contact.show', ['contact' => $contact->id]) }}" class="btn btn-xs btn-default">
 									<i class="fa fa-edit"></i> Edit
 								</a>
-								<a href="{{ route('contact.destroy', ['contact' => $contact->id]) }}" class="btn btn-xs btn-default">
+								<a href="{{ route('admin.contact.destroy', ['contact' => $contact->id]) }}" class="btn btn-xs btn-default">
 									<i class="fa fa-trash"></i> Delete
 								</a>
 							</td>

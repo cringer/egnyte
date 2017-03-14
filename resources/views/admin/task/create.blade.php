@@ -12,7 +12,7 @@
             Add a new Task
         </div>
         <div class="panel panel-body">
-            <form class="form-horizontal" role="form" method="POST" action="{{ route('task.store') }}">
+            <form class="form-horizontal" role="form" method="POST" action="{{ route('admin.task.store') }}">
                 {{ csrf_field() }}
 
                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">

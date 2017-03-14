@@ -6,7 +6,7 @@
 
     <div class="panel panel-default">
     	<div class="panel-heading">
-    		<a href="{{ route('position.create') }}" class="btn btn-primary">
+    		<a href="{{ route('admin.position.create') }}" class="btn btn-primary">
     			<i class="fa fa-plus"></i> Add Position
 			</a>
 		</div>
@@ -34,10 +34,10 @@
 							<td>{{ $position->created_at }}</td>
 							<td>{{ $position->updated_at }}</td>
 							<td>
-								<a href="{{ route('position.show', ['position' => $position->id]) }}" class="btn btn-xs btn-default">
+								<a href="{{ route('admin.position.show', ['position' => $position->id]) }}" class="btn btn-xs btn-default">
 									<i class="fa fa-edit"></i> Edit
 								</a>
-								<a href="{{ route('position.destroy', ['position' => $position->id]) }}" class="btn btn-xs btn-default">
+								<a href="{{ route('admin.position.destroy', ['position' => $position->id]) }}" class="btn btn-xs btn-default">
 									<i class="fa fa-trash"></i> Delete
 								</a>
 							</td>

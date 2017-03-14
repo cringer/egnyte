@@ -32,10 +32,10 @@
 							<td>{{ $status->created_at }}</td>
 							<td>{{ $status->updated_at }}</td>
 							<td>
-								<a href="{{ route('status.show', ['status' => $status->id]) }}" class="btn btn-xs btn-default">
+								<a href="{{ route('admin.status.show', ['status' => $status->id]) }}" class="btn btn-xs btn-default">
 									<i class="fa fa-edit"></i> Edit
 								</a>
-								<a href="{{ route('status.destroy', ['status' => $status->id]) }}" class="btn btn-xs btn-default">
+								<a href="{{ route('admin.status.destroy', ['status' => $status->id]) }}" class="btn btn-xs btn-default">
 									<i class="fa fa-trash"></i> Delete
 								</a>
 							</td>

@@ -6,7 +6,7 @@
 
     <div class="panel panel-default">
     	<div class="panel-heading">
-    		<a href="{{ route('permission.create') }}" class="btn btn-primary">
+    		<a href="{{ route('admin.permission.create') }}" class="btn btn-primary">
     			<i class="fa fa-plus"></i> Add Permission
 			</a>
 		</div>
@@ -30,10 +30,10 @@
 								@endforeach
 							</td>
 							<td>
-								<a href="{{ route('permission.show', ['permission' => $permission->id]) }}" class="btn btn-xs btn-default">
+								<a href="{{ route('admin.permission.show', ['permission' => $permission->id]) }}" class="btn btn-xs btn-default">
 									<i class="fa fa-edit"></i> Edit
 								</a>
-								<a href="{{ route('permission.destroy', ['permission' => $permission->id]) }}" class="btn btn-xs btn-default">
+								<a href="{{ route('admin.permission.destroy', ['permission' => $permission->id]) }}" class="btn btn-xs btn-default">
 									<i class="fa fa-trash"></i> Delete
 								</a>
 							</td>

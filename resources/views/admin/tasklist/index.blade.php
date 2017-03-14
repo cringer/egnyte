@@ -44,10 +44,10 @@
 							<td>{{ $tasklist->created_at }}</td>
 							<td>{{ $tasklist->updated_at }}</td>
 							<td>
-								<a href="{{ route('tasklist.show', ['tasklist' => $tasklist->id]) }}" class="btn btn-xs btn-default">
+								<a href="{{ route('admin.tasklist.show', ['tasklist' => $tasklist->id]) }}" class="btn btn-xs btn-default">
 									<i class="fa fa-edit"></i> Edit
 								</a>
-								<a href="{{ route('tasklist.destroy', ['tasklist' => $tasklist->id]) }}" class="btn btn-xs btn-default">
+								<a href="{{ route('admin.tasklist.destroy', ['tasklist' => $tasklist->id]) }}" class="btn btn-xs btn-default">
 									<i class="fa fa-trash"></i> Delete
 								</a>
 							</td>

@@ -11,7 +11,7 @@
 			Add a new Contact
 		</div>
 		<div class="panel panel-body">
-			<form class="form-horizontal" role="form" method="POST" action="{{ route('contact.store') }}">
+			<form class="form-horizontal" role="form" method="POST" action="{{ route('admin.contact.store') }}">
 				{{ csrf_field() }}
 
 				<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">

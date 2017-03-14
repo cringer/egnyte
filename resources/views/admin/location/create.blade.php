@@ -11,7 +11,7 @@
 			Add a new Location
 		</div>
 		<div class="panel panel-body">
-			<form class="form-horizontal" role="form" method="POST" action="{{ route('location.store') }}">
+			<form class="form-horizontal" role="form" method="POST" action="{{ route('admin.location.store') }}">
 				{{ csrf_field() }}
 
 				<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">

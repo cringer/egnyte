@@ -32,10 +32,10 @@
 							<td>{{ $notifygroup->created_at }}</td>
 							<td>{{ $notifygroup->updated_at }}</td>
 							<td>
-								<a href="{{ route('notifygroup.show', ['notifygroup' => $notifygroup->id]) }}" class="btn btn-xs btn-default">
+								<a href="{{ route('admin.notifygroup.show', ['notifygroup' => $notifygroup->id]) }}" class="btn btn-xs btn-default">
 									<i class="fa fa-edit"></i> Edit
 								</a>
-								<a @click.prevent="deleteGroup" href="{{ route('notifygroup.destroy', ['notifygroup' => $notifygroup->id]) }}" class="btn btn-xs btn-default">
+								<a @click.prevent="deleteGroup" href="{{ route('admin.notifygroup.destroy', ['notifygroup' => $notifygroup->id]) }}" class="btn btn-xs btn-default">
 									<i class="fa fa-trash"></i> Delete
 								</a>
 							</td>

@@ -6,7 +6,7 @@
 
     <div class="panel panel-default">
     	<div class="panel-heading">
-    		<a href="{{ route('task.create') }}" class="btn btn-primary">
+    		<a href="{{ route('admin.task.create') }}" class="btn btn-primary">
     			<i class="fa fa-plus"></i> Add Task
 			</a>
 		</div>
@@ -36,10 +36,10 @@
 							<td>{{ $task->created_at }}</td>
 							<td>{{ $task->updated_at }}</td>
 							<td>
-								<a href="{{ route('task.show', ['task' => $task->id]) }}" class="btn btn-xs btn-default">
+								<a href="{{ route('admin.task.show', ['task' => $task->id]) }}" class="btn btn-xs btn-default">
 									<i class="fa fa-edit"></i> Edit
 								</a>
-								<a href="{{ route('task.destroy', ['task' => $task->id]) }}" class="btn btn-xs btn-default">
+								<a href="{{ route('admin.task.destroy', ['task' => $task->id]) }}" class="btn btn-xs btn-default">
 									<i class="fa fa-trash"></i> Delete
 								</a>
 							</td>
