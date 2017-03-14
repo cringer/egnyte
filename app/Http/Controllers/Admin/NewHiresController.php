@@ -28,9 +28,9 @@ class NewHiresController extends Controller
     {
 
         $newhires = NewHire::orderBy('hire_date', 'asc')->paginate(5);
-        $positions = Position::orderBy('title', 'asc')->get();
-        $locations = Location::orderBy('site', 'asc')->get();
-        $statuses = Status::orderBy('status', 'asc')->get();
+        $positions = Position::orderBy('name', 'asc')->get();
+        $locations = Location::orderBy('name', 'asc')->get();
+        $statuses = Status::orderBy('name', 'asc')->get();
 
         return view('newhire.index', compact('newhires', 'positions', 'locations', 'statuses'));
     }
