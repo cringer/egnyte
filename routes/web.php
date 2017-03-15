@@ -12,7 +12,7 @@
 */
 
 Route::get('test', function() {
-
+	echo '<img src="' . asset('storage/logo.png') . '"></img>';
 });
 
 Route::get('/', function () {

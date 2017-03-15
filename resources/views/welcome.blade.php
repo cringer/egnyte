@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Welcome to Egnyte - Snowline Hospice</title>
+        <title>Welcome to Egnyte</title>
 
         <link href="https://fonts.googleapis.com/css?family=Exo+2:500" rel="stylesheet">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
@@ -14,10 +14,7 @@
             body
             {
                 font-family: 'Exo 2', sans-serif;
-                background-image: url("images/slh-bg.jpg");
-                background-position: center;
-                background-size: 1440px;
-                background-repeat: no-repeat;
+                background-image: url("images/frenchstucco.png");
             }
             .wrap-inline-block {
                 font-size: 0.0001px;
@@ -51,7 +48,7 @@
                 <a class="title" href="{{ url('/newhire') }}">
                     <i class="fa fa-fire" aria-hidden="true"></i><br />Egnyte
                 </a>
-                <img src="images/slh-logo.png" />
+                <img src="{{ asset('storage/logo.png') }}" />
             </div>
         </div>
     </body>
