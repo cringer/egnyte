@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Vendor;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class VendorController extends Controller
 {
@@ -14,7 +15,9 @@ class VendorController extends Controller
      */
     public function index()
     {
-        return Vendor::all();
+        $vendors = Vendor::all();
+
+        return view('admin.vendor.index', compact('vendors'));
     }
 
     /**
