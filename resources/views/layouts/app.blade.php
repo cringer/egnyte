@@ -78,9 +78,9 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                @hasrole('admin')
+                                {{-- @hasrole('admin') --}}
                                     <li><a href="{{ url('/admin') }}"><i class="fa fa-btn fa-dashboard"></i>Dashboard</a></li>
-                                @endhasrole
+                                {{-- @endhasrole --}}
                                 <li><a href="{{ url('/settings') }}"><i class="fa fa-btn fa-user"></i>Settings</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>

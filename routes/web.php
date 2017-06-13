@@ -34,7 +34,8 @@ Route::get('logout', 'Auth\AuthController@logout')->name('logout');
 Route::get('register', 'Auth\AuthController@showRegistrationForm');
 Route::post('register', 'Auth\AuthController@register');
 
-Route::name('admin.')->prefix('admin')->middleware('role:admin')->group(function () {
+// Route::name('admin.')->prefix('admin')->middleware('role:admin')->group(function () {
+Route::group(['prefix' => 'admin'], function () {
 	Route::get('/', function () {
 		return view('admin.dashboard');
 	});
@@ -48,4 +49,5 @@ Route::name('admin.')->prefix('admin')->middleware('role:admin')->group(function
 	Route::resource('tasklist', 'Admin\TaskListController');
 	Route::resource('contact', 'Admin\ContactController');
 	Route::resource('notifygroup', 'Admin\NotifyGroupController');
+	Route::resource('vendor', 'Admin\VendorController');
 });
