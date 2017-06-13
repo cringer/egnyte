@@ -35,7 +35,7 @@ Route::get('register', 'Auth\AuthController@showRegistrationForm');
 Route::post('register', 'Auth\AuthController@register');
 
 // Route::name('admin.')->prefix('admin')->middleware('role:admin')->group(function () {
-Route::group(['prefix' => 'admin'], function () {
+Route::name('admin.')->prefix('admin')->group(function () {
 	Route::get('/', function () {
 		return view('admin.dashboard');
 	});
@@ -50,4 +50,6 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::resource('contact', 'Admin\ContactController');
 	Route::resource('notifygroup', 'Admin\NotifyGroupController');
 	Route::resource('vendor', 'Admin\VendorController');
+	Route::resource('equipment', 'Admin\EquipmentController');
+	Route::resource('equipmenttype', 'Admin\EquipmentTypeController');
 });

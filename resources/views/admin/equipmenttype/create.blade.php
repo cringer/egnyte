@@ -2,17 +2,17 @@
 
 @section('content')
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-    <h1 class="page-header">Add Vendor</h1>
+    <h1 class="page-header">Add Equipment Type</h1>
 </div>
 
 <div class="col-sm-6 col-sm-offset-4 main">
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            Add a new Vendor
+            Add a new Equipment Type
         </div>
         <div class="panel panel-body">
-            <form class="form-horizontal" role="form" method="POST" action="{{ route('admin.vendor.store') }}">
+            <form class="form-horizontal" role="form" method="POST" action="{{ route('admin.equipmenttype.store') }}">
                 {{ csrf_field() }}
 
                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">

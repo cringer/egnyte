@@ -1,8 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Vendor;
+use App\Equipment;
+use App\EquipmentType;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class EquipmentController extends Controller
 {
@@ -13,7 +17,9 @@ class EquipmentController extends Controller
      */
     public function index()
     {
-        return \App\Equipment::all();
+        $equipment = Equipment::all();
+
+        return view('admin.equipment.index', compact('equipment'));
     }
 
     /**
@@ -23,7 +29,10 @@ class EquipmentController extends Controller
      */
     public function create()
     {
-        //
+        $vendors = Vendor::orderBy('name', 'asc')->get();
+        $equipmentTypes = EquipmentType::orderBy('name', 'asc')->get();
+
+        return view('admin.equipment.create', compact('vendors', 'equipmentTypes'));
     }
 
     /**
@@ -34,7 +43,23 @@ class EquipmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+            'vendor_id' => 'required|exists:vendors,id',
+            'equipmenttype_id' => 'required|exists:equipment_types,id'
+        ]);
+
+        $equipment = Equipment::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'vendor_id' => $request->vendor_id,
+            'type_id' => $request->equipmenttype_id
+        ]);
+
+        flash()->success("$equipment->name has been added!");
+
+        return redirect()->route('admin.equipment.index');
     }
 
     /**

@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\EquipmentType;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 
 class EquipmentTypeController extends Controller
 {
@@ -13,7 +16,9 @@ class EquipmentTypeController extends Controller
      */
     public function index()
     {
-        return \App\EquipmentType::all();
+        $equipmentTypes = EquipmentType::all();
+
+        return view('admin.equipmenttype.index', compact('equipmentTypes'));
     }
 
     /**
@@ -23,7 +28,7 @@ class EquipmentTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.equipmenttype.create');
     }
 
     /**
@@ -34,7 +39,17 @@ class EquipmentTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate(request(), [
+            'name' => 'required'
+        ]);
+
+        $equipmenttype = EquipmentType::create([
+            'name' => $request->name
+        ]);
+
+        flash()->success("$equipmenttype->name has been created!");
+
+        return redirect()->route('admin.equipmenttype.index');
     }
 
     /**

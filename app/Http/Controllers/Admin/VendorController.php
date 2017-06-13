@@ -27,9 +27,7 @@ class VendorController extends Controller
      */
     public function create()
     {
-        return view('vendor.create', [
-            'vendors' => Vendor::all()
-        ]);
+        return view('admin.vendor.create');
     }
 
     /**
@@ -38,17 +36,19 @@ class VendorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
         $this->validate(request(), [
             'name' => 'required'
         ]);
 
-        Vendor::forceCreate([
-            'name' => request('name')
+        $vendor = Vendor::create([
+            'name' => $request->name
         ]);
 
-        return ['message' => 'Vendor Created!'];
+        flash()->success("$vendor->name has been created!");
+
+        return redirect()->route('admin.vendor.index');
     }
 
     /**
