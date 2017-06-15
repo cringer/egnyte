@@ -62,7 +62,7 @@ return [
              * The disk names on which the backups will be stored.
              */
             'disks' => [
-                'local',
+                'google',
             ],
         ],
     ],
@@ -92,7 +92,7 @@ return [
         'notifiable' => \Spatie\Backup\Notifications\Notifiable::class,
 
         'mail' => [
-            'to' => 'your@example.com',
+            'to' => 'jschaffer@aperio-it.com',
         ],
 
         'slack' => [
@@ -113,7 +113,7 @@ return [
     'monitorBackups' => [
         [
             'name' => env('APP_URL'),
-            'disks' => ['local'],
+            'disks' => ['google'],
             'newestBackupsShouldNotBeOlderThanDays' => 1,
             'storageUsedMayNotBeHigherThanMegabytes' => 5000,
         ],
