@@ -12,4 +12,12 @@ class Assignment extends Model
      * @var array
      */
     protected $guarded = [];
+
+	/**
+	 * Get the newhires with assignments.
+	 */
+    public function newhires()
+    {
+    	return $this->hasMany('App\NewHire');
+    }
 }

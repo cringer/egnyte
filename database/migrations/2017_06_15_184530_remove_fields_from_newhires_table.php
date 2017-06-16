@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAssignmentMethodsTable extends Migration
+class RemoveFieldsFromNewhiresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateAssignmentMethodsTable extends Migration
      */
     public function up()
     {
-        Schema::create('assignment_methods', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name', 25);
-            $table->string('description', 50)->nullable();
-            $table->timestamps();
+        Schema::table('new_hires', function (Blueprint $table) {
+            $table->dropColumn(['slug', 'status_id', 'location_id']);
         });
     }
 
@@ -28,6 +25,6 @@ class CreateAssignmentMethodsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assignment_methods');
+
     }
 }

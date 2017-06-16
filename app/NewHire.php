@@ -18,13 +18,18 @@ class NewHire extends Model
         return $this->belongsTo(Position::class);
     }
 
-    public function location()
+    public function assigned()
     {
-        return $this->belongsTo(Location::class);
+        return $this->belongsTo('App\Assignment');
     }
 
-    public function status()
-    {
-        return $this->belongsTo(Status::class);
-    }
+    // public function location()
+    // {
+    //     return $this->belongsTo(Location::class);
+    // }
+
+    // public function status()
+    // {
+    //     return $this->belongsTo(Status::class);
+    // }
 }

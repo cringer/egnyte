@@ -11,13 +11,11 @@
 |
 */
 
-Route::get('test', function() {
-    Storage::disk('google')->put('test.txt', 'Hello World');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Admin\NewHiresController@index');
 
 Route::resource('contact', 'ContactController');
 Route::resource('position', 'PositionController');
