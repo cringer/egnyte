@@ -15,6 +15,14 @@
 //     return view('welcome');
 // });
 
+Route::get('test', function () {
+	$equipment = \App\Equipment::all();
+
+	foreach ($equipment as $equip) {
+		print ($equip->equipmentType->name);
+	}
+});
+
 Route::get('/', 'Admin\NewHiresController@index');
 
 Route::resource('contact', 'ContactController');

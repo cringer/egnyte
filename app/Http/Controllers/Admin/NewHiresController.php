@@ -39,15 +39,15 @@ class NewHiresController extends Controller
     public function store(Request $request)
     {
         // Generate slug from name
-        // $name = $request->input('name');
-        // $slug = str_replace(' ', '-', strtolower($name));
+        $name = $request->input('name');
+        $slug = str_replace(' ', '-', strtolower($name));
 
-        // $request->merge(['slug' => $slug]);
-
+        $request->merge(['slug' => $slug]);
         $this->validate($request, [
             'name' => 'required',
+            'slug' => 'required|unique:new_hires',
             'position_id' => 'required|exists:positions,id',
-            'hire_date' => 'requred'
+            'hire_date' => 'required'
         ]);
         // $this->validate($request, [
         //     'name' => 'required',

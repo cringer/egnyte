@@ -54,7 +54,7 @@ class EquipmentController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'vendor_id' => $request->vendor_id,
-            'type_id' => $request->equipmenttype_id
+            'equipment_type_id' => $request->equipmenttype_id
         ]);
 
         flash()->success("$equipment->name has been added!");

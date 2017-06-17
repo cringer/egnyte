@@ -106,8 +106,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
     <script>
         $( function() {
-            $( "#hire_date" ).datepicker();
-        } );
+            $( "#hire_date" ).datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+        });
     </script>
     <script>
         $('div.alert').delay(3000).fadeOut(350);

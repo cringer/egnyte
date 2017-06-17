@@ -14,7 +14,7 @@ class RemoveFieldsFromNewhiresTable extends Migration
     public function up()
     {
         Schema::table('new_hires', function (Blueprint $table) {
-            $table->dropColumn(['slug', 'status_id', 'location_id']);
+            $table->dropColumn(['status_id', 'location_id']);
         });
     }
 

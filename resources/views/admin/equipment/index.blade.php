@@ -30,8 +30,9 @@
 						<tr>
 							<td>{{ $equip->id }}</td>
 							<td>{{ $equip->vendor->name }}</td>
-							<td>{{-- {{ $equip->equipmentType->name }} --}}</td>
+							<td>{{ $equip->equipmentType->name }}</td>
 							<td>{{ $equip->name }}</td>
+							<td>{{ $equip->description }}</td>
 							<td>{{ $equip->created_at }}</td>
 							<td>{{ $equip->updated_at }}</td>
 							<td>&nbsp;
