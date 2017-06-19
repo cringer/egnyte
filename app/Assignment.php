@@ -20,4 +20,12 @@ class Assignment extends Model
     {
     	return $this->hasMany('App\NewHire');
     }
+
+    /**
+     * Get the methods with assignments.
+     */
+    public function methods()
+    {
+        return $this->hasMany('App\Assignment');
+    }
 }

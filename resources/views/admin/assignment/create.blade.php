@@ -19,7 +19,7 @@
                     <label for="newhire" class="col-md-4 control-label">New Hire</label>
 
                     <div class="col-md-6">
-                        <select class="form-control" name="newhire">
+                        <select class="form-control" name="newhire_id">
                             <option selected disabled>Select New Hire...</option>
 
                             @foreach ($newhires as $hire)
@@ -41,7 +41,7 @@
                     <label for="assignmentmethod" class="col-md-4 control-label">Assignment Method</label>
 
                     <div class="col-md-6">
-                        <select class="form-control" name="assignmentmethod">
+                        <select class="form-control" name="method_id">
                             <option selected disabled>Select Assignment Method...</option>
 
                             @foreach ($assignmentMethods as $method)

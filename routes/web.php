@@ -60,4 +60,6 @@ Route::name('admin.')->prefix('admin')->group(function () {
 	Route::resource('equipmenttype', 'Admin\EquipmentTypeController');
 	Route::resource('assignment', 'Admin\AssignmentController');
 	Route::resource('assignmentmethod', 'Admin\AssignmentMethodController');
+	Route::resource('order', 'Admin\OrderController');
+	Route::resource('orderstatus', 'Admin\OrderStatusController');
 });

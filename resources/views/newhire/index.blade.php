@@ -13,6 +13,9 @@
                             <div class="col-md-4">
                                 {{ $newhire->name }}
                             </div>
+                            <div class="col-md-4">
+                                stuff
+                            </div>
                         </div>
                     </li>
                 </a>

@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\NewHire;
-use App\Assignment;
-use App\AssignmentMethod;
+use App\OrderStatus;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class AssignmentController extends Controller
+class OrderStatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +15,9 @@ class AssignmentController extends Controller
      */
     public function index()
     {
-        $assignments = Assignment::all();
+        $orderStatuses = OrderStatus::all();
 
-        return view('admin.assignment.index', compact('assignments'));
+        return view('admin.orderstatus.index', compact('orderStatuses'));
     }
 
     /**
@@ -29,10 +27,7 @@ class AssignmentController extends Controller
      */
     public function create()
     {
-        $newhires = NewHire::orderBy('name', 'asc')->get();
-        $assignmentMethods = AssignmentMethod::orderBy('name', 'asc')->get();
-
-        return view('admin.assignment.create', compact('newhires', 'assignmentMethods'));
+        return view('admin.orderstatus.create');
     }
 
     /**
@@ -43,16 +38,17 @@ class AssignmentController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'newhire_id' => 'required|exists:new_hires,id',
-            'method_id' => 'required|exists:assignment_methods,id',
+        $this->validate(request(), [
+            'name' => 'required'
         ]);
 
-        $assignment = Assignment::create($request->all());
+        $order_status = OrderStatus::create([
+            'name' => $request->name
+        ]);
 
-        flash()->success("Assignment has been added!");
+        flash()->success("$order_status->name has been created!");
 
-        return redirect()->route('admin.assignment.index');
+        return redirect()->route('admin.orderstatus.index');
     }
 
     /**
