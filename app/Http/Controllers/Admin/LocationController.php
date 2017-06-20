@@ -51,7 +51,7 @@ class LocationController extends Controller
 
         flash()->success("$location->name has been added!");
 
-        return redirect()->route('location.index');
+        return redirect()->route('admin.location.index');
     }
 
     /**
