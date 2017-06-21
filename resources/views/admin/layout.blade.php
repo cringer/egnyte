@@ -39,8 +39,11 @@
                 <a class="navbar-brand" href="{{ url('admin') }}">{{ config('app.name', 'Laravel') }}</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/"><i class="fa fa-home fa-lg"></i></a></li>
+                </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Logout</a></li>
+                    <!-- <li><a href="#">Logout</a></li> -->
                 </ul>
             </div>
         </div>

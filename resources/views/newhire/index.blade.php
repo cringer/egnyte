@@ -7,19 +7,23 @@
 
         <ul class="list-group">
             @foreach ($newhires as $newhire)
-                <a href="newhire/{{ $newhire->slug }}">
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col-md-4">
-                                {{ $newhire->name }}
-                            </div>
-                            <div class="col-md-4">
-                                stuff
-                            </div>
-                        </div>
-                    </li>
-                </a>
-                <br />
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href="newhire/{{ $newhire->slug }}">
+                            {{ $newhire->name }}<br>
+                            Position: {{ $newhire->position->name }}<br>
+                            Start Date: {{ $newhire->hire_date}}
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="icon"><br>
+                            <a href="/order/{{ $newhire->id }}" target="_blank"><i class="fa fa-shopping-cart fa-2x"></i></a>
+                        <div>
+                    </div>
+                </div>
+            </li>
+            <br>
             @endforeach
         </ul>
     </div>

@@ -18,9 +18,9 @@ class NewHire extends Model
         return $this->belongsTo(Position::class);
     }
 
-    public function assigned()
+    public function assignment()
     {
-        return $this->belongsTo('App\Assignment');
+        return $this->hasOne('App\Assignment');
     }
 
     public function order()

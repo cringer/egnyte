@@ -16,11 +16,17 @@
 // });
 
 Route::get('test', function () {
-	$equipment = \App\Equipment::all();
+	// $assignments = App\Assignment::all();
 
-	foreach ($equipment as $equip) {
-		print ($equip->equipmentType->name);
-	}
+	// foreach($assignments as $assignment) {
+	// 	print($assignment->newhire->name);
+	// };
+	// 
+	$newhires = App\NewHire::all();
+
+	// foreach($newhires as $newhire) {
+	// 	print($newhire->assignment->id);
+	// }
 });
 
 Route::get('/', 'Admin\NewHiresController@index');

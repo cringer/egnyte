@@ -44,11 +44,15 @@ class AssignmentController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'newhire_id' => 'required|exists:new_hires,id',
+            'new_hire_id' => 'required|exists:new_hires,id',
             'method_id' => 'required|exists:assignment_methods,id',
         ]);
 
         $assignment = Assignment::create($request->all());
+
+        $newhire = \App\NewHire::find($assignment->new_hire_id);
+        $newhire->assignment_id = $assignment->id;
+        $newhire->save();
 
         flash()->success("Assignment has been added!");
 

@@ -12,4 +12,12 @@ class AssignmentMethod extends Model
      * @var array
      */
     protected $guarded = [];
+
+    /**
+     * Get the assignments with the assignment method.
+     */
+    public function assignments()
+    {
+        return $this->belongsTo('App\Assignment');
+    }    
 }

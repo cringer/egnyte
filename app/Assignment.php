@@ -16,16 +16,16 @@ class Assignment extends Model
 	/**
 	 * Get the newhires with assignments.
 	 */
-    public function newhires()
+    public function newhire()
     {
-    	return $this->hasMany('App\NewHire');
+    	return $this->hasOne('App\NewHire');
     }
 
     /**
      * Get the methods with assignments.
      */
-    public function methods()
+    public function method()
     {
-        return $this->hasMany('App\Assignment');
+        return $this->belongsTo('App\AssignmentMethod');
     }
 }

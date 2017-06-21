@@ -1,9 +1,9 @@
 <div class="col-sm-3 col-md-2 sidebar">
-    <ul class="nav nav-sidebar">
+<!--     <ul class="nav nav-sidebar">
         <li><a href="{{ route('admin.user.index') }}">Users</a></li>
         <li><a href="{{ route('admin.role.index') }}">Roles</a></li>
         <li><a href="{{ route('admin.permission.index') }}">Permissions</a></li>
-    </ul>
+    </ul> -->
     <ul class="nav nav-sidebar">
         <li><a href="{{ route('admin.location.index') }}">Locations</a></li>
         <li><a href="{{ route('admin.position.index') }}">Positions</a></li>

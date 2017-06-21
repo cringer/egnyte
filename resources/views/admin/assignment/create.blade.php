@@ -16,10 +16,10 @@
                 {{ csrf_field() }}
 
                 <div class="form-group{{ $errors->has('assignment') ? ' has-error' : '' }}">
-                    <label for="newhire" class="col-md-4 control-label">New Hire</label>
+                    <label for="new_hire_id" class="col-md-4 control-label">New Hire</label>
 
                     <div class="col-md-6">
-                        <select class="form-control" name="newhire_id">
+                        <select class="form-control" name="new_hire_id">
                             <option selected disabled>Select New Hire...</option>
 
                             @foreach ($newhires as $hire)
@@ -29,9 +29,9 @@
                             @endforeach
                         </select>
 
-                        @if ($errors->has('newhire'))
+                        @if ($errors->has('new_hire_id'))
                         <span class="help-block">
-                            <strong>{{$errors->first('newhire') }}</strong>
+                            <strong>{{$errors->first('new_hire_id') }}</strong>
                         </span>
                         @endif
                     </div>

@@ -27,8 +27,8 @@
 						@foreach ($assignments as $assignment)
 						<tr>
 							<td>{{ $assignment->id }}</td>
-							<td>New Hire</td>
-							<td>Method</td>
+							<td>{{ $assignment->newhire->name }}</td>
+							<td>{{ $assignment->method->name }}</td>
 							<td>{{ $assignment->created_at }}</td>
 							<td>{{ $assignment->updated_at }}</td>
 							<td>
