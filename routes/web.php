@@ -16,11 +16,11 @@
 // });
 
 Route::get('test', function () {
-    $id = 2;
-    $order = \App\Order::find($id);
-    $dt = $order->updated_at;
-    // $dt->setTimezone('PST');
-    dd($dt);
+	$statuses = array('Ordered', 'Processing', 'Shipped', 'Delivered');
+
+	foreach($statuses as $status) {
+        print($status . "<br>");
+	}
 });
 
 Route::get('/', 'Admin\NewHiresController@index');

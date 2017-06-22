@@ -162,7 +162,6 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Adldap\Laravel\AdldapServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -170,8 +169,8 @@ return [
         Laravel\Tinker\TinkerServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        Spatie\Permission\PermissionServiceProvider::class,
         Spatie\Backup\BackupServiceProvider::class,
+        Adldap\Laravel\AdldapServiceProvider::class,
 
         /*
          * Application Service Providers...
