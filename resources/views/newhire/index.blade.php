@@ -18,7 +18,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="icon"><br>
-                            <a href="/order/{{ $newhire->id }}" target="_blank"><i class="fa fa-shopping-cart fa-2x"></i></a>
+                            <a href="/order/{{ $newhire->assignment->order_id }}" target="_blank"><i class="fa fa-shopping-cart fa-2x"></i></a>
                         <div>
                     </div>
                 </div>

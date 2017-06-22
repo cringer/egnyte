@@ -28,6 +28,7 @@ class NewHiresController extends Controller
     {
 
         $newhires = NewHire::orderBy('hire_date', 'asc')->paginate(5);
+
         $positions = Position::orderBy('name', 'asc')->get();
         // $locations = Location::orderBy('name', 'asc')->get();
         // $statuses = Status::orderBy('name', 'asc')->get();
@@ -47,7 +48,7 @@ class NewHiresController extends Controller
             'name' => 'required',
             'slug' => 'required|unique:new_hires',
             'position_id' => 'required|exists:positions,id',
-            'hire_date' => 'required'
+            'hire_date' => 'required|date'
         ]);
         // $this->validate($request, [
         //     'name' => 'required',

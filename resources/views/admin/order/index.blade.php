@@ -17,6 +17,7 @@
 						<tr>
 							<th>Id</th>
 							<th>Assignment</th>
+							<th>Equipment</th>
 							<th>Status</th>
 							<th>Order Date</th>
 							<th>Delivery Date</th>
@@ -29,10 +30,11 @@
 						@foreach ($orders as $order)
 						<tr>
 							<td>{{ $order->id }}</td>
-							<td>Assignment</td>
-							<td>Status</td>
+							<td>{{ $order->assignment->newhire->name }}</td>
+							<td>{{ $order->equipment->name }}</td>
+							<td>{{ $order->order_status->name }}</td>
 							<td>{{ $order->order_date }}</td>
-							<td>{{ $order->delivery_date }}</td>
+							<td>{{ $order->deliver_date }}</td>
 							<td>{{ $order->created_at }}</td>
 							<td>{{ $order->updated_at }}</td>
 							<td>&nbsp;
@@ -50,5 +52,5 @@
 			</div>
 		</div>
 	</div>
-</div>    
+</div>
 @endsection

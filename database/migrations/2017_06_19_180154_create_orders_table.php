@@ -15,10 +15,11 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->smallInteger('assignment_id');
-            $table->smallInteger('status_id');
+            $table->smallInteger('assignment_id')->unsigned();
+            $table->smallInteger('equipment_id')->unsigned();
+            $table->smallInteger('order_status_id')->unsigned();
             $table->date('order_date');
-            $table->date('deliver_date');
+            $table->date('deliver_date')->nullable();
             $table->timestamps();
         });
     }

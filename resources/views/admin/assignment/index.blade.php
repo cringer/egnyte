@@ -18,6 +18,7 @@
 							<th>Id</th>
 							<th>New Hire</th>
 							<th>Method</th>
+							<th>Order Id</th>
 							<th>Created At</th>
 							<th>Updated At</th>
 							<th>Actions</th>
@@ -29,6 +30,7 @@
 							<td>{{ $assignment->id }}</td>
 							<td>{{ $assignment->newhire->name }}</td>
 							<td>{{ $assignment->method->name }}</td>
+							<td>{{ $assignment->order_id }}</td>							
 							<td>{{ $assignment->created_at }}</td>
 							<td>{{ $assignment->updated_at }}</td>
 							<td>

@@ -46,6 +46,7 @@ class AssignmentController extends Controller
         $this->validate($request, [
             'new_hire_id' => 'required|exists:new_hires,id',
             'method_id' => 'required|exists:assignment_methods,id',
+            'order_id' => 'nullable',
         ]);
 
         $assignment = Assignment::create($request->all());

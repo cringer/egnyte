@@ -28,4 +28,12 @@ class Assignment extends Model
     {
         return $this->belongsTo('App\AssignmentMethod');
     }
+
+    /**
+     * Get the order for this assignment
+     */
+    public function order()
+    {
+        return $this->belongsTo('App\Order');
+    }
 }

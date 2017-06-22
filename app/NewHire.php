@@ -23,11 +23,6 @@ class NewHire extends Model
         return $this->hasOne('App\Assignment');
     }
 
-    public function order()
-    {
-        return $this->belongsTo('App\Order');
-    }
-
     // public function location()
     // {
     //     return $this->belongsTo(Location::class);
