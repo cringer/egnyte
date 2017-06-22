@@ -1,12 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Order;
-use App\Assignment;
-use App\Equipment;
-use App\OrderStatus;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -20,7 +16,7 @@ class OrderController extends Controller
     {
         $orders = Order::all();
 
-        return view('admin.order.index', compact('orders'));
+        return view('order.index', compact('orders'));
     }
 
     /**
@@ -30,11 +26,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        $assignments = Assignment::all();
-        $statuses = OrderStatus::all();
-        $equipment = Equipment::all();
-
-        return view('admin.order.create', compact('assignments', 'statuses', 'equipment'));
+        //
     }
 
     /**
@@ -45,29 +37,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'assignment_id' => 'required|exists:assignments,id',
-            'equipment_id' => 'required|exists:equipment,id',
-            'order_status_id' => 'required|exists:order_statuses,id',
-            'order_date' => 'required|date',
-            'delivery_date' => 'nullable|date'
-        ]);
-
-        $order = Order::create([
-            'assignment_id' => $request->assignment_id,
-            'equipment_id' => $request->equipment_id,
-            'order_status_id' => $request->order_status_id,
-            'order_date' => $request->order_date,
-            'deliver_date' => $request->delivery_date
-        ]);
-
-        $assignment = \App\Assignment::find($order->assignment_id);
-        $assignment->order_id = $order->id;
-        $assignment->save();
-
-        flash()->success("Order has been updated!");
-
-        return redirect()->route('admin.order.index');
+        //
     }
 
     /**
@@ -79,8 +49,6 @@ class OrderController extends Controller
     public function show($id)
     {
         $order = Order::findOrFail($id);
-
-        dd($order);
 
         return view('order.show', compact('order'));
     }

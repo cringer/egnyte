@@ -1,5 +1,9 @@
 .icon {
-	height: 5em;
 	border: 1px solid #ccc;
+	height: 5em;
 	text-align: center;
+}
+
+.complete {
+	color: green;
 }

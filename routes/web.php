@@ -16,11 +16,11 @@
 // });
 
 Route::get('test', function () {
-    $newhires = App\NewHire::all();
-    
-    foreach($newhires as $newhire) {
-    	print($newhire->assignment->id);
-    }
+    $id = 2;
+    $order = \App\Order::find($id);
+    $dt = $order->updated_at;
+    // $dt->setTimezone('PST');
+    dd($dt);
 });
 
 Route::get('/', 'Admin\NewHiresController@index');
@@ -28,6 +28,7 @@ Route::get('/', 'Admin\NewHiresController@index');
 Route::resource('contact', 'ContactController');
 Route::resource('position', 'PositionController');
 Route::resource('department', 'DepartmentController');
+Route::resource('order', 'OrderController');
 
 Route::get('newhire', 'Admin\NewHiresController@index');
 Route::post('newhire', 'Admin\NewHiresController@store');

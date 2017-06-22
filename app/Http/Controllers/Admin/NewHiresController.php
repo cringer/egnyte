@@ -29,6 +29,16 @@ class NewHiresController extends Controller
 
         $newhires = NewHire::orderBy('hire_date', 'asc')->paginate(5);
 
+        // foreach ($newhires as $newhire) {
+        //     if($newhire->assignment->id) {
+        //         print('Has Assignment');
+        //     } else {
+        //         // print($newhire->assignment->id . "<br>");
+        //         print('No Assignment');
+        //     }
+        // }
+        // die;
+        // Collections for select fields in form
         $positions = Position::orderBy('name', 'asc')->get();
         // $locations = Location::orderBy('name', 'asc')->get();
         // $statuses = Status::orderBy('name', 'asc')->get();

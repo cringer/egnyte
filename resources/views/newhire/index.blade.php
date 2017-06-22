@@ -18,7 +18,15 @@
                     </div>
                     <div class="col-md-4">
                         <div class="icon"><br>
-                            <a href="/order/1 }}" target="_blank"><i class="fa fa-shopping-cart fa-2x"></i></a>
+                            @if ($newhire->assignment)
+                                @if ($newhire->assignment->method->id == 1)
+                                    <a href="/order/{{ $newhire->assignment->order->id }}" target="_blank"><i class="fa fa-shopping-cart fa-2x"></i></a>
+                                @else
+                                    <i class="fa fa-check fa-2x complete"></i>
+                                @endif
+                            @else
+                                <i class="fa fa-question fa-2x"></i>
+                            @endif
                         <div>
                     </div>
                 </div>
