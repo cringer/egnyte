@@ -12,10 +12,10 @@ class AssignmentMethodsTableSeeder extends Seeder
      */
     public function run()
     {
-		$methods = array('New Equipment', 'Repurposed');
+		$methods = array('New Equipment' => 'Brand New Equipment', 'Repurposed' => 'Repurposed Gear');
 
-    	foreach($methods as $method) {
-	        AssignmentMethod::create(['name' => $method ]);	
+    	foreach($methods as $k => $v) {
+	        AssignmentMethod::create(['name' => $k, 'description' => $v ]);	
     	}
     }
 }
