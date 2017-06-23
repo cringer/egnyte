@@ -14,7 +14,6 @@ class CreatePositionsTable extends Migration
     {
         Schema::create('positions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('department_id')->unsigned()->nullable();
             $table->string('name')->unique();
             $table->string('acronym')->unique();
             $table->string('color');

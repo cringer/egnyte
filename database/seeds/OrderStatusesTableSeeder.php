@@ -1,5 +1,6 @@
 <?php
 
+use App\OrderStatus;
 use Illuminate\Database\Seeder;
 
 class OrderStatusesTableSeeder extends Seeder
@@ -14,7 +15,7 @@ class OrderStatusesTableSeeder extends Seeder
 		$statuses = array('Ordered', 'Processing', 'Shipped', 'Delivered');
 
     	foreach($statuses as $status) {
-	        DB::table('order_statuses')->insert(['name' => $status]);	
+            OrderStatus::create([ 'name' => $status ]);
     	}
     }
 }

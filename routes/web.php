@@ -11,16 +11,10 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Route::get('test', function () {
-	$statuses = array('Ordered', 'Processing', 'Shipped', 'Delivered');
+	$time = \Carbon\Carbon::now();
 
-	foreach($statuses as $status) {
-        print($status . "<br>");
-	}
+	return $time;
 });
 
 Route::get('/', 'Admin\NewHiresController@index');

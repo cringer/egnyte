@@ -1,5 +1,6 @@
 <?php
 
+use App\AssignmentMethod;
 use Illuminate\Database\Seeder;
 
 class AssignmentMethodsTableSeeder extends Seeder
@@ -14,7 +15,7 @@ class AssignmentMethodsTableSeeder extends Seeder
 		$methods = array('New Equipment', 'Repurposed');
 
     	foreach($methods as $method) {
-	        DB::table('assignment_methods')->insert(['name' => $method]);	
+	        AssignmentMethod::create(['name' => $method ]);	
     	}
     }
 }

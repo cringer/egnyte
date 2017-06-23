@@ -60,7 +60,10 @@
                     <li>
                         <a href="{{ url('/admin') }}"><i class="fa fa-btn fa-dashboard"></i></a>
                     </li>
-                    <li class="dropdown">
+                    <li>
+                        <a href="{{ url('/position') }}"><i class="fa fa-btn fa-diamond"></i></a>
+                    </li>
+                    <!-- <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <i class="fa fa-btn fa-cogs"></i>
                         </a>
@@ -70,7 +73,7 @@
                             <li><a href="{{ url('/position') }}"><i class="fa fa-btn fa-diamond"></i>Positions</a></li>
                             <li><a href="{{ url('/department') }}"><i class="fa fa-btn fa-cube"></i>Department</a></li>
                         </ul>
-                    </li>
+                    </li> -->
 
                     <!-- Authentication Links -->
                     <!-- @if (Auth::guest())
