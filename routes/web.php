@@ -56,6 +56,7 @@ Route::name('admin.')->prefix('admin')->group(function () {
 	// Route::resource('contact', 'Admin\ContactController');
 	// Route::resource('notifygroup', 'Admin\NotifyGroupController');
 	Route::resource('vendor', 'Admin\VendorController');
+	Route::resource('vendorcontact', 'Admin\VendorContactController');
 	Route::resource('equipment', 'Admin\EquipmentController');
 	Route::resource('equipmenttype', 'Admin\EquipmentTypeController');
 	Route::resource('assignment', 'Admin\AssignmentController');

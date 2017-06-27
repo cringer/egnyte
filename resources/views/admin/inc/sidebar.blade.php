@@ -1,6 +1,7 @@
 <div class="col-sm-3 col-md-2 sidebar">
     <ul class="nav nav-sidebar">
         <li><a href="{{ route('admin.vendor.index') }}">Vendors</a></li>
+        <li><a href="{{ route('admin.vendorcontact.index') }}">Vendor Contacts</a></li>
         <li><a href="{{ route('admin.equipment.index') }}">Equipment</a></li>
         <li><a href="{{ route('admin.equipmenttype.index') }}">Equipment Type</a></li>
     </ul>

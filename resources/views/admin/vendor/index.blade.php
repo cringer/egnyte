@@ -17,6 +17,7 @@
 						<tr>
 							<th>Id</th>
 							<th>Name</th>
+							<th>Account Number</th>							
 							<th>Created At</th>
 							<th>Updated At</th>
 							<th>Actions</th>
@@ -27,6 +28,7 @@
 						<tr>
 							<td>{{ $vendor->id }}</td>
 							<td>{{ $vendor->name }}</td>
+							<td>{{ $vendor->account_number }}</td>							
 							<td>{{ $vendor->created_at }}</td>
 							<td>{{ $vendor->updated_at }}</td>
 							<td>

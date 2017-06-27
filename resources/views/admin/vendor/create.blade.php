@@ -27,7 +27,21 @@
                         </span>
                         @endif
                     </div>
-                </div>                
+                </div>
+
+                <div class="form-group{{ $errors->has('account_number') ? ' has-error' : '' }}">
+                    <label for="account_number" class="col-md-4 control-label">Account Number</label>
+
+                    <div class="col-md-6">
+                        <input id="account_number" type="text" class="form-control" name="account_number" value="{{ old('account_number') }}">
+
+                        @if ($errors->has('account_number'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('account_number') }}</strong>
+                        </span>
+                        @endif
+                    </div>
+                </div>               
 
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-4">
