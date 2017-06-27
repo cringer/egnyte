@@ -49,30 +49,35 @@ class NewHiresController extends Controller
 
     public function store(Request $request)
     {
-        // Generate slug from name
-        $name = $request->input('name');
-        $slug = str_replace(' ', '-', strtolower($name));
-
-        $request->merge(['slug' => $slug]);
         $this->validate($request, [
             'name' => 'required',
-            'slug' => 'required|unique:new_hires',
             'position_id' => 'required|exists:positions,id',
             'hire_date' => 'required|date'
         ]);
-        // $this->validate($request, [
-        //     'name' => 'required',
-        //     'slug' => 'required|unique:new_hires',
-        //     'position_id' => 'required|exists:positions,id',
-        //     'status_id' => 'required|exists:statuses,id',
-        //     'location_id' => 'required|exists:locations,id',
-        //     'hire_date' => 'required'
-        // ]);
 
-        $newhire = NewHire::create($request->all());
+        $newhire = new NewHire;
+        $newhire->name = $request->input('name');
+        $newhire->slug = str_slug($request->input('name'));
+        $newhire->position_id = $request->input('position_id');
+        $newhire->hire_date = $request->input('hire_date');
+
+        $newhire->save();
 
         flash()->success("$newhire->name has been announced!");
 
         return back();
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  $param
+     * @return \Illuminate\Http\Response
+     */
+    public function show($param)
+    {
+        return NewHire::where('id', $param)
+            ->orWhere('slug', $param)
+            ->firstOrFail();
     }
 }

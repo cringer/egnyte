@@ -80,8 +80,6 @@ class OrderController extends Controller
     {
         $order = Order::findOrFail($id);
 
-        dd($order);
-
         return view('order.show', compact('order'));
     }
 
