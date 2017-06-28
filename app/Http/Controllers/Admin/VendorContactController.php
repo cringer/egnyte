@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Vendor;
+use App\VendorContact;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class VendorController extends Controller
+class VendorContactController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +16,9 @@ class VendorController extends Controller
      */
     public function index()
     {
-        $vendors = Vendor::all();
+        $vendor_contacts = VendorContact::all();
 
-        return view('admin.vendor.index', compact('vendors'));
+        return view('admin.vendorcontact.index', compact('vendor_contacts'));
     }
 
     /**
@@ -27,7 +28,9 @@ class VendorController extends Controller
      */
     public function create()
     {
-        return view('admin.vendor.create');
+        $vendors = Vendor::all();
+
+        return view('admin.vendorcontact.create', compact('vendors'));
     }
 
     /**
@@ -39,27 +42,31 @@ class VendorController extends Controller
     public function store(Request $request)
     {
         $this->validate(request(), [
+            'vendor_id' => 'required|exists:vendors,id',
             'name' => 'required',
-            'account_number' => 'nullable'
+            'email' => 'nullable|email',
+            'phone' => 'nullable|numeric'
         ]);
 
-        $vendor = Vendor::create([
+        $vendorcontact = VendorContact::create([
+            'vendor_id' => $request->vendor_id,
             'name' => $request->name,
-            'account_number' => $request->account_number
+            'email' => $request->email,
+            'phone' => $request->phone,
         ]);
 
-        flash()->success("$vendor->name has been created!");
+        flash()->success("$vendorcontact->name has been created!");
 
-        return redirect()->route('admin.vendor.index');
+        return redirect()->route('admin.vendorcontact.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\VendorContact  $vendorContact
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(VendorContact $vendorContact)
     {
         //
     }
@@ -67,10 +74,10 @@ class VendorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\VendorContact  $vendorContact
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(VendorContact $vendorContact)
     {
         //
     }
@@ -79,10 +86,10 @@ class VendorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\VendorContact  $vendorContact
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, VendorContact $vendorContact)
     {
         //
     }
@@ -90,11 +97,11 @@ class VendorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\VendorContact  $vendorContact
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(VendorContact $vendorContact)
     {
-        //
+        
     }
 }

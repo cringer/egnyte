@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Vendor;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class VendorController extends Controller
+class NewHireController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +13,7 @@ class VendorController extends Controller
      */
     public function index()
     {
-        $vendors = Vendor::all();
-
-        return view('admin.vendor.index', compact('vendors'));
+        //
     }
 
     /**
@@ -27,7 +23,7 @@ class VendorController extends Controller
      */
     public function create()
     {
-        return view('admin.vendor.create');
+        //
     }
 
     /**
@@ -38,19 +34,7 @@ class VendorController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate(request(), [
-            'name' => 'required',
-            'account_number' => 'nullable'
-        ]);
-
-        $vendor = Vendor::create([
-            'name' => $request->name,
-            'account_number' => $request->account_number
-        ]);
-
-        flash()->success("$vendor->name has been created!");
-
-        return redirect()->route('admin.vendor.index');
+        //
     }
 
     /**

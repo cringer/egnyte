@@ -20,4 +20,12 @@ class Vendor extends Model
     {
     	return $this->hasMany('App\Equipment');
     }
+
+    /**
+     * Get the contacts for the vendor.
+     */
+    public function contacts()
+    {
+        return $this->hasMany('App\VendorContact');
+    }
 }
