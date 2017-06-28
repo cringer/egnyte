@@ -102,6 +102,6 @@ class VendorContactController extends Controller
      */
     public function destroy(VendorContact $vendorContact)
     {
-        //
+        
     }
 }
