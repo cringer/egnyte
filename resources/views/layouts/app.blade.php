@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ config('app.locale') }}">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Egnyte</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
@@ -14,8 +14,10 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/v/bs/dt-1.10.13/datatables.min.css"> -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.bootstrap.min.css">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <style>
         body {
@@ -26,6 +28,13 @@
             margin-right: 6px;
         }
     </style>
+
+    <!-- Scripts -->
+    <script>
+        window.Laravel = {!! json_encode([
+            'csrfToken' => csrf_token(),
+        ]) !!};
+    </script>
 </head>
 <body id="app-layout">
     <nav class="navbar navbar-default navbar-static-top">
@@ -49,7 +58,8 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/newhire') }}">New Hire</a></li>
+                    <li><a href="{{ url('/newhire') }}"><i class="fa fa-home fa-lg"></i></a></li>
+
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -122,6 +132,6 @@
         $('div.alert').delay(3000).fadeOut(350);
     </script>
     @yield('footer_scripts')
-    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+    <!-- <script src="{{ asset('js/app.js') }}"></script> -->
 </body>
 </html>

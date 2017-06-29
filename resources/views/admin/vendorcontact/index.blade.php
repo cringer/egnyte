@@ -36,7 +36,7 @@
 							<td>{{ $vc->created_at }}</td>
 							<td>{{ $vc->updated_at }}</td>
 							<td>
-								<a href="{{ route('admin.vendorcontact.show', ['id' => $vc->id]) }}" class="btn btn-xs btn-default">
+								<a href="{{ route('admin.vendorcontact.edit', ['id' => $vc->id]) }}" class="btn btn-xs btn-default">
 									<i class="fa fa-edit"></i> Edit
 								</a>
 								<a href="{{ route('admin.vendorcontact.destroy', ['id' => $vc->id]) }}" data-method="delete" data-confirm="Are you sure?" data-token="{{ csrf_token() }}" class="btn btn-xs btn-default">

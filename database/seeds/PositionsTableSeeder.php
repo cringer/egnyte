@@ -19,7 +19,7 @@ class PositionsTableSeeder extends Seeder
         ]);
 
         Position::create([
-        	'name' => 'Hospice Aide',
+        	'name' => 'Home Health Aide',
         	'acronym' => 'HHA',
         	'color' => 'orchid'
         ]);

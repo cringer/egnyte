@@ -30,11 +30,11 @@
 							<td>{{ $position->id }}</td>
 							<td>{{ $position->name }}</td>
 							<td>{{ $position->acronym }}</td>
-							<td>{{ $position->color }}</td>
+							<td><span class="label" style="background-color:{{ $position->color }}">{{ $position->color }}</span></td>
 							<td>{{ $position->created_at }}</td>
 							<td>{{ $position->updated_at }}</td>
 							<td>
-								<a href="{{ route('admin.position.show', ['position' => $position->id]) }}" class="btn btn-xs btn-default">
+								<a href="{{ route('admin.position.edit', ['position' => $position->id]) }}" class="btn btn-xs btn-default">
 									<i class="fa fa-edit"></i> Edit
 								</a>
 								<a href="{{ route('admin.position.destroy', ['position' => $position->id]) }}" class="btn btn-xs btn-default">
@@ -53,6 +53,9 @@
 
 @section('footer_scripts')
 <script src="https://cdn.datatables.net/v/bs/dt-1.10.13/datatables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.bootstrap.min.js"></script>
 <script>
     $(document).ready( function () {
         $('#positions').DataTable();

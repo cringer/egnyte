@@ -32,7 +32,7 @@
 							<td>{{ $vendor->created_at }}</td>
 							<td>{{ $vendor->updated_at }}</td>
 							<td>
-								<a href="{{ route('admin.vendor.show', ['vendor' => $vendor->id]) }}" class="btn btn-xs btn-default">
+								<a href="{{ route('admin.vendor.edit', ['vendor' => $vendor->id]) }}" class="btn btn-xs btn-default">
 									<i class="fa fa-edit"></i> Edit
 								</a>
 								<a href="{{ route('admin.vendor.destroy', ['vendor' => $vendor->id]) }}" class="btn btn-xs btn-default">

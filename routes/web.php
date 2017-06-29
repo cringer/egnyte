@@ -49,7 +49,7 @@ Route::name('admin.')->prefix('admin')->group(function () {
  //    Route::resource('permission', 'Admin\PermissionController');
  //    Route::resource('user', 'Admin\UserController');
  //    Route::resource('location', 'Admin\LocationController');
-	// Route::resource('position', 'Admin\PositionController');
+	Route::resource('position', 'Admin\PositionController');
 	// Route::resource('status', 'Admin\StatusController');
 	// Route::resource('task', 'Admin\TaskController');
 	// Route::resource('tasklist', 'Admin\TaskListController');

@@ -12,7 +12,7 @@
                     <div class="col-md-4">
                         <a href="newhire/{{ $newhire->slug }}">
                             {{ $newhire->name }}<br>
-                            Position: {{ $newhire->position->name }}<br>
+                            Position: <span class="label" style="background-color:{{ $newhire->position->color }}">{{ $newhire->position->name }}</span><br>
                             Start Date: {{ $newhire->hire_date}}
                         </a>
                     </div>

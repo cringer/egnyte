@@ -72,7 +72,9 @@ class VendorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $vendor = Vendor::findOrFail($id);
+
+        return view('admin.vendor.edit', compact('vendor'));
     }
 
     /**
@@ -84,7 +86,19 @@ class VendorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate(request(), [
+            'name' => 'required',
+            'account_number' => 'nullable'
+        ]);
+
+        $vendor = Vendor::find($id);
+        $vendor->name = $request->name;
+        $vendor->account_number = $request->account_number;
+        $vendor->save();
+
+        flash()->success("$vendor->name has been updated!");
+
+        return redirect()->route('admin.vendor.index');
     }
 
     /**

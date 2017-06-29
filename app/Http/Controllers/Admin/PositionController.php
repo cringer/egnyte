@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Position;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 
 class PositionController extends Controller
@@ -48,7 +49,7 @@ class PositionController extends Controller
 
         flash()->success("$position->name has been added!");
 
-        return redirect()->route('position.index');
+        return redirect()->route('admin.position.index');
     }
 
     /**
@@ -87,20 +88,23 @@ class PositionController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'title' => 'required',
-            'slug' => "required|unique:positions,null,$id",
+            'name' => 'required',
+            'acronym' => [
+                'required',
+                Rule::unique('positions')->ignore($id),
+            ],
             'color' => 'required'
         ]);
 
         $position = Position::find($id);
-        $position->title = $request->input('title');
-        $position->slug = $request->input('slug');
+        $position->name = $request->input('name');
+        $position->acronym = $request->input('acronym');
         $position->color = $request->input('color');
         $position->save();
 
-        flash()->success("$position->title has been updated!");
+        flash()->success("$position->name has been updated!");
 
-        return redirect('position');
+        return redirect()->route('admin.position.index');
     }
 
     /**

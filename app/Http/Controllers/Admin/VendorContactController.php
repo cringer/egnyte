@@ -48,14 +48,14 @@ class VendorContactController extends Controller
             'phone' => 'nullable|numeric'
         ]);
 
-        $vendorcontact = VendorContact::create([
+        $vendor_contact = VendorContact::create([
             'vendor_id' => $request->vendor_id,
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
         ]);
 
-        flash()->success("$vendorcontact->name has been created!");
+        flash()->success("$vendor_contact->name has been created!");
 
         return redirect()->route('admin.vendorcontact.index');
     }
@@ -74,24 +74,46 @@ class VendorContactController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\VendorContact  $vendorContact
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(VendorContact $vendorContact)
+    public function edit($id)
     {
-        //
+        $vendor_contact = VendorContact::findOrFail($id);
+        // System::orderBy('order')->lists('name','id');
+        // $vendors = DB::table('vendors')->pluck('id', 'name')->get();
+        $vendors = Vendor::orderBy('name')->pluck('name', 'id');
+        dd($vendors);
+
+        return view('admin.vendorcontact.edit', compact('vendor_contact', 'vendors'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\VendorContact  $vendorContact
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, VendorContact $vendorContact)
+    public function update(Request $request, $id)
     {
-        //
+       $this->validate(request(), [
+            'vendor_id' => 'required|exists:vendors,id',
+            'name' => 'required',
+            'email' => 'nullable|email',
+            'phone' => 'nullable|numeric'
+        ]);       
+
+        $vendor_contact = VendorContact::find($id);
+        $vendor_contact->id = $request->vendor_id;
+        $vendor_contact->name = $request->name;
+        $vendor_contact->email = $request->email;
+        $vendor_contact->phone = $request->phone;
+        $vendor_contact->save();
+
+        flash()->success("$vendor_contact->name has been created!");
+
+        return redirect()->route('admin.vendorcontact.index');
     }
 
     /**

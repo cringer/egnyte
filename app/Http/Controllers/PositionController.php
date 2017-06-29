@@ -41,16 +41,14 @@ class PositionController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'acronym' => 'required|unique:positions',
-            'color' => 'required',
-            'department_id' => 'nullable|exists:departments'
+            'color' => 'required'
         ]);
 
         $position = Position::create($request->all());
 
         flash()->success("$position->name has been added!");
 
-        // return redirect()->route('position.index');
-        return redirect('position');
+        return redirect()->route('position.index');
     }
 
     /**
@@ -105,7 +103,7 @@ class PositionController extends Controller
 
         flash()->success("$position->name has been updated!");
 
-        return redirect('position');
+        return redirect()->route('position.index');
     }
 
     /**
