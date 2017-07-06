@@ -71,7 +71,9 @@ class EquipmentTypeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $equipment_type = EquipmentType::findOrFail($id);
+
+        return view('admin.equipmenttype.edit', compact('equipment_type'));
     }
 
     /**
@@ -83,7 +85,17 @@ class EquipmentTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate(request(), [
+            'name' => 'required'
+        ]);
+
+        $equipment_type = EquipmentType::find($id);
+        $equipment_type->name = $request->name;
+        $equipment_type->save();
+
+        flash()->success("$equipment_type->name has been created!");
+
+        return redirect()->route('admin.equipmenttype.index');
     }
 
     /**

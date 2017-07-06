@@ -7,3 +7,7 @@
 .complete {
 	color: green;
 }
+
+a:link {
+	text-decoration: none;
+}

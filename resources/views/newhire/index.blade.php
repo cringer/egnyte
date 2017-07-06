@@ -9,7 +9,7 @@
             @foreach ($newhires as $newhire)
             <li class="list-group-item">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div id="newhire" class="col-md-4">
                         <a href="newhire/{{ $newhire->slug }}">
                             {{ $newhire->name }}<br>
                             Position: <span class="label" style="background-color:{{ $newhire->position->color }}">{{ $newhire->position->name }}</span><br>

@@ -18,16 +18,7 @@
                     <label for="vendor_id" class="col-md-4 control-label">Vendor</label>
 
                     <div class="col-md-6">
-                        {!! Form::select('vendor_id', $vendors, null, ['placeholder' => 'Select Vendor...']) !!}
-                        <!-- <select class="form-control" name="vendor_id">
-                            <option selected disabled>Select Vendor...</option>
-
-                            @foreach ($vendors as $vendor)
-                            <option value="{{ $vendor->id }}" {{ old('vendor_id') == $vendor->id ? 'selected' : '' }}>
-                                {{ $vendor->name }}
-                            </option>
-                            @endforeach
-                        </select> -->
+                        {!! Form::select('vendor_id', $vendors, null, ['placeholder' => 'Select Vendor...', 'class' => 'form-control']) !!}
 
                         @if ($errors->has('vendor_id'))
                         <span class="help-block">
@@ -69,7 +60,8 @@
                     <label for="phone" class="col-md-4 control-label">Phone</label>
 
                     <div class="col-md-6">
-                        <input id="phone" type="tel" class="form-control" name="phone" value="{{ old('phone') }}"> 
+                        {!! Form::text('phone', null, ['class' => 'form-control']) !!}
+
                         @if ($errors->has('phone'))
                         <span class="help-block">
                             <strong>{{ $errors->first('phone') }}</strong>

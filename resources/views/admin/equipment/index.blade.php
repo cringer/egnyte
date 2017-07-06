@@ -36,7 +36,7 @@
 							<td>{{ $equip->created_at }}</td>
 							<td>{{ $equip->updated_at }}</td>
 							<td>&nbsp;
-								<a href="{{ route('admin.equipment.show', ['equipment' => $equip->id]) }}" class="btn btn-xs btn-default">
+								<a href="{{ route('admin.equipment.edit', ['equipment' => $equip->id]) }}" class="btn btn-xs btn-default">
 									<i class="fa fa-edit"></i> Edit
 								</a>
 								<a href="{{ route('admin.equipment.destroy', ['equipment' => $equip->id]) }}" class="btn btn-xs btn-default">

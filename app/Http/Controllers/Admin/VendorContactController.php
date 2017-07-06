@@ -80,10 +80,7 @@ class VendorContactController extends Controller
     public function edit($id)
     {
         $vendor_contact = VendorContact::findOrFail($id);
-        // System::orderBy('order')->lists('name','id');
-        // $vendors = DB::table('vendors')->pluck('id', 'name')->get();
         $vendors = Vendor::orderBy('name')->pluck('name', 'id');
-        dd($vendors);
 
         return view('admin.vendorcontact.edit', compact('vendor_contact', 'vendors'));
     }
@@ -102,10 +99,10 @@ class VendorContactController extends Controller
             'name' => 'required',
             'email' => 'nullable|email',
             'phone' => 'nullable|numeric'
-        ]);       
+        ]);
 
         $vendor_contact = VendorContact::find($id);
-        $vendor_contact->id = $request->vendor_id;
+        $vendor_contact->vendor_id = $request->vendor_id;
         $vendor_contact->name = $request->name;
         $vendor_contact->email = $request->email;
         $vendor_contact->phone = $request->phone;

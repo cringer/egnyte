@@ -2,36 +2,27 @@
 
 @section('content')
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-    <h1 class="page-header">Add Equipment</h1>
+    <h1 class="page-header">Edit Equipment</h1>
 </div>
 
 <div class="col-sm-6 col-sm-offset-4 main">
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            Add a new Equipment
+            Edit Equipment
         </div>
         <div class="panel panel-body">
-            <form class="form-horizontal" role="form" method="POST" action="{{ route('admin.equipment.store') }}">
-                {{ csrf_field() }}
+            {!! Form::model($equipment, ['route' => ['admin.equipment.update', $equipment->id], 'method' => 'put', 'class' => 'form-horizontal', 'role' => 'form']) !!}
 
-                <div class="form-group{{ $errors->has('vendor') ? ' has-error' : '' }}">
+                <div class="form-group{{ $errors->has('vendor_id') ? ' has-error' : '' }}">
                     <label for="vendor_id" class="col-md-4 control-label">Vendor</label>
 
                     <div class="col-md-6">
-                        <select class="form-control" name="vendor_id">
-                            <option selected disabled>Select Vendor...</option>
+                        {!! Form::select('vendor_id', $vendors, null, ['placeholder' => 'Select Vendor...', 'class' => 'form-control']) !!}
 
-                            @foreach ($vendors as $vendor)
-                            <option value="{{ $vendor->id }}" {{ old('vendor') == $vendor->id ? 'selected' : '' }}>
-                                {{ $vendor->name }}
-                            </option>
-                            @endforeach
-                        </select>
-
-                        @if ($errors->has('vendor'))
+                        @if ($errors->has('vendor_id'))
                         <span class="help-block">
-                            <strong>{{$errors->first('vendor') }}</strong>
+                            <strong>{{$errors->first('vendor_id') }}</strong>
                         </span>
                         @endif
                     </div>
@@ -41,15 +32,8 @@
                     <label for="equipment_type_id" class="col-md-4 control-label">Equipment Type</label>
 
                     <div class="col-md-6">
-                        <select class="form-control" name="equipment_type_id">
-                            <option selected disabled>Select Equipment Type...</option>
-
-                            @foreach ($equipmentTypes as $type)
-                            <option value="{{ $type->id }}" {{ old('type') == $type->id ? 'selected' : '' }}>
-                                {{ $type->name }}
-                            </option>
-                            @endforeach
-                        </select>
+                        {!! Form::select('equipment_type_id', $equipment_types, null, ['placeholder' => 'Select Equipment Type...', 'class' => 'form-control']) !!}
+            
 
                         @if ($errors->has('equipment_type_id'))
                         <span class="help-block">
@@ -63,7 +47,7 @@
                     <label for="name" class="col-md-4 control-label">Name</label>
 
                     <div class="col-md-6">
-                        <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}">
+                        {!! Form::text('name', null, ['class' => 'form-control']) !!}
 
                         @if ($errors->has('name'))
                         <span class="help-block">
@@ -77,7 +61,7 @@
                     <label for="description" class="col-md-4 control-label">Description</label>
 
                     <div class="col-md-6">
-                        <input id="description" type="text" class="form-control" name="description" value="{{ old('description') }}">
+                        {!! Form::text('description', null, ['class' => 'form-control']) !!}
 
                         @if ($errors->has('description'))
                         <span class="help-block">
@@ -90,7 +74,7 @@
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-4">
                         <button type="submit" class="btn btn-primary">
-                            <i class="fa fa-btn fa-plus"></i> Add
+                            <i class="fa fa-btn fa-plus"></i> Update
                         </button>
                     </div>
                 </div>

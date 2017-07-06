@@ -30,10 +30,10 @@
 							<td>{{ $type->created_at }}</td>
 							<td>{{ $type->updated_at }}</td>
 							<td>
-								<a href="{{ route('admin.equipmenttype.show', ['equipmenttype' => $type->id]) }}" class="btn btn-xs btn-default">
+								<a href="{{ route('admin.equipmenttype.edit', ['equipment_type' => $type->id]) }}" class="btn btn-xs btn-default">
 									<i class="fa fa-edit"></i> Edit
 								</a>
-								<a href="{{ route('admin.equipmenttype.destroy', ['equipmenttype' => $type->id]) }}" class="btn btn-xs btn-default">
+								<a href="{{ route('admin.equipmenttype.destroy', ['equipment_type' => $type->id]) }}" class="btn btn-xs btn-default">
 									<i class="fa fa-trash"></i> Delete
 								</a>
 							</td>
