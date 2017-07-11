@@ -4,7 +4,7 @@
 
 <p>
 	Thank you,
-<p>
+</p>
 <p>
 	{{ $hrName }}<br>
 	{{ $hrPosition }}<br>
