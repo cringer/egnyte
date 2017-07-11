@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Location;
-use App\NewHire;
-use App\Position;
-use App\Status;
 use App\User;
 use App\Task;
+use App\Status;
+use App\NewHire;
+use App\Location;
+use App\Position;
 use Illuminate\Http\Request;
+use App\Mail\NewHireAnnounced;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
 
@@ -62,6 +63,9 @@ class NewHiresController extends Controller
         $newhire->hire_date = $request->input('hire_date');
 
         $newhire->save();
+
+        // Send email to service desk
+        Mail::to('support@aperio-it.com')->send(new NewHireAnnounced($newhire));
 
         flash()->success("$newhire->name has been announced!");
 
