@@ -29,7 +29,7 @@ class AssignmentController extends Controller
      */
     public function create()
     {
-        $newhires = NewHire::orderBy('name', 'asc')->get();
+        $newhires = NewHire::where('assignment_id', null)->orderBy('name', 'asc')->get();
         $assignmentMethods = AssignmentMethod::orderBy('name', 'asc')->get();
 
         return view('admin.assignment.create', compact('newhires', 'assignmentMethods'));
