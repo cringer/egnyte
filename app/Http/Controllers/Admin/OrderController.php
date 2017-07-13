@@ -30,7 +30,8 @@ class OrderController extends Controller
      */
     public function create()
     {
-        $assignments = Assignment::all();
+        // $newhires = Newhire::where('')->get();
+        $assignments = Assignment::where('method_id', 1)->get();
         $statuses = OrderStatus::all();
         $equipment = Equipment::all();
 
