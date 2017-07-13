@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => 'lgonzales@snowlinehospice.org',
-        'name' => 'Loni Lynn Gonzales',
+        'address' => env('MAIL_FROM_ADDRESS'),
+        'name' => env('MAIL_FROM_NAME'),
     ],
 
     /*

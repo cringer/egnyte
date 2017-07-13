@@ -12,7 +12,7 @@
                     <div id="newhire" class="col-md-4">
                         <a href="newhire/{{ $newhire->slug }}">
                             {{ $newhire->name }}<br>
-                            Position: <span class="label" style="background-color:{{ $newhire->position->color }}">{{ $newhire->position->name }}</span><br>
+                            Position: <span class="label" style="background-color:{{ $newhire->position->color }}">{{ $newhire->position->acronym }}</span><br>
                             Start Date: {{ $newhire->hire_date}}
                         </a>
                     </div>
@@ -37,6 +37,8 @@
             </li>
             <br>
             @endforeach
+
+            {{ $newhires->links() }}
         </ul>
     </div>
 

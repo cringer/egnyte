@@ -1,12 +1,11 @@
 @component('mail::message')
-# Introduction
+# New Hire Announcement
 
-The body of your message.
+{{ $newhireName }} is a new {{ $newhirePosition }} starting on {{ $newhireStartDate }}.
 
-@component('mail::button', ['url' => ''])
-Button Text
-@endcomponent
+Thanks,
 
-Thanks,<br>
-{{ config('app.name') }}
+{{ $hrName }}  
+{{ $hrPosition }}  
+Office: {{$hrNumber }}
 @endcomponent

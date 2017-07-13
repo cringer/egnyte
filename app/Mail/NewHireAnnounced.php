@@ -37,14 +37,14 @@ class NewHireAnnounced extends Mailable
     public function build()
     {
         return $this->subject('IT Request - ' . $this->newhire->name)
-                    ->view('emails.newhires.announce')
-                    ->with([
-                        'newhireName' => $this->newhire->name,
-                        'newhirePosition' => $this->newhire->position->name,
-                        'newhireStartDate' => $this->newhire->hire_date,
-                        'hrName' => getenv('HR_NAME'),
-                        'hrPosition' => getenv('HR_POSITION'),
-                        'hrNumber' => getenv('HR_NUMBER')
-                    ]);
+                ->markdown('emails.newhires.announced')
+                ->with([
+                    'newhireName' => $this->newhire->name,
+                    'newhirePosition' => $this->newhire->position->name,
+                    'newhireStartDate' => $this->newhire->hire_date,
+                    'hrName' => getenv('HR_NAME'),
+                    'hrPosition' => getenv('HR_POSITION'),
+                    'hrNumber' => getenv('HR_NUMBER')
+                ]);
     }
 }
