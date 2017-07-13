@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\NewHire;
+use App\Position;
 use Illuminate\Http\Request;
+use App\Mail\NewHireAnnounced;
+use Illuminate\Support\Facades\Mail;
 
 class NewHireController extends Controller
 {
@@ -13,17 +18,12 @@ class NewHireController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $newhires = NewHire::orderBy('hire_date', 'asc')->paginate(5);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        // Collection for select fields in form
+        $positions = Position::orderBy('name', 'asc')->get();
+
+        return view('newhire.index', compact('newhires', 'positions'));
     }
 
     /**
@@ -34,51 +34,38 @@ class NewHireController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'position_id' => 'required|exists:positions,id',
+            'hire_date' => 'required|date'
+        ]);
+
+        $newhire = new NewHire;
+        $newhire->name = $request->input('name');
+        $newhire->slug = str_slug($request->input('name'));
+        $newhire->position_id = $request->input('position_id');
+        $newhire->hire_date = $request->input('hire_date');
+
+        $newhire->save();
+
+        // Send email to service desk
+        Mail::to('support@aperio-it.com')->send(new NewHireAnnounced($newhire));
+
+        flash()->success("$newhire->name has been announced!");
+
+        return back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  $param
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($param)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return NewHire::where('id', $param)
+            ->orWhere('slug', $param)
+            ->firstOrFail();
     }
 }
