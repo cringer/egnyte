@@ -6,7 +6,7 @@
 
     <div class="panel panel-default">
     	<div class="panel-heading">
-    		<a href="{{ route('admin.assignment.create') }}" class="btn btn-primary">
+    		<a href="{{ route('admin.assignment.create') }}" class="btn btn-primary{{ ! $unassigned ? ' disabled' : '' }}">
     			<i class="fa fa-plus"></i> Add Assignment
 			</a>
 		</div>
@@ -18,7 +18,6 @@
 							<th>Id</th>
 							<th>New Hire</th>
 							<th>Method</th>
-							<th>Order Id</th>
 							<th>Created At</th>
 							<th>Updated At</th>
 							<th>Actions</th>
@@ -29,8 +28,7 @@
 						<tr>
 							<td>{{ $assignment->id }}</td>
 							<td>{{ $assignment->newhire->name }}</td>
-							<td>{{ $assignment->method->name }}</td>
-							<td>{{ $assignment->order_id }}</td>							
+							<td>{{ $assignment->method->name }}</td>							
 							<td>{{ $assignment->created_at }}</td>
 							<td>{{ $assignment->updated_at }}</td>
 							<td>

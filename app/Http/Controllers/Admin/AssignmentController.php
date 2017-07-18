@@ -18,8 +18,9 @@ class AssignmentController extends Controller
     public function index()
     {
         $assignments = Assignment::all();
+        $unassigned = NewHire::where('assignment_id', null)->first();
 
-        return view('admin.assignment.index', compact('assignments'));
+        return view('admin.assignment.index', compact('assignments', 'unassigned'));
     }
 
     /**
@@ -46,12 +47,11 @@ class AssignmentController extends Controller
         $this->validate($request, [
             'new_hire_id' => 'required|exists:new_hires,id',
             'method_id' => 'required|exists:assignment_methods,id',
-            'order_id' => 'nullable',
         ]);
 
         $assignment = Assignment::create($request->all());
 
-        $newhire = \App\NewHire::find($assignment->new_hire_id);
+        $newhire = NewHire::find($assignment->new_hire_id);
         $newhire->assignment_id = $assignment->id;
         $newhire->save();
 

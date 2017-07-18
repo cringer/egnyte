@@ -9,7 +9,7 @@
             <!-- <ul class="list-group"> -->
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <a href="{{ route('admin.position.create') }}" class="btn btn-primary">
+                    <a href="{{ route('position.create') }}" class="btn btn-primary">
                         <i class="fa fa-plus"></i> Add Position
                     </a>
                 </div>

@@ -20,8 +20,12 @@
                         <div class="icon"><br>
                             @if ($newhire->assignment)
                                 @if ($newhire->assignment->method->id == 1)
-                                    @if ($newhire->assignment->order)
-                                        <a href="/order/{{ $newhire->assignment->order->id }}" target="_blank"><i class="fa fa-shopping-cart fa-2x"></i></a>
+                                    @if ($newhire->assignment->orders)
+
+                                        @foreach ($newhire->assignment->orders as $order)
+                                            <a href="/order/{{ $order->id }}" target="_blank"><i class="fa fa-shopping-cart fa-2x"></i></a>&nbsp;&nbsp;&nbsp;
+                                        @endforeach
+
                                     @else
                                         <i class="fa fa-question fa-2x"></i>
                                     @endif
