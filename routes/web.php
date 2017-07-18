@@ -17,13 +17,14 @@ Route::get('/', 'NewHireController@index');
 // Route::get('api/v1/newhires/{newhires}', 'Api\NewHireController@show')->name('api.newhires.show');
 // Route::delete('api/v1/newhires/{newhires}', 'Api\NewHireController@destroy')->name('api.newhires.destroy');
 
-
+Route::resource('newhire', 'NewHireController');
 Route::resource('position', 'PositionController');
 Route::resource('order', 'OrderController');
 
-Route::get('newhire', 'NewHireController@index');
-Route::get('newhire/{newhire}', 'NewHiresController@show');
-Route::post('newhire', 'NewHireController@store');
+// Route::get('newhire', 'NewHireController@index');
+// Route::get('newhire/{newhire}', 'NewHireController@show');
+// Route::post('newhire', 'NewHireController@store');
+// Route::delete('newhire', 'NewHireController@delete')
 
 // // Authentication Routes...
 // Route::get('login', 'Auth\AuthController@login');

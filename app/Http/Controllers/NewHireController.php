@@ -64,8 +64,15 @@ class NewHireController extends Controller
      */
     public function show($param)
     {
-        return NewHire::where('id', $param)
+        $newhire = NewHire::where('id', $param)
             ->orWhere('slug', $param)
             ->firstOrFail();
+
+        return view('newhire.show', compact('newhire'));
+    }
+
+    public function destroy($id)
+    {
+        // 
     }
 }
