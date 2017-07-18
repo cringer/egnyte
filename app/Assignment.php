@@ -30,10 +30,11 @@ class Assignment extends Model
     }
 
     /**
-     * Get the order for this assignment
+     * Get the orders with assignments.
      */
-    public function order()
+    public function orders()
     {
-        return $this->belongsTo('App\Order');
+        return $this->hasMany('App\Order');
     }
+
 }

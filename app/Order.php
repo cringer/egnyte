@@ -13,19 +13,6 @@ class Order extends Model
      */
     protected $guarded = [];
 
-    // public function position()
-    // {
-    //     return $this->belongsTo(Position::class);
-    // }
-    
-    /**
-     * Get the order status of the order.
-     */
-    // public function order()
-    // {
-    //     return $this->hasMany('App\Equipment');
-    // }
-
     /**
      * Get the order status of the order
      */

@@ -18,8 +18,8 @@ Route::get('/', 'NewHireController@index');
 // Route::delete('api/v1/newhires/{newhires}', 'Api\NewHireController@destroy')->name('api.newhires.destroy');
 
 
-// Route::resource('position', 'PositionController');
-// Route::resource('order', 'OrderController');
+Route::resource('position', 'PositionController');
+Route::resource('order', 'OrderController');
 
 Route::get('newhire', 'NewHireController@index');
 Route::get('newhire/{newhire}', 'NewHiresController@show');

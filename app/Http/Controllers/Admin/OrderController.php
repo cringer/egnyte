@@ -30,7 +30,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        $assignments = Assignment::all();
+        $assignments = Assignment::where('method_id', 1)->get();
         $statuses = OrderStatus::all();
         $equipment = Equipment::all();
 
@@ -60,10 +60,6 @@ class OrderController extends Controller
             'order_date' => $request->order_date,
             'deliver_date' => $request->delivery_date
         ]);
-
-        $assignment = \App\Assignment::find($order->assignment_id);
-        $assignment->order_id = $order->id;
-        $assignment->save();
 
         flash()->success("Order has been updated!");
 
