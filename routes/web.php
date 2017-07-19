@@ -13,30 +13,15 @@
 
 Route::get('/', 'NewHireController@index');
 
-Route::get('test', function() {
-	return view('test');
-});
-
-// Route::get('api/v1/newhires', 'Api\NewHireController@index')->name('api.newhires.index');
-// Route::get('api/v1/newhires/{newhires}', 'Api\NewHireController@show')->name('api.newhires.show');
-// Route::delete('api/v1/newhires/{newhires}', 'Api\NewHireController@destroy')->name('api.newhires.destroy');
-
-Route::resource('newhire', 'NewHireController');
-Route::resource('position', 'PositionController');
-Route::resource('order', 'OrderController');
-
-// Route::get('newhire', 'NewHireController@index');
-// Route::get('newhire/{newhire}', 'NewHireController@show');
-// Route::post('newhire', 'NewHireController@store');
-// Route::delete('newhire', 'NewHireController@delete')
-
-// // Authentication Routes...
-// Route::get('login', 'Auth\AuthController@login');
-// Route::get('logout', 'Auth\AuthController@logout')->name('logout');
-
-// // Registration Routes...
-// Route::get('register', 'Auth\AuthController@showRegistrationForm');
-// Route::post('register', 'Auth\AuthController@register');
+Route::resource('newhire', 'NewHireController', ['except' => [
+	'destroy'
+]]);
+Route::resource('position', 'PositionController', ['except' => [
+	'destroy'
+]]);
+Route::resource('order', 'OrderController', ['only' => [
+	'index', 'show'
+]]);
 
 Route::name('admin.')->prefix('admin')->group(function () {
 	Route::get('/', function () {

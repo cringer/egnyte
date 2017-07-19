@@ -19,8 +19,6 @@ class NewHireController extends Controller
     public function index()
     {
         $newhires = NewHire::orderBy('hire_date', 'asc')->paginate(5);
-
-        // Collection for select fields in form
         $positions = Position::orderBy('name', 'asc')->get();
 
         return view('newhire.index', compact('newhires', 'positions'));
@@ -64,15 +62,11 @@ class NewHireController extends Controller
      */
     public function show($param)
     {
+        // Get resource by id or slug
         $newhire = NewHire::where('id', $param)
             ->orWhere('slug', $param)
             ->firstOrFail();
 
         return view('newhire.show', compact('newhire'));
-    }
-
-    public function destroy($id)
-    {
-        // 
     }
 }
