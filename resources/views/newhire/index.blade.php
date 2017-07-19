@@ -15,8 +15,11 @@
                     </a>
                 </div>
                 <div class="box box2 flex">
+                    {{-- if newhire has an assignment --}}
                     @if (count($newhire->assignment))
+                        {{-- if newhire assignment is for new equipment --}}
                         @if ($newhire->assignment->method->id == 1)
+                            {{-- if newhire has orders --}}
                             @if (count($newhire->assignment->orders))
                                 @foreach ($newhire->assignment->orders as $order)
                                     <a href="/order/{{ $order->id }}" target="_blank">
@@ -25,16 +28,19 @@
                                         </div>
                                     </a>
                                 @endforeach
+                            {{-- if newhire does not have orders --}}
                             @else
                                 <div class="flex iconbox">
                                     <i class="fa fa-exclamation-triangle fa-2x warning"></i>
                                 </div>
                             @endif
+                        {{-- if newhire is getting old equipment --}}
                         @else
                             <div class="flex iconbox">
                                 <i class="fa fa-check fa-2x complete"></i>
                             </div>
                         @endif
+                    {{-- if newhire does not have an assignment --}}
                     @else
                         <div class="flex iconbox">
                             <i class="fa fa-question fa-2x"></i>
