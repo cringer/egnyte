@@ -22,7 +22,7 @@ a:link {
 .iconbox { border: 1px solid #ccc; justify-content: center; align-items: center; height: 75px; width: 75px; margin: 10px;}
 
 .box1 { flex: 1; align-items: center; padding: 15px;}
-.box2 { flex: 2; }
+.box2 { flex: 2; flex-wrap: wrap;}
 
 article {
 	border: 1px solid #ccc;
