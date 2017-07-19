@@ -11,3 +11,20 @@
 a:link {
 	text-decoration: none;
 }
+.warning {
+	color: #cbb956;
+}
+
+.flex {
+	display: flex;
+}
+
+.iconbox { border: 1px solid #ccc; justify-content: center; align-items: center; height: 75px; width: 75px; margin: 10px;}
+
+.box1 { flex: 1; align-items: center; padding: 15px;}
+.box2 { flex: 2; }
+
+article {
+	border: 1px solid #ccc;
+	margin: 10px;
+}

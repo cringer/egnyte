@@ -59,7 +59,9 @@ class OrderStatusController extends Controller
      */
     public function show($id)
     {
-        //
+        $order_status = OrderStatus::findOrFail($id);
+
+        return view('admin.position.show', compact('order_status'));
     }
 
     /**
@@ -70,7 +72,9 @@ class OrderStatusController extends Controller
      */
     public function edit($id)
     {
-        //
+        $order_status = OrderStatus::findOrFail($id);
+
+        return view('admin.orderstatus.edit', compact('order_status'));
     }
 
     /**
@@ -82,7 +86,17 @@ class OrderStatusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate(request(), [
+            'name' => 'required'
+        ]);
+
+        $order = OrderStatus::findOrFail($id);
+        $order->name = $request->name;
+        $order->save();
+
+        flash()->success("$order->name has been updated!");
+
+        return redirect()->route('admin.orderstatus.index');
     }
 
     /**

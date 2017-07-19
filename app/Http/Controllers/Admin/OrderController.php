@@ -6,6 +6,7 @@ use App\Order;
 use App\Assignment;
 use App\Equipment;
 use App\OrderStatus;
+use App\EquipmentType;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -87,7 +88,12 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $order = Order::findOrFail($id);
+        $assignments = Assignment::where('method_id', 1)->get()->pluck('newhire.name', 'id');
+        $statuses = OrderStatus::orderBy('name')->pluck('name', 'id');
+        $equipment = Equipment::orderBy('name')->pluck('name', 'id');
+
+        return view('admin.order.edit', compact('order', 'assignments', 'statuses', 'equipment'));
     }
 
     /**
@@ -99,7 +105,25 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'assignment_id' => 'required|exists:assignments,id',
+            'equipment_id' => 'required|exists:equipment,id',
+            'order_status_id' => 'required|exists:order_statuses,id',
+            'order_date' => 'required|date',
+            'delivery_date' => 'nullable|date'
+        ]);
+
+        $order = Order::findOrFail($id);
+        $order->assignment_id = $request->assignment_id;
+        $order->equipment_id = $request->equipment_id;
+        $order->order_status_id = $request->order_status_id;
+        $order->order_date = $request->order_date;
+        $order->deliver_date = $request->delivery_date;
+        $order->save();
+
+        flash()->success("$order->name has been updated!");
+
+        return redirect()->route('admin.order.index');
     }
 
     /**

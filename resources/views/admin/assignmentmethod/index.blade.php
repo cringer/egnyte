@@ -32,7 +32,7 @@
 							<td>{{ $method->created_at }}</td>
 							<td>{{ $method->updated_at }}</td>
 							<td>
-								<a href="{{ route('admin.assignmentmethod.show', ['assignmentmethod' => $method->id]) }}" class="btn btn-xs btn-default">
+								<a href="{{ route('admin.assignmentmethod.edit', ['assignmentmethod' => $method->id]) }}" class="btn btn-xs btn-default">
 									<i class="fa fa-edit"></i> Edit
 								</a>
 								<a href="{{ route('admin.assignmentmethod.destroy', ['assignmentmethod' => $method->id]) }}" class="btn btn-xs btn-default">

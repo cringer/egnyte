@@ -13,6 +13,10 @@
 
 Route::get('/', 'NewHireController@index');
 
+Route::get('test', function() {
+	return view('test');
+});
+
 // Route::get('api/v1/newhires', 'Api\NewHireController@index')->name('api.newhires.index');
 // Route::get('api/v1/newhires/{newhires}', 'Api\NewHireController@show')->name('api.newhires.show');
 // Route::delete('api/v1/newhires/{newhires}', 'Api\NewHireController@destroy')->name('api.newhires.destroy');

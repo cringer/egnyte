@@ -5,42 +5,48 @@
     <div class="col-md-8">
         <h3>New Hires</h3>
 
-        <ul class="list-group">
-            @foreach ($newhires as $newhire)
-            <li class="list-group-item">
-                <div class="row">
-                    <div id="newhire" class="col-md-4">
-                        <a href="newhire/{{ $newhire->slug }}">
-                            {{ $newhire->name }}<br>
-                            Position: <span class="label" style="background-color:{{ $newhire->position->color }}">{{ $newhire->position->acronym }}</span><br>
-                            Start Date: {{ $newhire->hire_date}}
-                        </a>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="icon"><br>
-                            @if ($newhire->assignment)
-                                @if ($newhire->assignment->method->id == 1)
-                                    @if ($newhire->assignment->orders)
-
-                                        @foreach ($newhire->assignment->orders as $order)
-                                            <a href="/order/{{ $order->id }}" target="_blank"><i class="fa fa-shopping-cart fa-2x"></i></a>&nbsp;&nbsp;&nbsp;
-                                        @endforeach
-
+        @foreach ($newhires as $newhire)
+{{--             <div class="row">
+                <div class="col-md-8" style="border: 5px solid mistyrose;"> --}}
+                    <article class="flex" style="border: 3px solid {{ $newhire->position->color }};">
+                        <div class="box1 flex">
+                            <a href="newhire/{{ $newhire->slug }}" style="font-size: 16px">
+                                <span style="font-size: 20px">{{ $newhire->name }}</span><br>
+                                {{ $newhire->position->name }} <span class="label" style="background-color:{{ $newhire->position->color }}">{{ $newhire->position->acronym }}</span><br>
+                                Start Date: {{ $newhire->hire_date}}
+                            </a>
+                        </div>
+                        <div class="box box2 flex">
+                            @if (count($newhire->assignment))
+                                    @if ($newhire->assignment->method->id == 1)
+                                        @if (count($newhire->assignment->orders))
+                                            @foreach ($newhire->assignment->orders as $order)
+                                                <a href="/order/{{ $order->id }}" target="_blank">
+                                                    <div class="flex iconbox">
+                                                        <i class="fa fa-shopping-cart fa-2x"></i>
+                                                    </div>
+                                                </a>
+                                            @endforeach
+                                        @else
+                                            <div class="flex iconbox">
+                                                <i class="fa fa-exclamation-triangle fa-2x warning"></i>
+                                            </div>
+                                        @endif
                                     @else
-                                        <i class="fa fa-question fa-2x"></i>
+                                        <div class="flex iconbox">
+                                            <i class="fa fa-check fa-2x complete"></i>
+                                        </div>
                                     @endif
                                 @else
-                                    <i class="fa fa-check fa-2x complete"></i>
+                                    <div class="flex iconbox">
+                                        <i class="fa fa-question fa-2x"></i>
+                                    </div>
                                 @endif
-                            @else
-                                <i class="fa fa-question fa-2x"></i>
-                            @endif
-                        <div>
-                    </div>
-                </div>
-            </li>
-            <br>
-            @endforeach
+                        </div>
+                    </article>
+{{--                 </div>
+            </div> --}}
+        @endforeach
 
             {{ $newhires->links() }}
         </ul>
