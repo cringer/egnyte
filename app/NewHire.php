@@ -23,7 +23,7 @@ class NewHire extends Model
 
     public function assignment()
     {
-        return $this->hasOne('App\Assignment');
+        return $this->hasOne(Assignment::class);
     }
 
 }

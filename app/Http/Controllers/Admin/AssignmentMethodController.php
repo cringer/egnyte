@@ -72,7 +72,9 @@ class AssignmentMethodController extends Controller
      */
     public function edit($id)
     {
-        //
+        $assignment_method = AssignmentMethod::findOrFail($id);
+
+        return view('admin.assignmentmethod.edit', compact('assignment_method'));
     }
 
     /**
@@ -84,7 +86,19 @@ class AssignmentMethodController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate(request(), [
+            'name' => 'required',
+            'description' => 'required'
+        ]);
+
+        $assignment_method = AssignmentMethod::findOrFail($id);
+        $assignment_method->name = $request->name;
+        $assignment_method->description = $request->description;
+        $assignment_method->save();
+
+        flash()->success("$assignment_method->name has been updated!");
+
+        return redirect()->route('admin.assignmentmethod.index');
     }
 
     /**

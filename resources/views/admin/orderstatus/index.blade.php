@@ -30,7 +30,7 @@
 							<td>{{ $status->created_at }}</td>
 							<td>{{ $status->updated_at }}</td>
 							<td>
-								<a href="{{ route('admin.orderstatus.show', ['orderstatus' => $status->id]) }}" class="btn btn-xs btn-default">
+								<a href="{{ route('admin.orderstatus.edit', ['orderstatus' => $status->id]) }}" class="btn btn-xs btn-default">
 									<i class="fa fa-edit"></i> Edit
 								</a>
 								<a href="{{ route('admin.orderstatus.destroy', ['orderstatus' => $status->id]) }}" class="btn btn-xs btn-default">

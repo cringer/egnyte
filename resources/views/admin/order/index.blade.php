@@ -38,7 +38,7 @@
 							<td>{{ $order->created_at }}</td>
 							<td>{{ $order->updated_at }}</td>
 							<td>&nbsp;
-								<a href="{{ route('admin.order.show', ['order' => $order->id]) }}" class="btn btn-xs btn-default">
+								<a href="{{ route('admin.order.edit', ['order' => $order->id]) }}" class="btn btn-xs btn-default">
 									<i class="fa fa-edit"></i> Edit
 								</a>
 								<a href="{{ route('admin.order.destroy', ['order' => $order->id]) }}" class="btn btn-xs btn-default">
