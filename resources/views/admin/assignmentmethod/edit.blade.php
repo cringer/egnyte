@@ -9,7 +9,7 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            Edit a new Assignment Method
+            Edit Assignment Method
         </div>
         <div class="panel panel-body">
             {!! Form::model($assignment_method, ['route' => ['admin.assignmentmethod.update', $assignment_method->id], 'method' => 'put', 'class' => 'form-horizontal', 'role' => 'form']) !!}

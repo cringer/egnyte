@@ -61,17 +61,6 @@ class VendorContactController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\VendorContact  $vendorContact
-     * @return \Illuminate\Http\Response
-     */
-    public function show(VendorContact $vendorContact)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int $id
