@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Order;
-use App\Assignment;
 use App\Equipment;
+use App\Assignment;
 use App\OrderStatus;
 use App\EquipmentType;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class OrderController extends Controller
 {
@@ -65,19 +65,6 @@ class OrderController extends Controller
         flash()->success("Order has been updated!");
 
         return redirect()->route('admin.order.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $order = Order::findOrFail($id);
-
-        return view('order.show', compact('order'));
     }
 
     /**

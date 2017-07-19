@@ -32,7 +32,7 @@
 							<td>{{ $assignment->created_at }}</td>
 							<td>{{ $assignment->updated_at }}</td>
 							<td>
-								<a href="{{ route('admin.assignment.show', ['assignment' => $assignment->id]) }}" class="btn btn-xs btn-default">
+								<a href="{{ route('admin.assignment.edit', ['assignment' => $assignment->id]) }}" class="btn btn-xs btn-default">
 									<i class="fa fa-edit"></i> Edit
 								</a>
 								<a href="{{ route('admin.assignment.destroy', ['assignment' => $assignment->id]) }}" class="btn btn-xs btn-default">

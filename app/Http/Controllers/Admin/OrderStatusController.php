@@ -52,19 +52,6 @@ class OrderStatusController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $order_status = OrderStatus::findOrFail($id);
-
-        return view('admin.position.show', compact('order_status'));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id

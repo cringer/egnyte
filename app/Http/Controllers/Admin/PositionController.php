@@ -53,19 +53,6 @@ class PositionController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $position = Position::findOrFail($id);
-
-        return view('admin.position.show', compact('position'));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
