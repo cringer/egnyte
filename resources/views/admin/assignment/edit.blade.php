@@ -32,7 +32,7 @@
                     <label for="assignmentmethod" class="col-md-4 control-label">Assignment Method</label>
 
                     <div class="col-md-6">
-                        {!! Form::select('method_id', $assignment_method, null, ['placeholder' => 'Assignment Method...', 'class' => 'form-control']) !!}
+                        {!! Form::select('method_id', $assignment_methods, null, ['placeholder' => 'Assignment Method...', 'class' => 'form-control']) !!}
 
                         @if ($errors->has('method_id'))
                         <span class="help-block">
@@ -45,7 +45,7 @@
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-4">
                         <button type="submit" class="btn btn-primary">
-                            <i class="fa fa-btn fa-plus"></i> Add
+                            <i class="fa fa-btn fa-plus"></i> Update
                         </button>
                     </div>
                 </div>

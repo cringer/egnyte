@@ -61,17 +61,6 @@ class AssignmentController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -79,7 +68,11 @@ class AssignmentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $assignment = Assignment::findOrFail($id);
+        $assignment_methods = AssignmentMethod::orderBy('name')->pluck('name', 'id');
+        $new_hires = NewHire::orderBy('name')->pluck('name', 'id');
+
+        return view('admin.assignment.edit', compact('assignment', 'new_hires', 'assignment_methods'));
     }
 
     /**
@@ -91,7 +84,19 @@ class AssignmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'new_hire_id' => 'required|exists:new_hires,id',
+            'method_id' => 'required|exists:assignment_methods,id',
+        ]);
+
+        $assignment = Assignment::findOrFail($id);
+        $assignment->new_hire_id = $request->new_hire_id;
+        $assignment->method_id = $request->method_id;
+        $assignment->save();
+
+        flash()->success("$assignment->name has been updated!");
+
+        return redirect()->route('admin.assignment.index');
     }
 
     /**
