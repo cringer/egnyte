@@ -41,6 +41,7 @@
                     <tr>
                         <th>Order Id</th>
                         <th>Equipment</th>
+                        <th>Equipment Type</th>
                         <th>Status</th>
                         <th>Order Date</th>
                         <th>Delivery Date</th>
@@ -54,6 +55,7 @@
                                 <tr>
                                     <td>{{ $order->id }}</td>
                                     <td>{{ $order->equipment->name }}</td>
+                                    <td>{{ $order->equipment->equipmentType->name }}</td>
                                     <td>{{ $order->order_status->name }}</td>
                                     <td>{{ $order->order_date }}</td>
                                     <td>{{ $order->deliver_date }}</td>
