@@ -16,9 +16,7 @@ Route::get('/', 'NewHireController@index');
 Route::resource('newhire', 'NewHireController', ['except' => [
 	'destroy'
 ]]);
-Route::resource('position', 'PositionController', ['except' => [
-	'destroy'
-]]);
+Route::resource('position', 'PositionController');
 Route::resource('order', 'OrderController', ['only' => [
 	'index', 'show'
 ]]);
