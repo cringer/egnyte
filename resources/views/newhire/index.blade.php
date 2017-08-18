@@ -58,3 +58,13 @@
     @include('newhire.new-employee')
 </div>
 @stop
+
+@section('footer_scripts')
+<script>
+    $( function() {
+        $( "#hire_date" ).datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+    });
+</script>
+@endsection
