@@ -15,7 +15,8 @@
         "spatie/laravel-permission": "^1.8",
         "spatie/laravel-backup": "^4.18",
         "nao-pon/flysystem-google-drive": "~1.1",
-        "adldap2/adldap2-laravel": "^3.0"
+        "adldap2/adldap2-laravel": "^3.0",
+        "tightenco/ziggy": "^0.3.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

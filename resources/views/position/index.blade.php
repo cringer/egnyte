@@ -14,7 +14,7 @@
                     </a>
                 </div>
                 <div class="panel panel-body">
-                    <div class="table-responsive">
+                    <div id="app" class="table-responsive">
                         <table id="positions" class="table table-striped">
                             <thead>
                                 <tr>
@@ -28,32 +28,27 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($positions as $position)
-                                    <tr>
-                                        <td>{{ $position->id }}</td>
-                                        <td>{{ $position->name }}</td>
-                                        <td>{{ $position->acronym }}</td>
-                                        <td><span class="label" style="background-color:{{ $position->color }}">{{ $position->color }}</span></td>
-                                        <td>{{ $position->created_at }}</td>
-                                        <td>{{ $position->updated_at }}</td>
-                                        <td>
-                                            <a href="{{ route('position.edit', ['position' => $position->id]) }}" class="btn btn-xs btn-default">
-                                                <i class="fa fa-edit"></i> Edit
-                                            </a>
-                                            <a href="{{ route('position.destroy', ['position' => $position->id]) }}" class="btn btn-xs btn-default">
-                                                <i class="fa fa-trash"></i> Delete
-                                            </a>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                <tr v-for="position in positions">
+                                    <td v-text="position.id"></td>
+                                    <td v-text="position.name"></td>
+                                    <td v-text="position.acronym"></td>
+                                    <td><span class="badge" :style="{ backgroundColor: position.color }" v-text="position.color"></span></td>
+                                    <td v-text="position.created_at"></td>
+                                    <td v-text="position.updated_at"></td>
+                                    <td>
+                                        <a :href="'/position/' + position.id + '/edit'" class="btn btn-xs btn-default">
+                                            <i class="fa fa-edit"></i> Edit
+                                        </a>
+                                        <button :data-id="position.id" @click="handleDelete($event.target.dataset.id)" class="btn btn-xs btn-default">
+                                            <i class="fa fa-trash"></i> Delete
+                                        </button>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <!-- <a href="{{ url('position/create') }}" class="btn btn-primary" role="button">
-                    <i class="fa fa-btn fa-plus"></i> Add New Position
-                </a>-->
-            <!-- </ul> -->
+            </div>
         </div>
     </div>
 </div>
@@ -63,7 +58,28 @@
 <script src="https://cdn.datatables.net/v/bs/dt-1.10.13/datatables.min.js"></script>
 <script>
     $(document).ready( function () {
-        $('#positions').DataTable();
+        new Vue({
+            el: '#app',
+            data: {
+                positions: [],
+            },
+            methods: {
+                handleDelete(target) {
+                    axios.delete(route('api.positions.destroy', target))
+                        .then(response => this.getPositions());
+                },
+                getPositions() {
+                    axios.get(route('api.positions.index'))
+                        .then(response => this.positions = response.data);
+                }
+
+            },
+            created() {
+                this.getPositions();
+            }
+        });
+
+        // $('#positions').DataTable();
     });
 </script>
 @endsection
