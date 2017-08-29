@@ -13,7 +13,7 @@
         </div>
 
         <div class="panel panel-body">
-            <form class="form-horizontal" role="form" method="POST" action="{{ route('admin.order.store') }}">
+            <form class="form-horizontal" role="form" method="POST" action="{{ route('admin.orders.store') }}">
                 {{ csrf_field() }}
 
                 <div class="form-group{{ $errors->has('assignment_id') ? ' has-error' : '' }}">

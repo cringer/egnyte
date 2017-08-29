@@ -18,7 +18,7 @@ class PositionController extends Controller
     {
         $positions = Position::all();
 
-        return view('admin.position.index', compact('positions'));
+        return view('admin.positions.index', compact('positions'));
     }
 
     /**
@@ -28,7 +28,7 @@ class PositionController extends Controller
      */
     public function create()
     {
-        return view('admin.position.create');
+        return view('admin.positions.create');
     }
 
     /**
@@ -49,7 +49,7 @@ class PositionController extends Controller
 
         flash()->success("$position->name has been added!");
 
-        return redirect()->route('admin.position.index');
+        return redirect()->route('admin.positions.index');
     }
 
     /**
@@ -62,7 +62,7 @@ class PositionController extends Controller
     {
         $position = Position::findOrFail($id);
 
-        return view('admin.position.edit', compact('position'));
+        return view('admin.positions.edit', compact('position'));
     }
 
     /**
@@ -91,21 +91,6 @@ class PositionController extends Controller
 
         flash()->success("$position->name has been updated!");
 
-        return redirect()->route('admin.position.index');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $position = Position::destroy($id);
-
-        flash()->success("$position->title has been removed!");
-
-        return redirect('position');
+        return redirect()->route('admin.positions.index');
     }
 }

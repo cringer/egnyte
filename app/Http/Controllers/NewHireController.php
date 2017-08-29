@@ -21,7 +21,7 @@ class NewHireController extends Controller
         $newhires = NewHire::orderBy('hire_date', 'asc')->paginate(5);
         $positions = Position::orderBy('name', 'asc')->get();
 
-        return view('newhire.index', compact('newhires', 'positions'));
+        return view('newhires.index', compact('newhires', 'positions'));
     }
 
     /**

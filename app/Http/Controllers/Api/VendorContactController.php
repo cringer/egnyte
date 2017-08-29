@@ -3,19 +3,30 @@
 namespace App\Http\Controllers\Api;
 
 use App\VendorContact;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class VendorContactController extends Controller
 {
     /**
-     * Remove the specified resource from storage.
+     * Display a listing of the resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function index()
     {
-        return VendorContact::destroy($id);
+        return VendorContact::with('vendor')->orderBy('name', 'asc')->get();
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  VendorContact $vendorcontact
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(VendorContact $vendorcontact)
+    {
+        $vendorcontact->delete($vendorcontact);
+
+        return $vendorcontact->id;
     }
 }

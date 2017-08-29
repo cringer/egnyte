@@ -12,7 +12,7 @@
             Add a new Vendor Contact
         </div>
         <div class="panel panel-body">
-            <form class="form-horizontal" role="form" method="POST" action="{{ route('admin.vendorcontact.store') }}">
+            <form class="form-horizontal" role="form" method="POST" action="{{ route('admin.vendorcontacts.store') }}">
                 {{ csrf_field() }}
 
                 <div class="form-group{{ $errors->has('vendor_id') ? ' has-error' : '' }}">
@@ -69,14 +69,14 @@
                     <label for="phone" class="col-md-4 control-label">Phone</label>
 
                     <div class="col-md-6">
-                        <input id="phone" type="tel" class="form-control" name="phone" value="{{ old('phone') }}"> 
+                        <input id="phone" type="tel" class="form-control" name="phone" value="{{ old('phone') }}">
                         @if ($errors->has('phone'))
                         <span class="help-block">
                             <strong>{{ $errors->first('phone') }}</strong>
                         </span>
                         @endif
                     </div>
-                </div>                
+                </div>
 
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-4">

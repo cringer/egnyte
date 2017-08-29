@@ -11,7 +11,7 @@
 			Edit Order
 		</div>
 		<div class="panel panel-body">
-			{!! Form::model($order, ['route' => ['admin.order.update', $order->id], 'method' => 'put', 'class' => 'form-horizontal', 'role' => 'form']) !!}
+			{!! Form::model($order, ['route' => ['admin.orders.update', $order->id], 'method' => 'put', 'class' => 'form-horizontal', 'role' => 'form']) !!}
 
                 <div class="form-group{{ $errors->has('assignment_id') ? ' has-error' : '' }}">
                     <label for="assignment_id" class="col-md-4 control-label">Assignment</label>
@@ -46,7 +46,7 @@
                     <label for="order_statusid" class="col-md-4 control-label">Order Status</label>
 
                     <div class="col-md-6">
-                    {!! Form::select('order_status_id', $statuses, null, ['placeholder' => 'Select Status...', 'class' => 'form-control']) !!}                        
+                    {!! Form::select('order_status_id', $statuses, null, ['placeholder' => 'Select Status...', 'class' => 'form-control']) !!}
 
                         @if ($errors->has('order_status_id'))
                         <span class="help-block">
@@ -95,4 +95,4 @@
 		</div>
 	</div>
 </div>
-@endsection		
+@endsection

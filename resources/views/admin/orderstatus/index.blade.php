@@ -1,6 +1,6 @@
 @extends('admin.layout')
 
-@section('content')  
+@section('content')
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1 class="page-header">Order Statuses</h1>
 
@@ -12,7 +12,7 @@
 		</div>
     	<div class="panel panel-body">
 			<div class="table-responsive">
-				<table id="equipmenttypes" class="table table-striped">
+				<table id="orderstatus" class="table table-striped">
 					<thead>
 						<tr>
 							<th>Id</th>
@@ -23,26 +23,51 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach ($orderStatuses as $status)
-						<tr>
-							<td>{{ $status->id }}</td>
-							<td>{{ $status->name }}</td>
-							<td>{{ $status->created_at }}</td>
-							<td>{{ $status->updated_at }}</td>
-							<td>
-								<a href="{{ route('admin.orderstatus.edit', ['orderstatus' => $status->id]) }}" class="btn btn-xs btn-default">
-									<i class="fa fa-edit"></i> Edit
-								</a>
-								<a href="{{ route('admin.orderstatus.destroy', ['orderstatus' => $status->id]) }}" class="btn btn-xs btn-default">
-									<i class="fa fa-trash"></i> Delete
-								</a>
-							</td>
+						<tr v-for="status in orderStatus">
+							<td v-text="status.id"></td>
+							<td v-text="status.name"></td>
+							<td v-text="status.created_at"></td>
+							<td v-text="status.updated_at"></td>
+                            <td>
+                                <a :href="'/admin/orderstatus/' + status.id + '/edit'" class="btn btn-xs btn-default">
+                                    <i class="fa fa-edit"></i> Edit
+                                </a>
+                                <button :data-id="status.id" @click="handleDelete($event.target.dataset.id)" class="btn btn-xs btn-default">
+                                    <i class="fa fa-trash"></i> Delete
+                                </button>
+                            </td>
 						</tr>
-						@endforeach
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</div>
-</div>    
-@endsection
+</div>
+@stop
+
+@section('footer_scripts')
+<script>
+    $(document).ready( function () {
+        new Vue({
+            el: '#orderstatus',
+            data: {
+                orderStatus: [],
+            },
+            methods: {
+                handleDelete(target) {
+                    axios.delete(route('api.orderstatus.destroy', target))
+                        .then(response => this.getOrderStatus());
+                },
+                getOrderStatus() {
+                    axios.get(route('api.orderstatus.index'))
+                        .then(response => this.orderStatus = response.data);
+                }
+
+            },
+            created() {
+                this.getOrderStatus();
+            }
+        });
+    });
+</script>
+@stop

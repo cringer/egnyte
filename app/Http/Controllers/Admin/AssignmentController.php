@@ -33,7 +33,7 @@ class AssignmentController extends Controller
         $newhires = NewHire::where('assignment_id', null)->orderBy('name', 'asc')->get();
         $assignmentMethods = AssignmentMethod::orderBy('name', 'asc')->get();
 
-        return view('admin.assignment.create', compact('newhires', 'assignmentMethods'));
+        return view('admin.assignments.create', compact('newhires', 'assignmentMethods'));
     }
 
     /**
@@ -57,7 +57,7 @@ class AssignmentController extends Controller
 
         flash()->success("Assignment has been added!");
 
-        return redirect()->route('admin.assignment.index');
+        return redirect()->route('admin.assignments.index');
     }
 
     /**
@@ -72,7 +72,7 @@ class AssignmentController extends Controller
         $assignment_methods = AssignmentMethod::orderBy('name')->pluck('name', 'id');
         $new_hires = NewHire::orderBy('name')->pluck('name', 'id');
 
-        return view('admin.assignment.edit', compact('assignment', 'new_hires', 'assignment_methods'));
+        return view('admin.assignments.edit', compact('assignment', 'new_hires', 'assignment_methods'));
     }
 
     /**
@@ -96,17 +96,6 @@ class AssignmentController extends Controller
 
         flash()->success("$assignment->name has been updated!");
 
-        return redirect()->route('admin.assignment.index');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return redirect()->route('admin.assignments.index');
     }
 }

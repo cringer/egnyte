@@ -12,7 +12,7 @@
             Add a new Vendor Contact
         </div>
         <div class="panel panel-body">
-            {!! Form::model($vendor_contact, ['route' => ['admin.vendorcontact.update', $vendor_contact->id], 'method' => 'put', 'class' => 'form-horizontal', 'role' => 'form']) !!}
+            {!! Form::model($vendor_contact, ['route' => ['admin.vendorcontacts.update', $vendor_contact->id], 'method' => 'put', 'class' => 'form-horizontal', 'role' => 'form']) !!}
 
                 <div class="form-group{{ $errors->has('vendor_id') ? ' has-error' : '' }}">
                     <label for="vendor_id" class="col-md-4 control-label">Vendor</label>
@@ -68,7 +68,7 @@
                         </span>
                         @endif
                     </div>
-                </div>                
+                </div>
 
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-4">

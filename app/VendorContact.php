@@ -18,6 +18,6 @@ class VendorContact extends Model
      */
     public function vendor()
     {
-    	return $this->belongsTo('App\Vendor');
+        return $this->belongsTo('App\Vendor');
     }
 }

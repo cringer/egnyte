@@ -12,13 +12,13 @@ class Equipment extends Model
      * @var array
      */
     protected $guarded = [];
-    
-	/**
-	 * Get the vendor of the equipment.
-	 */
+
+    /**
+     * Get the vendor of the equipment.
+     */
     public function vendor()
     {
-    	return $this->belongsTo('App\Vendor');
+        return $this->belongsTo('App\Vendor');
     }
 
     /**
@@ -26,6 +26,6 @@ class Equipment extends Model
      */
     public function equipmentType()
     {
-    	return $this->belongsTo('App\EquipmentType');
+        return $this->belongsTo('App\EquipmentType');
     }
 }

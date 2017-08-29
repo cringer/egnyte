@@ -1,18 +1,18 @@
 @extends('admin.layout')
 
-@section('content')  
+@section('content')
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1 class="page-header">Orders</h1>
 
     <div class="panel panel-default">
     	<div class="panel-heading">
-    		<a href="{{ route('admin.order.create') }}" class="btn btn-primary">
+    		<a href="{{ route('admin.orders.create') }}" class="btn btn-primary">
     			<i class="fa fa-plus"></i> Add Order
 			</a>
 		</div>
     	<div class="panel panel-body">
 			<div class="table-responsive">
-				<table id="order" class="table table-striped">
+				<table id="orders" class="table table-striped">
 					<thead>
 						<tr>
 							<th>Id</th>
@@ -27,30 +27,55 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach ($orders as $order)
-						<tr>
-							<td>{{ $order->id }}</td>
-							<td>{{ $order->assignment->newhire->name }}</td>
-							<td>{{ $order->equipment->name }}</td>
-							<td>{{ $order->order_status->name }}</td>
-							<td>{{ $order->order_date }}</td>
-							<td>{{ $order->deliver_date }}</td>
-							<td>{{ $order->created_at }}</td>
-							<td>{{ $order->updated_at }}</td>
-							<td>&nbsp;
-								<a href="{{ route('admin.order.edit', ['order' => $order->id]) }}" class="btn btn-xs btn-default">
-									<i class="fa fa-edit"></i> Edit
-								</a>
-								<a href="{{ route('admin.order.destroy', ['order' => $order->id]) }}" class="btn btn-xs btn-default">
-									<i class="fa fa-trash"></i> Delete
-								</a>
-							</td>
+						<tr v-for="order in orders">
+							<td v-text="order.id"></td>
+							<td v-text="order.assignment.newhire.name"></td>
+							<td v-text="order.equipment.name"></td>
+							<td v-text="order.order_status.name"></td>
+							<td v-text="order.order_date"></td>
+							<td v-text="order.deliver_date"></td>
+							<td v-text="order.created_at"></td>
+							<td v-text="order.updated_at"></td>
+                            <td>
+                                <a :href="'/admin/orders/' + order.id + '/edit'" class="btn btn-xs btn-default">
+                                    <i class="fa fa-edit"></i> Edit
+                                </a>
+                                <button :data-id="order.id" @click="handleDelete($event.target.dataset.id)" class="btn btn-xs btn-default">
+                                    <i class="fa fa-trash"></i> Delete
+                                </button>
+                            </td>
 						</tr>
-						@endforeach
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</div>
 </div>
-@endsection
+@stop
+
+@section('footer_scripts')
+<script>
+    $(document).ready( function () {
+        new Vue({
+            el: '#orders',
+            data: {
+                orders: [],
+            },
+            methods: {
+                handleDelete(target) {
+                    axios.delete(route('api.orders.destroy', target))
+                        .then(response => this.getOrders());
+                },
+                getOrders() {
+                    axios.get(route('api.orders.index'))
+                        .then(response => this.orders = response.data);
+                }
+
+            },
+            created() {
+                this.getOrders();
+            }
+        });
+    });
+</script>
+@stop

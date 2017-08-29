@@ -15,9 +15,7 @@ class PositionController extends Controller
      */
     public function index()
     {
-        $positions = Position::all();
-
-        return view('position.index', compact('positions'));
+        return view('positions.index');
     }
 
     /**
