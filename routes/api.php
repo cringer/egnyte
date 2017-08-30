@@ -27,4 +27,6 @@ Route::name('api.')->group(function () {
     Route::resource('assignmentmethods', 'Api\AssignmentMethodController');
     Route::resource('orders', 'Api\OrderController');
     Route::resource('orderstatus', 'Api\OrderStatusController');
+    Route::resource('tasklists', 'Api\TaskListController');
+    Route::resource('tasks', 'Api\TaskController');
 });

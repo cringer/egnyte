@@ -55,7 +55,6 @@
 @endsection
 
 @section('footer_scripts')
-<script src="https://cdn.datatables.net/v/bs/dt-1.10.13/datatables.min.js"></script>
 <script>
     $(document).ready( function () {
         new Vue({
@@ -78,8 +77,6 @@
                 this.getPositions();
             }
         });
-
-        // $('#positions').DataTable();
     });
 </script>
 @endsection

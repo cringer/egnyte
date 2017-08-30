@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Edit Position</div>
                 <div class="panel-body">
-                    {!! Form::model($position, ['route' => ['position.update', $position->id], 'method' => 'put', 'class' => 'form-horizontal', 'role' => 'form']) !!}
+                    {!! Form::model($position, ['route' => ['positions.update', $position->id], 'method' => 'put', 'class' => 'form-horizontal', 'role' => 'form']) !!}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Name</label>

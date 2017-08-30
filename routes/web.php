@@ -16,6 +16,10 @@ Route::get('/test', function () {
     return view('test');
 });
 
+Route::get('/test2', function () {
+    return view('test2');
+});
+
 Route::get('/', 'NewHireController@index');
 
 Route::resource('newhires', 'NewHireController', ['except' => [
@@ -31,7 +35,7 @@ Route::name('admin.')->prefix('admin')->group(function () {
     Route::get('/', function () {
         return view('admin.dashboard');
     });
-    // Route::resource('positions', 'Admin\PositionController', ['except' => ['show', 'delete']]);
+    Route::resource('positions', 'Admin\PositionController', ['except' => ['show', 'delete']]);
     Route::resource('vendors', 'Admin\VendorController', ['except' => ['show', 'delete']]);
     Route::resource('vendorcontacts', 'Admin\VendorContactController', ['except' => ['show', 'delete']]);
     Route::resource('equipment', 'Admin\EquipmentController', ['except' => ['show', 'delete']]);
