@@ -12,11 +12,11 @@ class EquipmentType extends Model
      * @var array
      */
     protected $guarded = [];
-    
-	/**
-	 * Get the equipment of specified type.
-	 */
-	public function equipment()
+
+    /**
+     * Get the equipment of specified type.
+     */
+    public function equipment()
     {
     	return $this->hasMany('App\Equipment');
     }

@@ -169,8 +169,8 @@ return [
         Laravel\Tinker\TinkerServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        Spatie\Backup\BackupServiceProvider::class,
-        Adldap\Laravel\AdldapServiceProvider::class,
+        Tightenco\Ziggy\ZiggyServiceProvider::class,
+        Spatie\Fractal\FractalServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -180,7 +180,6 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\GoogleDriveServiceProvider::class,
 
     ],
 
@@ -230,7 +229,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        'Adldap' => Adldap\Laravel\Facades\Adldap::class
+        'Fractal' => Spactie\Fractal\FractalFacade::class,
     ],
 
 ];

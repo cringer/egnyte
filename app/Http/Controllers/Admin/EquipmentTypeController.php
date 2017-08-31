@@ -18,7 +18,7 @@ class EquipmentTypeController extends Controller
     {
         $equipmentTypes = EquipmentType::all();
 
-        return view('admin.equipmenttype.index', compact('equipmentTypes'));
+        return view('admin.equipmenttypes.index', compact('equipmentTypes'));
     }
 
     /**
@@ -28,7 +28,7 @@ class EquipmentTypeController extends Controller
      */
     public function create()
     {
-        return view('admin.equipmenttype.create');
+        return view('admin.equipmenttypes.create');
     }
 
     /**
@@ -49,7 +49,7 @@ class EquipmentTypeController extends Controller
 
         flash()->success("$equipmenttype->name has been created!");
 
-        return redirect()->route('admin.equipmenttype.index');
+        return redirect()->route('admin.equipmenttypes.index');
     }
 
     /**
@@ -62,7 +62,7 @@ class EquipmentTypeController extends Controller
     {
         $equipment_type = EquipmentType::findOrFail($id);
 
-        return view('admin.equipmenttype.edit', compact('equipment_type'));
+        return view('admin.equipmenttypes.edit', compact('equipment_type'));
     }
 
     /**
@@ -84,17 +84,6 @@ class EquipmentTypeController extends Controller
 
         flash()->success("$equipment_type->name has been created!");
 
-        return redirect()->route('admin.equipmenttype.index');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return redirect()->route('admin.equipmenttypes.index');
     }
 }

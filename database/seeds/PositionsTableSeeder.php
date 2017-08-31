@@ -13,28 +13,27 @@ class PositionsTableSeeder extends Seeder
     public function run()
     {
         Position::create([
-        	'name' => 'Registered Nurse',
-        	'acronym' => 'RN',
-        	'color' => 'maroon'
+            'name' => 'Registered Nurse',
+            'acronym' => 'RN',
+            'color' => 'maroon'
         ]);
 
         Position::create([
-        	'name' => 'Home Health Aide',
-        	'acronym' => 'HHA',
-        	'color' => 'orchid'
+            'name' => 'Home Health Aide',
+            'acronym' => 'HHA',
+            'color' => 'orchid'
         ]);
 
         Position::create([
-	        'name' => 'Licensed Vocational Nurse',
-	        'acronym' => 'LVN',
-	        'color' => 'teal'
-    	]);
+            'name' => 'Licensed Vocational Nurse',
+            'acronym' => 'LVN',
+            'color' => 'teal'
+        ]);
 
         Position::create([
-	        'name' => 'Spiritual Care Provider',
-	        'acronym' => 'SCP',
-	        'color' => 'powderblue'
-    	]);
-
+            'name' => 'Spiritual Care Provider',
+            'acronym' => 'SCP',
+            'color' => 'powderblue'
+        ]);
     }
 }

@@ -17,7 +17,7 @@ class AssignmentMethodController extends Controller
     {
         $assignmentMethods = AssignmentMethod::all();
 
-        return view('admin.assignmentmethod.index', compact('assignmentMethods'));
+        return view('admin.assignmentmethods.index', compact('assignmentMethods'));
     }
 
     /**
@@ -27,7 +27,7 @@ class AssignmentMethodController extends Controller
      */
     public function create()
     {
-        return view('admin.assignmentmethod.create');
+        return view('admin.assignmentmethods.create');
     }
 
     /**
@@ -50,7 +50,7 @@ class AssignmentMethodController extends Controller
 
         flash()->success("$assignmentmethod->name has been created!");
 
-        return redirect()->route('admin.assignmentmethod.index');
+        return redirect()->route('admin.assignmentmethods.index');
     }
 
     /**
@@ -63,7 +63,7 @@ class AssignmentMethodController extends Controller
     {
         $assignment_method = AssignmentMethod::findOrFail($id);
 
-        return view('admin.assignmentmethod.edit', compact('assignment_method'));
+        return view('admin.assignmentmethods.edit', compact('assignment_method'));
     }
 
     /**
@@ -87,17 +87,6 @@ class AssignmentMethodController extends Controller
 
         flash()->success("$assignment_method->name has been updated!");
 
-        return redirect()->route('admin.assignmentmethod.index');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return redirect()->route('admin.assignmentmethods.index');
     }
 }

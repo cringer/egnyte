@@ -12,10 +12,8 @@
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.3.0",
         "laravel/dusk": "^1.0",
-        "spatie/laravel-permission": "^1.8",
-        "spatie/laravel-backup": "^4.18",
-        "nao-pon/flysystem-google-drive": "~1.1",
-        "adldap2/adldap2-laravel": "^3.0"
+        "tightenco/ziggy": "^0.3.0",
+        "spatie/laravel-fractal": "^4.5.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

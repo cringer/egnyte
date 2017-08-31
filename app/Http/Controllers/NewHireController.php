@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use App\NewHire;
 use App\Position;
 use Illuminate\Http\Request;
@@ -21,7 +20,7 @@ class NewHireController extends Controller
         $newhires = NewHire::orderBy('hire_date', 'asc')->paginate(5);
         $positions = Position::orderBy('name', 'asc')->get();
 
-        return view('newhire.index', compact('newhires', 'positions'));
+        return view('newhires.index', compact('newhires', 'positions'));
     }
 
     /**
@@ -67,6 +66,6 @@ class NewHireController extends Controller
             ->orWhere('slug', $param)
             ->firstOrFail();
 
-        return view('newhire.show', compact('newhire'));
+        return view('newhires.show', compact('newhire'));
     }
 }

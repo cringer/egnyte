@@ -17,7 +17,7 @@ class VendorController extends Controller
     {
         $vendors = Vendor::all();
 
-        return view('admin.vendor.index', compact('vendors'));
+        return view('admin.vendors.index', compact('vendors'));
     }
 
     /**
@@ -27,7 +27,7 @@ class VendorController extends Controller
      */
     public function create()
     {
-        return view('admin.vendor.create');
+        return view('admin.vendors.create');
     }
 
     /**
@@ -50,7 +50,7 @@ class VendorController extends Controller
 
         flash()->success("$vendor->name has been created!");
 
-        return redirect()->route('admin.vendor.index');
+        return redirect()->route('admin.vendors.index');
     }
 
     /**
@@ -63,7 +63,7 @@ class VendorController extends Controller
     {
         $vendor = Vendor::findOrFail($id);
 
-        return view('admin.vendor.edit', compact('vendor'));
+        return view('admin.vendors.edit', compact('vendor'));
     }
 
     /**
@@ -87,17 +87,6 @@ class VendorController extends Controller
 
         flash()->success("$vendor->name has been updated!");
 
-        return redirect()->route('admin.vendor.index');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return redirect()->route('admin.vendors.index');
     }
 }

@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\User;
-use App\Task;
 use App\Status;
 use App\NewHire;
 use App\Location;
@@ -15,37 +13,14 @@ use App\Http\Controllers\Controller;
 
 class NewHiresController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
-
     public function index()
     {
-
         $newhires = NewHire::orderBy('hire_date', 'asc')->paginate(5);
 
-        // foreach ($newhires as $newhire) {
-        //     if($newhire->assignment->id) {
-        //         print('Has Assignment');
-        //     } else {
-        //         // print($newhire->assignment->id . "<br>");
-        //         print('No Assignment');
-        //     }
-        // }
-        // die;
         // Collections for select fields in form
         $positions = Position::orderBy('name', 'asc')->get();
-        // $locations = Location::orderBy('name', 'asc')->get();
-        // $statuses = Status::orderBy('name', 'asc')->get();
 
-        // return view('newhire.index', compact('newhires', 'positions', 'locations', 'statuses'));
-        return view('newhire.index', compact('newhires', 'positions'));
+        return view('newhires.index', compact('newhires', 'positions'));
     }
 
     public function store(Request $request)

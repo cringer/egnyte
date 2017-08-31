@@ -18,7 +18,7 @@ class VendorContactController extends Controller
     {
         $vendor_contacts = VendorContact::all();
 
-        return view('admin.vendorcontact.index', compact('vendor_contacts'));
+        return view('admin.vendorcontacts.index', compact('vendor_contacts'));
     }
 
     /**
@@ -30,7 +30,7 @@ class VendorContactController extends Controller
     {
         $vendors = Vendor::all();
 
-        return view('admin.vendorcontact.create', compact('vendors'));
+        return view('admin.vendorcontacts.create', compact('vendors'));
     }
 
     /**
@@ -57,7 +57,7 @@ class VendorContactController extends Controller
 
         flash()->success("$vendor_contact->name has been created!");
 
-        return redirect()->route('admin.vendorcontact.index');
+        return redirect()->route('admin.vendorcontacts.index');
     }
 
     /**
@@ -71,7 +71,7 @@ class VendorContactController extends Controller
         $vendor_contact = VendorContact::findOrFail($id);
         $vendors = Vendor::orderBy('name')->pluck('name', 'id');
 
-        return view('admin.vendorcontact.edit', compact('vendor_contact', 'vendors'));
+        return view('admin.vendorcontacts.edit', compact('vendor_contact', 'vendors'));
     }
 
     /**
@@ -83,7 +83,7 @@ class VendorContactController extends Controller
      */
     public function update(Request $request, $id)
     {
-       $this->validate(request(), [
+        $this->validate(request(), [
             'vendor_id' => 'required|exists:vendors,id',
             'name' => 'required',
             'email' => 'nullable|email',
@@ -99,17 +99,6 @@ class VendorContactController extends Controller
 
         flash()->success("$vendor_contact->name has been created!");
 
-        return redirect()->route('admin.vendorcontact.index');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\VendorContact  $vendorContact
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(VendorContact $vendorContact)
-    {
-        
+        return redirect()->route('admin.vendorcontacts.index');
     }
 }
