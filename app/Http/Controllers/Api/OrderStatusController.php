@@ -23,10 +23,10 @@ class OrderStatusController extends Controller
      * @param  OrderStatus $orderstatus
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $orderstatus)
+    public function destroy(OrderStatus $orderstatus)
     {
         $orderstatus->delete($orderstatus);
 
-        return $orderstatus->id;
+        return response()->json(null, 204);
     }
 }

@@ -70,11 +70,11 @@
                     </div>
                 </div>
 
-                <div class="form-group{{ $errors->has('delivery_date') ? ' has-error' : '' }}">
-                    <label for="description" class="col-md-4 control-label">Delivery Date</label>
+                <div class="form-group{{ $errors->has('deliver_date') ? ' has-error' : '' }}">
+                    <label for="deliver_date" class="col-md-4 control-label">Delivery Date</label>
 
                     <div class="col-md-6">
-                        {!! Form::text('deliver_date', null, ['id' => 'delivery_date', 'class' => 'form-control']) !!}
+                        {!! Form::text('deliver_date', null, ['id' => 'deliver_date', 'class' => 'form-control']) !!}
 
                         @if ($errors->has('deliver_date'))
                         <span class="help-block">
@@ -95,4 +95,4 @@
 		</div>
 	</div>
 </div>
-@endsection
+@stop

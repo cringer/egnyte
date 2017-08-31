@@ -20,7 +20,7 @@ class AssignmentController extends Controller
         $assignments = Assignment::all();
         $unassigned = NewHire::where('assignment_id', null)->first();
 
-        return view('admin.assignment.index', compact('assignments', 'unassigned'));
+        return view('admin.assignments.index', compact('assignments', 'unassigned'));
     }
 
     /**

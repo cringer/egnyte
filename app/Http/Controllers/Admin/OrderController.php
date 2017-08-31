@@ -50,7 +50,7 @@ class OrderController extends Controller
             'equipment_id' => 'required|exists:equipment,id',
             'order_status_id' => 'required|exists:order_statuses,id',
             'order_date' => 'required|date',
-            'delivery_date' => 'nullable|date'
+            'deliver_date' => 'nullable|date'
         ]);
 
         $order = Order::create([
@@ -58,7 +58,7 @@ class OrderController extends Controller
             'equipment_id' => $request->equipment_id,
             'order_status_id' => $request->order_status_id,
             'order_date' => $request->order_date,
-            'deliver_date' => $request->delivery_date
+            'deliver_date' => $request->deliver_date
         ]);
 
         flash()->success("Order has been updated!");
@@ -86,25 +86,24 @@ class OrderController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Order $order)
     {
         $this->validate($request, [
             'assignment_id' => 'required|exists:assignments,id',
             'equipment_id' => 'required|exists:equipment,id',
             'order_status_id' => 'required|exists:order_statuses,id',
             'order_date' => 'required|date',
-            'delivery_date' => 'nullable|date'
+            'deliver_date' => 'nullable|date'
         ]);
 
-        $order = Order::findOrFail($id);
         $order->assignment_id = $request->assignment_id;
         $order->equipment_id = $request->equipment_id;
         $order->order_status_id = $request->order_status_id;
         $order->order_date = $request->order_date;
-        $order->deliver_date = $request->delivery_date;
+        $order->deliver_date = $request->deliver_date;
         $order->save();
 
         flash()->success("$order->name has been updated!");

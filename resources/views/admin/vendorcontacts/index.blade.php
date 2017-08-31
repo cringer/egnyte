@@ -35,11 +35,11 @@
 							<td v-text="vc.created_at"></td>
 							<td v-text="vc.updated_at"></td>
 							<td>
-								<a :href="'/vendorcontacts/' + vc.id + '/edit'" class="btn btn-xs btn-default">
-                                    <i class="fa fa-edit"></i> Edit
+								<a :href="'/admin/vendorcontacts/' + vc.id + '/edit'" class="btn btn-xs btn-default">
+                                    <i class="fa fa-edit"></i>
                                 </a>
                                 <button :data-id="vc.id" @click="handleDelete($event.target.dataset.id)" class="btn btn-xs btn-default">
-                                    <i class="fa fa-trash"></i> Delete
+                                    <i class="fa fa-trash"></i>
                                 </button>
 							</td>
 						</tr>

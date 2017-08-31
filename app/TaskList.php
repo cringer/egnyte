@@ -20,4 +20,9 @@ class TaskList extends Model
     {
         return $this->hasMany('App\Task');
     }
+
+    public function positions()
+    {
+        return $this->belongsToMany('App\Position')->withTimestamps();
+    }
 }

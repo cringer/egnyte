@@ -19,6 +19,7 @@
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "vue": "^2.4.2",
-    "vue-table-component": "^1.4.2"
+    "vue-table-component": "^1.4.2",
+    "vuedraggable": "^2.14.1"
   }
 }

@@ -9,7 +9,8 @@ require('./bootstrap');
 
 
 window.Vue = require('vue');
-import { TableComponent, TableColumn } from 'vue-table-component';
+import { TableComponent, TableColumn } from 'vue-table-component'
+import draggable from 'vuedraggable'
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

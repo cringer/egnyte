@@ -13,7 +13,6 @@ class TaskListsTableSeeder extends Seeder
     public function run()
     {
         TaskList::create([
-            'position_id' => 1,
             'name' => 'Create User Account'
         ]);
     }

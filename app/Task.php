@@ -18,6 +18,6 @@ class Task extends Model
      */
     public function tasklist()
     {
-        return $this->belongsTo('App\TaskList');
+        return $this->belongsTo('App\TaskList')->orderBy('order');
     }
 }

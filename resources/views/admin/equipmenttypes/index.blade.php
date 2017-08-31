@@ -30,10 +30,10 @@
 							<td v-text="type.updated_at"></td>
                             <td>
                                 <a :href="'/admin/equipmenttypes/' + type.id + '/edit'" class="btn btn-xs btn-default">
-                                    <i class="fa fa-edit"></i> Edit
+                                    <i class="fa fa-edit"></i>
                                 </a>
                                 <button :data-id="type.id" @click="handleDelete($event.target.dataset.id)" class="btn btn-xs btn-default">
-                                    <i class="fa fa-trash"></i> Delete
+                                    <i class="fa fa-trash"></i>
                                 </button>
                             </td>
 						</tr>

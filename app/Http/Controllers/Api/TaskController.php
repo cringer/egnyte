@@ -16,4 +16,17 @@ class TaskController extends Controller
     {
         return Task::orderby('name', 'asc')->get();
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  Tasklist $tasklist
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Task $task)
+    {
+        $task->delete();
+
+        return response()->json(null, 204);
+    }
 }

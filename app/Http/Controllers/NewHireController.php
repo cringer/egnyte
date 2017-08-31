@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use App\NewHire;
 use App\Position;
 use Illuminate\Http\Request;
@@ -67,6 +66,6 @@ class NewHireController extends Controller
             ->orWhere('slug', $param)
             ->firstOrFail();
 
-        return view('newhire.show', compact('newhire'));
+        return view('newhires.show', compact('newhire'));
     }
 }
