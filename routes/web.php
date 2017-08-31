@@ -16,6 +16,14 @@ Route::get('/test', function () {
     return view('test');
 });
 
+Route::get('/test2', function () {
+    return view('test2');
+});
+
+Route::get('/draggable', function () {
+    return view('draggable');
+});
+
 Route::get('/', 'NewHireController@index');
 
 Route::resource('newhires', 'NewHireController', ['except' => [
@@ -31,7 +39,7 @@ Route::name('admin.')->prefix('admin')->group(function () {
     Route::get('/', function () {
         return view('admin.dashboard');
     });
-    // Route::resource('positions', 'Admin\PositionController', ['except' => ['show', 'delete']]);
+    Route::resource('positions', 'Admin\PositionController', ['except' => ['show', 'delete']]);
     Route::resource('vendors', 'Admin\VendorController', ['except' => ['show', 'delete']]);
     Route::resource('vendorcontacts', 'Admin\VendorContactController', ['except' => ['show', 'delete']]);
     Route::resource('equipment', 'Admin\EquipmentController', ['except' => ['show', 'delete']]);
@@ -40,4 +48,6 @@ Route::name('admin.')->prefix('admin')->group(function () {
     Route::resource('assignmentmethods', 'Admin\AssignmentMethodController', ['except' => ['show', 'delete']]);
     Route::resource('orders', 'Admin\OrderController', ['except' => ['show', 'delete']]);
     Route::resource('orderstatus', 'Admin\OrderStatusController', ['except' => ['show', 'delete']]);
+    Route::resource('tasklists', 'Admin\TaskListController');
+    Route::resource('tasks', 'Admin\TaskController');
 });

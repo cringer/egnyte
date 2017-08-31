@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-    <h1 class="page-header">Add position</h1>Breadcrumb
+    <h1 class="page-header">Add position</h1>
 </div>
 
 <div class="col-sm-6 col-sm-offset-4 main">

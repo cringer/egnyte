@@ -70,7 +70,6 @@
                             @foreach ($statuses as $status)
                             <option value="{{ $status->id }}" {{ old('order_status_id') == $status->id ? 'selected' : '' }}>
                                 {{ $status->name }}
-                                <!-- {{ $status->name }} -->
                             </option>
                             @endforeach
                         </select>
@@ -97,11 +96,11 @@
                     </div>
                 </div>
 
-                <div class="form-group{{ $errors->has('delivery_date') ? ' has-error' : '' }}">
+                <div class="form-group{{ $errors->has('deliver_date') ? ' has-error' : '' }}">
                     <label for="description" class="col-md-4 control-label">Delivery Date</label>
 
                     <div class="col-md-6">
-                        <input id="delivery_date" type="text" class="form-control" name="delivery_date" value="{{ old('delivery_date') }}">
+                        <input id="deliver_date" type="text" class="form-control" name="deliver_date" value="{{ old('deliver_date') }}">
 
                         @if ($errors->has('deliver_date'))
                         <span class="help-block">
@@ -122,4 +121,4 @@
         </div>
     </div>
 </div>
-@endsection
+@stop

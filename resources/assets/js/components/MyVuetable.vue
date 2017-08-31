@@ -6,7 +6,20 @@
             pagination-path=""
             :css="css"
             @vuetable:pagination-data="onPaginationData"
-        ></vuetable>
+        >
+            <template slot="actions" scope="props">
+                <div class="custom-actions">
+                    <button class="ui btn btn-xs btn-default"
+                        @click="onAction('edit-item', props.rowData, props.rowIndex)">
+                        <i class="glyphicon glyphicon-pencil"></i>
+                    </button>
+                    <button class="ui btn btn-xs btn-default"
+                        @click="onAction('delete-item', props.rowData, props.rowIndex)">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </button>
+                </div>
+            </template>
+        </vuetable>
         <div class="vuetable-pagination">
             <vuetable-pagination-info ref="paginationInfo"
             ></vuetable-pagination-info>
@@ -22,6 +35,7 @@
     import Vuetable from 'vuetable-2/src/components/Vuetable'
     import VuetablePagination from 'vuetable-2/src/components/VuetablePagination'
     import VuetablePaginationInfo from 'vuetable-2/src/components/VuetablePaginationInfo'
+    import CustomActions from './CustomActions'
     import accounting from 'accounting'
     import moment from 'moment'
 
@@ -37,8 +51,8 @@
                     {
                         name: '__sequence',
                         title: '#',
-                        titleClass: 'text-right',
-                        dataClass: 'text-right'
+                        titleClass: 'text-center',
+                        dataClass: 'text-center'
                     },
                     {
                         name: 'name',
@@ -78,6 +92,12 @@
                         titleClass: 'text-center',
                         dataClass: 'text-center',
                         callback: 'formatNumber'
+                    },
+                    {
+                        name: '__slot:actions',
+                        title: 'Actions',
+                        titleClass: 'text-center',
+                        dataClass: 'text-center'
                     }
                 ],
                 css: {
@@ -117,6 +137,9 @@
             },
             onChangePage (page) {
                 this.$refs.vuetable.changePage(page)
+            },
+            onAction (action, data, index) {
+                console.log('(slot) action: ' + action, data.name, index)
             }
         }
     }

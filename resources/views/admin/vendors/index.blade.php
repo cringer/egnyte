@@ -32,10 +32,10 @@
 							<td v-text="vendor.updated_at"></td>
 							<td>
                                 <a :href="'/admin/vendors/' + vendor.id + '/edit'" class="btn btn-xs btn-default">
-                                    <i class="fa fa-edit"></i> Edit
+                                    <i class="fa fa-edit"></i>
                                 </a>
                                 <button :data-id="vendor.id" @click="handleDelete($event.target.dataset.id)" class="btn btn-xs btn-default">
-                                    <i class="fa fa-trash"></i> Delete
+                                    <i class="fa fa-trash"></i>
                                 </button>
                             </td>
 						</tr>

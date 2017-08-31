@@ -25,7 +25,7 @@ class PositionController extends Controller
      */
     public function create()
     {
-        return view('position.create');
+        return view('positions.create');
     }
 
     /**
@@ -46,7 +46,7 @@ class PositionController extends Controller
 
         flash()->success("$position->name has been added!");
 
-        return redirect()->route('position.index');
+        return redirect()->route('positions.index');
     }
 
     /**
@@ -59,7 +59,7 @@ class PositionController extends Controller
     {
         $position = Position::findOrFail($id);
 
-        return view('position.show', compact('position'));
+        return view('positions.show', compact('position'));
     }
 
     /**
@@ -72,7 +72,7 @@ class PositionController extends Controller
     {
         $position = Position::findOrFail($id);
 
-        return view('position.edit', compact('position'));
+        return view('positions.edit', compact('position'));
     }
 
     /**
@@ -101,6 +101,6 @@ class PositionController extends Controller
 
         flash()->success("$position->name has been updated!");
 
-        return redirect()->route('position.index');
+        return redirect()->route('positions.index');
     }
 }

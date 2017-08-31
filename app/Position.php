@@ -13,24 +13,16 @@ class Position extends Model
      */
     protected $guarded = [];
 
-    public function new_hires()
+    public function newHires()
     {
-        return $this->hasMany(NewHire::class);
-    }
-    
-    /**
-     * The tasklists that belong to the position.
-     */
-    public function task_lists()
-    {
-        return $this->belongsToMany(TaskList::class);
+        return $this->hasMany(NewHire::class)->withTimestamps();
     }
 
     /**
-     * Get the department that owns the position.
+     * The tasklists that belong to the position.
      */
-    public function department()
+    public function taskLists()
     {
-        return $this->belongsTo('Department::class');
+        return $this->belongsToMany(TaskList::class);
     }
 }

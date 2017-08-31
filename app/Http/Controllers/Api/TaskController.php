@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\OrderStatus;
+use App\Task;
 use App\Http\Controllers\Controller;
 
-class OrderStatusController extends Controller
+class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,18 +14,18 @@ class OrderStatusController extends Controller
      */
     public function index()
     {
-        return OrderStatus::orderBy('name', 'asc')->get();
+        return Task::orderby('name', 'asc')->get();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  OrderStatus $orderstatus
+     * @param  Tasklist $tasklist
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OrderStatus $orderstatus)
+    public function destroy(Task $task)
     {
-        $orderstatus->delete($orderstatus);
+        $task->delete();
 
         return response()->json(null, 204);
     }

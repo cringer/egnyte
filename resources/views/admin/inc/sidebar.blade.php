@@ -17,4 +17,8 @@
         <li><a href="{{ route('admin.orders.index') }}">Orders</a></li>
         <li><a href="{{ route('admin.orderstatus.index') }}">Order Statuses</a></li>
     </ul>
+
+    <ul class="nav nav-sidebar">
+        <li><a href="{{ route('admin.tasklists.index') }}">Task Lists</a></li>
+    </ul>
 </div>

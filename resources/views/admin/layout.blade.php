@@ -15,9 +15,9 @@
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
 
-    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -28,7 +28,8 @@
     @routes
 </head>
 <body>
-    <nav id="app" class="navbar navbar-inverse navbar-fixed-top">
+    <div id="app">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -57,6 +58,7 @@
             @yield('content')
         </div>
     </div>
+    </div>
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
@@ -69,7 +71,7 @@
             $( "#order_date" ).datepicker({
                 dateFormat: "yy-mm-dd"
             });
-            $( "#delivery_date" ).datepicker({
+            $( "#deliver_date" ).datepicker({
                 dateFormat: "yy-mm-dd"
             });
         });

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Order;
-use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -16,7 +15,7 @@ class OrderController extends Controller
     {
         $orders = Order::all();
 
-        return view('order.index', compact('orders'));
+        return view('orders.index', compact('orders'));
     }
 
     /**
@@ -29,6 +28,6 @@ class OrderController extends Controller
     {
         $order = Order::findOrFail($id);
 
-        return view('order.show', compact('order'));
+        return view('orders.show', compact('order'));
     }
 }

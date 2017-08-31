@@ -34,10 +34,10 @@
 							<td v-text="position.updated_at"></td>
                             <td>
                                 <a :href="'/admin/positions/' + position.id + '/edit'" class="btn btn-xs btn-default">
-                                    <i class="fa fa-edit"></i> Edit
+                                    <i class="fa fa-edit"></i>
                                 </a>
                                 <button :data-id="position.id" @click="handleDelete($event.target.dataset.id)" class="btn btn-xs btn-default">
-                                    <i class="fa fa-trash"></i> Delete
+                                    <i class="fa fa-trash"></i>
                                 </button>
                             </td>
 						</tr>

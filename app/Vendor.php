@@ -12,13 +12,13 @@ class Vendor extends Model
      * @var array
      */
     protected $guarded = [];
-    
-	/**
-	 * Get the equipment for the vendor.
-	 */
+
+    /**
+     * Get the equipment for the vendor.
+     */
     public function equipment()
     {
-    	return $this->hasMany('App\Equipment');
+        return $this->hasMany('App\Equipment');
     }
 
     /**
