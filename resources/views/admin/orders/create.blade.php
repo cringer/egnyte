@@ -122,3 +122,16 @@
     </div>
 </div>
 @stop
+
+@section('footer_scripts')
+<script>
+    $( function() {
+        $( "#order_date" ).datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+        $( "#deliver_date" ).datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+    });
+</script>
+@stop

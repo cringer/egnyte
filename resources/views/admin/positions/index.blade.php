@@ -12,7 +12,7 @@
 		</div>
     	<div class="panel panel-body">
 			<div class="table-responsive">
-				<table id="positions" class="table table-striped">
+				<table class="table table-striped">
 					<thead>
 						<tr>
 							<th>Id</th>
@@ -53,18 +53,25 @@
 <script>
     $(document).ready( function () {
         new Vue({
-            el: '#positions',
+            el: '#app',
             data: {
                 positions: [],
             },
             methods: {
                 handleDelete(target) {
-                    axios.delete(route('api.positions.destroy', target))
-                        .then(response => this.getPositions());
+                    console.log(target)
+                    if (target) {
+                        axios.delete(route('api.positions.destroy', target))
+                            .then(response => {
+
+                                this.getPositions()
+                            });
+                    }
                 },
                 getPositions() {
                     axios.get(route('api.positions.index'))
-                        .then(response => this.positions = response.data);
+                        .then(response => this.positions = response.data
+                    );
                 }
 
             },
