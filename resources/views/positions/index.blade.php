@@ -52,7 +52,7 @@
         </div>
     </div>
 </div>
-@endsection
+@stop
 
 @section('footer_scripts')
 <script>
@@ -79,4 +79,4 @@
         });
     });
 </script>
-@endsection
+@stop
