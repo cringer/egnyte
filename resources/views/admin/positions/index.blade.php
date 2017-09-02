@@ -36,7 +36,7 @@
                                 <a :href="'/admin/positions/' + position.id + '/edit'" class="btn btn-xs btn-default">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <button :data-id="position.id" @click="handleDelete($event.target.dataset.id)" class="btn btn-xs btn-default">
+                                <button @click="handleDelete(position.id)" class="btn btn-xs btn-default">
                                     <i class="fa fa-trash"></i>
                                 </button>
                             </td>
@@ -59,14 +59,10 @@
             },
             methods: {
                 handleDelete(target) {
-                    console.log(target)
-                    if (target) {
-                        axios.delete(route('api.positions.destroy', target))
-                            .then(response => {
-
-                                this.getPositions()
-                            });
-                    }
+                    axios.delete(route('api.positions.destroy', target))
+                        .then(response => {
+                            this.getPositions()
+                        });
                 },
                 getPositions() {
                     axios.get(route('api.positions.index'))

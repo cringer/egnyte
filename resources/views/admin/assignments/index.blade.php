@@ -12,7 +12,7 @@
 		</div>
     	<div class="panel panel-body">
 			<div class="table-responsive">
-				<table id="assignments" class="table table-striped">
+				<table class="table table-striped">
 					<thead>
 						<tr>
 							<th>Id</th>
@@ -34,7 +34,7 @@
                                 <a :href="'/admin/assignments/' + assignment.id + '/edit'" class="btn btn-xs btn-default">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <button :data-id="assignment.id" @click="handleDelete($event.target.dataset.id)" class="btn btn-xs btn-default">
+                                <button @click="handleDelete(assignment.id)" class="btn btn-xs btn-default">
                                     <i class="fa fa-trash"></i>
                                 </button>
                             </td>
@@ -51,7 +51,7 @@
 <script>
     $(document).ready( function () {
         new Vue({
-            el: '#assignments',
+            el: '#app',
             data: {
                 assignments: [],
             },

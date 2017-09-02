@@ -15,7 +15,7 @@
                 </div>
                 <div class="panel panel-body">
                     <div id="app" class="table-responsive">
-                        <table id="positions" class="table table-striped">
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -37,10 +37,10 @@
                                     <td v-text="position.updated_at"></td>
                                     <td>
                                         <a :href="'/positions/' + position.id + '/edit'" class="btn btn-xs btn-default">
-                                            <i class="fa fa-edit"></i> Edit
+                                            <i class="fa fa-edit"></i>
                                         </a>
-                                        <button :data-id="position.id" @click="handleDelete($event.target.dataset.id)" class="btn btn-xs btn-default">
-                                            <i class="fa fa-trash"></i> Delete
+                                        <button @click="handleDelete(position.id)" class="btn btn-xs btn-default">
+                                            <i class="fa fa-trash"></i>
                                         </button>
                                     </td>
                                 </tr>
