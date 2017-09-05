@@ -26,7 +26,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr v-for="vc in vendorContacts">
+						<tr v-for="(vc, index) in vendorContacts">
 							<td v-text="vc.id"></td>
 							<td v-text="vc.vendor.name"></td>
 							<td v-text="vc.name"></td>
@@ -38,7 +38,7 @@
 								<a :href="'/admin/vendorcontacts/' + vc.id + '/edit'" class="btn btn-xs btn-default">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <button @click="handleDelete(vc.id)" class="btn btn-xs btn-default">
+                                <button @click="handleDelete(vc.id, index)" class="btn btn-xs btn-default">
                                     <i class="fa fa-trash"></i>
                                 </button>
 							</td>
@@ -60,9 +60,9 @@
                 vendorContacts: [],
             },
             methods: {
-                handleDelete(target) {
+                handleDelete(target, index) {
                     axios.delete(route('api.vendorcontacts.destroy', target))
-                        .then(response => this.getVendorContacts());
+                        .then(response => this.vendorContacts.splice(index, 1))
                 },
                 getVendorContacts() {
                     axios.get(route('api.vendorcontacts.index'))

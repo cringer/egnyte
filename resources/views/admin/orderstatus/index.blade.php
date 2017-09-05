@@ -23,7 +23,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr v-for="status in orderStatus">
+						<tr v-for="(status, index) in orderStatus">
 							<td v-text="status.id"></td>
 							<td v-text="status.name"></td>
 							<td v-text="status.created_at"></td>
@@ -32,7 +32,7 @@
                                 <a :href="'/admin/orderstatus/' + status.id + '/edit'" class="btn btn-xs btn-default">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <button @click="handleDelete(status.id)" class="btn btn-xs btn-default">
+                                <button @click="handleDelete(status.id, index)" class="btn btn-xs btn-default">
                                     <i class="fa fa-trash"></i>
                                 </button>
                             </td>
@@ -54,10 +54,10 @@
                 orderStatus: [],
             },
             methods: {
-                handleDelete(target) {
+                handleDelete(target, index) {
                     console.log(target)
                     axios.delete(route('api.orderstatus.destroy', target))
-                        .then(response => this.getOrderStatus());
+                        .then(response => this.orderStatus.splice(index, 1))
                 },
                 getOrderStatus() {
                     axios.get(route('api.orderstatus.index'))

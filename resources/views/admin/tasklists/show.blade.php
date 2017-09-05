@@ -24,7 +24,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="task in tasks">
+                        <tr v-for="(task, index) in tasks">
                             <td v-text="task.order"></td>
                             <td v-text="task.name"></td>
                             <td v-text="task.details"></td>
@@ -34,7 +34,7 @@
                                 <a :href="'/admin/tasks/' + task.id + '/edit'" class="btn btn-xs btn-default">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <button :data-id="task.id" @click="handleDelete($event.target.dataset.id)" class="btn btn-xs btn-default">
+                                <button :data-id="task.id" @click="handleDelete(task.id, index)" class="btn btn-xs btn-default">
                                     <i class="fa fa-trash"></i>
                                 </button>
                             </td>
@@ -58,10 +58,10 @@
                 tasks: [],
             },
             methods: {
-                handleDelete(target) {
+                handleDelete(target, index) {
                     console.log(target)
                     axios.delete(route('api.tasks.destroy', target))
-                        .then(response => this.getTasks());
+                        .then(response => this.tasks.splice(index, 1))
                 },
                 getTaskListId() {
                     let path = window.location.pathname

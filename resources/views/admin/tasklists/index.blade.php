@@ -23,7 +23,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="tasklist in tasklists">
+                        <tr v-for="(tasklist, index) in tasklists">
                             <td v-text="tasklist.id"></td>
                             <td v-text="tasklist.name"></td>
                             <td v-text="tasklist.created_at"></td>
@@ -35,7 +35,7 @@
                                 <a :href="'/admin/tasklists/' + tasklist.id + '/edit'" class="btn btn-xs btn-default">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <button @click="handleDelete(tasklist.id)" class="btn btn-xs btn-default">
+                                <button @click="handleDelete(tasklist.id, index)" class="btn btn-xs btn-default">
                                     <i class="fa fa-trash"></i>
                                 </button>
                             </td>
@@ -57,10 +57,10 @@
                 tasklists: [],
             },
             methods: {
-                handleDelete(target) {
+                handleDelete(target, index) {
                     console.log(target);
                     axios.delete(route('api.tasklists.destroy', target))
-                        .then(response => this.getTaskLists());
+                        .then(response => this.tasklists.splice(index, 1))
                 },
                 getTaskLists() {
                     axios.get(route('api.tasklists.index'))
