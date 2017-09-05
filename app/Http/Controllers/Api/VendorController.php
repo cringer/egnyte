@@ -27,6 +27,6 @@ class VendorController extends Controller
     {
         $vendor->delete($vendor);
 
-        return $vendor->id;
+        return response()->json(null, 204);
     }
 }

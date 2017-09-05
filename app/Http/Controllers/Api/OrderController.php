@@ -27,6 +27,6 @@ class OrderController extends Controller
     {
         $order->delete($order);
 
-        return $order->id;
+        return response()->json(null, 204);
     }
 }

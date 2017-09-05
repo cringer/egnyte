@@ -27,6 +27,6 @@ class AssignmentMethodController extends Controller
     {
         $assignmentmethod->delete($assignmentmethod);
 
-        return $assignmentmethod->id;
+        return response()->json(null, 204);
     }
 }

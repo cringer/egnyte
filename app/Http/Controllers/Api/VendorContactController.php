@@ -27,6 +27,6 @@ class VendorContactController extends Controller
     {
         $vendorcontact->delete($vendorcontact);
 
-        return $vendorcontact->id;
+        return response()->json(null, 204);
     }
 }
