@@ -27,6 +27,6 @@ class EquipmentController extends Controller
     {
         $equipment->delete($equipment);
 
-        return $equipment->id;
+        return response()->json(null, 204);
     }
 }
