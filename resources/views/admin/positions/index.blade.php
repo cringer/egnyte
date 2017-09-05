@@ -25,7 +25,7 @@
 						</tr>
 					</thead>
 					<tbody>
-                        <tr v-for="position in positions">
+                        <tr v-for="(position, index) in positions">
 							<td v-text="position.id"></td>
 							<td v-text="position.name"></td>
 							<td v-text="position.acronym"></td>
@@ -36,7 +36,7 @@
                                 <a :href="'/admin/positions/' + position.id + '/edit'" class="btn btn-xs btn-default">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <button @click="handleDelete(position.id)" class="btn btn-xs btn-default">
+                                <button @click="handleDelete(position.id, index)" class="btn btn-xs btn-default">
                                     <i class="fa fa-trash"></i>
                                 </button>
                             </td>
@@ -58,18 +58,15 @@
                 positions: [],
             },
             methods: {
-                handleDelete(target) {
+                handleDelete(target, index) {
                     axios.delete(route('api.positions.destroy', target))
-                        .then(response => {
-                            this.getPositions()
-                        });
+                        .then(response => this.positions.splice(index, 1))
                 },
                 getPositions() {
                     axios.get(route('api.positions.index'))
                         .then(response => this.positions = response.data
                     );
                 }
-
             },
             created() {
                 this.getPositions();

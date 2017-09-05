@@ -26,7 +26,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr v-for="equip in equipment">
+						<tr v-for="(equip, index) in equipment">
 							<td v-text="equip.id"></td>
 							<td v-text="equip.vendor.name"></td>
 							<td v-text="equip.equipment_type.name"></td>
@@ -38,7 +38,7 @@
                                 <a :href="'/admin/equipment/' + equip.id + '/edit'" class="btn btn-xs btn-default">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <button @click="handleDelete(equip.id)" class="btn btn-xs btn-default">
+                                <button @click="handleDelete(equip.id, index)" class="btn btn-xs btn-default">
                                     <i class="fa fa-trash"></i>
                                 </button>
                             </td>
@@ -60,9 +60,9 @@
                 equipment: [],
             },
             methods: {
-                handleDelete(target) {
+                handleDelete(target, index) {
                     axios.delete(route('api.equipment.destroy', target))
-                        .then(response => this.getEquipment());
+                        .then(response => this.equipment.splice(index, 1))
                 },
                 getEquipment() {
                     axios.get(route('api.equipment.index'))

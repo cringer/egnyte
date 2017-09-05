@@ -24,7 +24,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr v-for="assignment in assignments">
+						<tr v-for="(assignment, index) in assignments">
 							<td v-text="assignment.id"></td>
 							<td v-text="assignment.newhire.name"></td>
 							<td v-text="assignment.method.name"></td>
@@ -34,7 +34,7 @@
                                 <a :href="'/admin/assignments/' + assignment.id + '/edit'" class="btn btn-xs btn-default">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <button @click="handleDelete(assignment.id)" class="btn btn-xs btn-default">
+                                <button @click="handleDelete(assignment.id, index)" class="btn btn-xs btn-default">
                                     <i class="fa fa-trash"></i>
                                 </button>
                             </td>
@@ -56,9 +56,9 @@
                 assignments: [],
             },
             methods: {
-                handleDelete(target) {
+                handleDelete(target, index) {
                     axios.delete(route('api.assignments.destroy', target))
-                        .then(response => this.getAssignments());
+                        .then(response => this.assignments.splice(index, 1))
                 },
                 getAssignments() {
                     axios.get(route('api.assignments.index'))

@@ -23,7 +23,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr v-for="type in equipmentTypes">
+						<tr v-for="(type, index) in equipmentTypes">
 							<td v-text="type.id"></td>
 							<td v-text="type.name"></td>
 							<td v-text="type.created_at"></td>
@@ -32,7 +32,7 @@
                                 <a :href="'/admin/equipmenttypes/' + type.id + '/edit'" class="btn btn-xs btn-default">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <button @click="handleDelete(type.id)" class="btn btn-xs btn-default">
+                                <button @click="handleDelete(type.id, index)" class="btn btn-xs btn-default">
                                     <i class="fa fa-trash"></i>
                                 </button>
                             </td>
@@ -54,9 +54,9 @@
                 equipmentTypes: [],
             },
             methods: {
-                handleDelete(target) {
+                handleDelete(target, index) {
                     axios.delete(route('api.equipmenttypes.destroy', target))
-                        .then(response => this.getEquipmentTypes());
+                        .then(response => this.equipmentTypes.splice(index, 1))
                 },
                 getEquipmentTypes() {
                     axios.get(route('api.equipmenttypes.index'))
