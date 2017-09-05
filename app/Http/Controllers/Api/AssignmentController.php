@@ -32,6 +32,6 @@ class AssignmentController extends Controller
         $new_hire_assignment->assignment_id = null;
         $new_hire_assignment->save();
 
-        return $assignment->id;
+        return response()->json(null, 204);
     }
 }
