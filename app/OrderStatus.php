@@ -13,11 +13,11 @@ class OrderStatus extends Model
      */
     protected $guarded = [];
 
-	/**
-	 * Get the orders with the order status.
-	 */
+    /**
+     * Get the orders with the order status.
+     */
     public function orders()
     {
-    	return $this->hasMany('App\Orders');
-    }    
+        return $this->hasMany('App\Orders');
+    }
 }

@@ -13,12 +13,12 @@ class Assignment extends Model
      */
     protected $guarded = [];
 
-	/**
-	 * Get the newhires with assignments.
-	 */
+    /**
+     * Get the newhires with assignments.
+     */
     public function newhire()
     {
-    	return $this->hasOne('App\NewHire');
+        return $this->hasOne('App\NewHire');
     }
 
     /**
@@ -36,5 +36,4 @@ class Assignment extends Model
     {
         return $this->hasMany('App\Order');
     }
-
 }

@@ -19,5 +19,5 @@ class AssignmentMethod extends Model
     public function assignments()
     {
         return $this->belongsTo('App\Assignment');
-    }    
+    }
 }

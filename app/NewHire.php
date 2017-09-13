@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class NewHire extends Model
 {
     use SoftDeletes;
-    
+
     /**
      * The attributes that are not mass assignable.
      *
@@ -25,5 +25,4 @@ class NewHire extends Model
     {
         return $this->hasOne(Assignment::class);
     }
-
 }
