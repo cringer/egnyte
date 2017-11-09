@@ -26,12 +26,11 @@ class TaskController extends Controller
      */
     public function updateOrder(Request $request)
     {
-        return 'Hi';
-        // foreach ($request->tasks as $task) {
-        //     Task::find($task['id'])->update(['order' => $task['order']]);
-        // }
+        foreach ($request->tasks as $task) {
+            Task::find($task['id'])->update(['order' => $task['order']]);
+        }
 
-        // return response()->json('Update Successful', 200);
+        return response()->json('Update Successful', 200);
         // return response()->json(null, 204);
     }
 

@@ -52,10 +52,8 @@
                     task.order = index + 1
                 })
 
-                axios.put('/api/tasks/update', {
+                axios.put('/api/tasks/updateorder', {
                     tasks: this.tasks
-                }).then((response) => {
-                    console.log(response)
                 })
             }           
         }

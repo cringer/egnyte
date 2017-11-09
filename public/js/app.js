@@ -45067,10 +45067,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 task.order = index + 1;
             });
 
-            axios.put('/api/tasks/update', {
+            axios.put('/api/tasks/updateorder', {
                 tasks: this.tasks
-            }).then(function (response) {
-                console.log(response);
             });
         }
     }
