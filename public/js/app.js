@@ -45054,21 +45054,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     props: ['tasks'],
 
-    data: function data() {
-        return {
-            url: ''
-        };
-    },
-
-
     methods: {
-        update: function update() {
+        reorder: function reorder() {
             this.tasks.map(function (task, index) {
                 task.order = index + 1;
             });
+        },
+        update: function update() {
+            this.reorder();
 
             axios.put('/api/tasks/updateorder', {
                 tasks: this.tasks
+            });
+        },
+        deleteTask: function deleteTask(taskid, index) {
+            var _this = this;
+
+            axios.delete(route('api.tasks.destroy', taskid)).then(function (response) {
+                _this.tasks.splice(index, 1);
+                _this.reorder();
             });
         }
     }
@@ -47004,10 +47008,9 @@ var render = function() {
                 "button",
                 {
                   staticClass: "btn btn-xs btn-default",
-                  attrs: { "data-id": task.id },
                   on: {
                     click: function($event) {
-                      _vm.handleDelete(task.id, index)
+                      _vm.deleteTask(task.id, index)
                     }
                   }
                 },

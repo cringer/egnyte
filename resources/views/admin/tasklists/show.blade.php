@@ -30,11 +30,6 @@
                 tasks: [],
             },
             methods: {
-                handleDelete(target, index) {
-                    console.log(target)
-                    axios.delete(route('api.tasks.destroy', target))
-                        .then(response => this.tasks.splice(index, 1))
-                },
                 getTaskListId() {
                     let path = window.location.pathname
                     this.url = /\d/.exec(path)

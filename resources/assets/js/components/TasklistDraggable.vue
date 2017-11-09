@@ -21,7 +21,7 @@
                     <a :href="'/admin/tasks/' + task.id + '/edit'" class="btn btn-xs btn-default">
                         <i class="fa fa-edit"></i>
                     </a>
-                    <button :data-id="task.id" @click="handleDelete(task.id, index)" class="btn btn-xs btn-default">
+                    <button @click="deleteTask(task.id, index)" class="btn btn-xs btn-default">
                         <i class="fa fa-trash"></i>
                     </button>
                 </td>
@@ -40,22 +40,26 @@
 
         props: ['tasks'],
 
-        data() {
-            return {
-                url: ''
-            }
-        },
-
         methods: {
-            update() {
+            reorder() {
                 this.tasks.map((task, index) => {
                     task.order = index + 1
                 })
+            },
+            update() {
+                this.reorder()
 
                 axios.put('/api/tasks/updateorder', {
                     tasks: this.tasks
                 })
-            }           
+            },
+            deleteTask(taskid, index) {
+                axios.delete(route('api.tasks.destroy', taskid))
+                    .then(response => {
+                        this.tasks.splice(index, 1)
+                        this.reorder()   
+                    })           
+            }        
         }
     }
 </script>
