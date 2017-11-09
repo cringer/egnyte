@@ -24,7 +24,9 @@ class TaskListController extends Controller
 
     public function show(Tasklist $tasklist)
     {
-        return $tasklist->load('tasks');
+        return $tasklist->load(['tasks' => function ($query) {
+            $query->orderBy('order', 'asc');
+        }]);
     }
 
     /**
