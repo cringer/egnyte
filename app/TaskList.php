@@ -18,11 +18,11 @@ class TaskList extends Model
      */
     public function tasks()
     {
-        return $this->hasMany('App\Task');
+        return $this->hasMany(Task::class);
     }
 
     public function positions()
     {
-        return $this->belongsToMany('App\Position')->withTimestamps();
+        return $this->belongsToMany(Position::class)->withTimestamps();
     }
 }
