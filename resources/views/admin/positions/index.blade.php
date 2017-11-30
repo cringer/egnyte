@@ -33,6 +33,9 @@
 							<td v-text="position.created_at"></td>
 							<td v-text="position.updated_at"></td>
                             <td>
+                                <a :href="'/admin/positions/' + position.id" class="btn btn-xs btn-default">
+                                    <i class="fa fa-eye"></i>
+                                </a>
                                 <a :href="'/admin/positions/' + position.id + '/edit'" class="btn btn-xs btn-default">
                                     <i class="fa fa-edit"></i>
                                 </a>
