@@ -28,5 +28,6 @@ Route::name('api.')->group(function () {
     Route::resource('orders', 'Api\OrderController');
     Route::resource('orderstatus', 'Api\OrderStatusController');
     Route::resource('tasklists', 'Api\TaskListController');
-    Route::resource('tasks', 'Api\TaskController');
+    Route::put('/tasks/updateorder', 'Api\TaskController@updateOrder')->name('tasks.updateorder');
+    Route::resource('tasks', 'Api\TaskController');    
 });

@@ -12,18 +12,6 @@
 |
 */
 
-Route::get('/test', function () {
-    return view('test');
-});
-
-Route::get('/test2', function () {
-    return view('test2');
-});
-
-Route::get('/draggable', function () {
-    return view('draggable');
-});
-
 Route::get('/', 'NewHireController@index');
 
 Route::resource('newhires', 'NewHireController', ['except' => [
