@@ -21,7 +21,7 @@ class Position extends Model
     /**
      * The tasklists that belong to the position.
      */
-    public function taskLists()
+    public function tasklists()
     {
         return $this->belongsToMany(TaskList::class);
     }
