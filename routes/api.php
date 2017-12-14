@@ -18,6 +18,9 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:api');
 
 Route::name('api.')->group(function () {
+    Route::get('positions/{position}/tasklists', 'Api\PositionController@tasklists');
+    Route::put('positions/{position}/attach/{tasklist}', 'Api\PositionController@attach');
+    Route::delete('positions/{position}/detach/{tasklist}', 'Api\PositionController@detach');
     Route::resource('positions', 'Api\PositionController');
     Route::resource('vendors', 'Api\VendorController');
     Route::resource('vendorcontacts', 'Api\VendorContactController');
