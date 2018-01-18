@@ -17,7 +17,7 @@ class NewHireController extends Controller
      */
     public function index()
     {
-        $newhires = NewHire::orderBy('hire_date', 'asc')->paginate(5);
+        $newhires = NewHire::orderBy('hire_date', 'dsc')->paginate(5);
         $positions = Position::orderBy('name', 'asc')->get();
 
         return view('newhires.index', compact('newhires', 'positions'));
