@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Task;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
@@ -16,6 +17,23 @@ class TaskController extends Controller
     {
         return Task::orderby('name', 'asc')->get();
     }
+
+    /**
+     * Update the order of all tasks.
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function updateOrder(Request $request)
+    {
+        foreach ($request->tasks as $task) {
+            Task::find($task['id'])->update(['order' => $task['order']]);
+        }
+
+        return response()->json('Update Successful', 200);
+        // return response()->json(null, 204);
+    }
+
 
     /**
      * Remove the specified resource from storage.

@@ -12,35 +12,7 @@
         </div>
         <div class="panel panel-body">
             <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Order</th>
-                            <th>Name</th>
-                            <th>Details</th>
-                            <th>Created At</th>
-                            <th>Updated At</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="(task, index) in tasks">
-                            <td v-text="task.order"></td>
-                            <td v-text="task.name"></td>
-                            <td v-text="task.details"></td>
-                            <td v-text="task.created_at"></td>
-                            <td v-text="task.updated_at"></td>
-                            <td>
-                                <a :href="'/admin/tasks/' + task.id + '/edit'" class="btn btn-xs btn-default">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <button :data-id="task.id" @click="handleDelete(task.id, index)" class="btn btn-xs btn-default">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <tasklist-draggable :tasks="tasks"></tasklist-draggable>
             </div>
         </div>
     </div>
@@ -58,11 +30,6 @@
                 tasks: [],
             },
             methods: {
-                handleDelete(target, index) {
-                    console.log(target)
-                    axios.delete(route('api.tasks.destroy', target))
-                        .then(response => this.tasks.splice(index, 1))
-                },
                 getTaskListId() {
                     let path = window.location.pathname
                     this.url = /\d/.exec(path)

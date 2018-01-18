@@ -56,4 +56,23 @@ class PositionController extends Controller
 
         return response()->json(null, 204);
     }
+
+    public function tasklists(Position $position)
+    {
+        return response()->json($position->tasklists, 200);
+    }
+
+    public function attach(Position $position, $tasklistId)
+    {
+        $position->tasklists()->attach($tasklistId);
+
+        return response()->json($position, 201);
+    }
+
+    public function detach(Position $position, $tasklistId)
+    {
+        $position->tasklists()->detach($tasklistId);
+
+        return response()->json(null, 204);
+    }
 }
