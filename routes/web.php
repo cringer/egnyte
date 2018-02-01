@@ -11,6 +11,20 @@
 | to using a Closure or controller method. Build something great!
 |
 */
+Route::get('/test', 'TestController@test');
+Route::get('/taskcomplete/{id}', function ($id) {
+    $task = \App\ActiveTask::findOrFail($id);
+    $completed = !$task->complete;
+    
+    $task->complete = !$task->complete;
+    $task->save();
+
+    return back();
+});
+
+Route::get('user/{id}', function ($id) {
+    return 'User '.$id;
+});
 
 Route::get('/', 'NewHireController@index');
 

@@ -25,4 +25,9 @@ class NewHire extends Model
     {
         return $this->hasOne(Assignment::class);
     }
+
+    public function activeTasks()
+    {
+        return $this->hasMany(ActiveTask::class);
+    }
 }
