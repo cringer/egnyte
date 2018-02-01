@@ -87,7 +87,7 @@
                                 {{ $task->task_details }}
                             </td>
                             <td>
-                                <a class="btn btn-default" href="/taskcomplete/{{ $task->task_id }}" role="button">
+                                <a class="btn btn-default" href="/taskcomplete/{{ $task->id }}" role="button">
                                     @if (! $task->complete)
                                         <span class="glyphicon glyphicon-remove"></span>
                                     @else
