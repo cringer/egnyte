@@ -67,7 +67,59 @@
                     @endif
                 </table>
             </ul>
+
+            <h3>Tasks</h3>
+            <ul class="list-group" id="tasks">
+                <table class="table table-bordered table-hover table-striped">
+                    <tr>
+                        <th>Task List</th>
+                        <th>Task Name</th>
+                        <th>&nbsp;</th>
+                    </tr>
+
+                    @foreach ($newhire->activeTasks as $task)
+                        <tr>
+                            <td>
+                                {{ $task->task_list_id }}
+                            </td>
+                            <td>
+                                <b>{{ $task->task_name }}</b><br>
+                                {{ $task->task_details }}
+                            </td>
+                            <td>
+                                <a class="btn btn-default" href="/taskcomplete/{{ $task->task_id }}" role="button">
+                                    @if (! $task->complete)
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    @else
+                                        <span class="glyphicon glyphicon-ok"></span>
+                                    @endif
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </table>
+            </ul>
         </div>
     </div>
 </div>
 @endsection
+
+@section('footer_scripts')
+<script>
+    $(document).ready( function () {
+        new Vue({
+            el: '#tasks',
+            data: {
+                tasks: {!! json_encode($newhire->toArray()) !!},
+                names: ['Joe', 'Mary', 'Jack']
+            },
+            methods: {
+                
+            },
+            created() {
+               
+            }
+        });
+    });
+</script>
+@stop
