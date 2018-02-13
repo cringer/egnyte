@@ -17,6 +17,7 @@ window.Vue = require('vue');
 
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('tasklist-draggable', require('./components/TasklistDraggable.vue'));
+Vue.component('inline-textarea-editor', require('./components/InlineTextareaEditor.vue'));
 
 // const app = new Vue({
 //     el: '#app'
