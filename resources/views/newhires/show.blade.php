@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div id="newhire" class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <h3>New Hire</h3>
@@ -34,6 +34,12 @@
                     </tr>
                 </table>
             </ul>
+
+            @if ($newhire->notes)
+                <div class="panel panel-default">
+                    <textarea v-model="notes" class="form-control" @blur="updateNotes()"></textarea>
+                </div>
+            @endif
 
             <h3>Orders</h3>
             <ul class="list-group">
@@ -106,20 +112,23 @@
 
 @section('footer_scripts')
 <script>
-    $(document).ready( function () {
-        new Vue({
-            el: '#tasks',
-            data: {
-                tasks: {!! json_encode($newhire->toArray()) !!},
-                names: ['Joe', 'Mary', 'Jack']
+    new Vue({
+        el: '#newhire',
+        data: {
+            newhire: {!! json_encode($newhire->toArray()) !!},
+            notes: ''
+        },
+        methods: {
+            updateNotes() {
+                axios.put('/api/newhire/notes', {
+                    id: this.newhire.id,
+                    notes: this.notes
+                })
             },
-            methods: {
-                
-            },
-            created() {
-               
-            }
-        });
+        },
+        created() {
+            this.notes = this.newhire.notes;
+        }
     });
 </script>
 @stop

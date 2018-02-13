@@ -35,7 +35,8 @@ class NewHireController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'position_id' => 'required|exists:positions,id',
-            'hire_date' => 'required|date'
+            'hire_date' => 'required|date',
+            'notes' => 'nullable'
         ]);
 
         // Persist new hire to the database
@@ -43,7 +44,8 @@ class NewHireController extends Controller
             'name' => $request->input('name'),
             'slug' => str_slug($request->input('name')),
             'position_id' => $request->input('position_id'),
-            'hire_date' => $request->input('hire_date')
+            'hire_date' => $request->input('hire_date'),
+            'notes' => $request->input('notes')
         ]);
 
         // Get position based on the persisted new hire data
