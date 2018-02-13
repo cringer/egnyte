@@ -35,11 +35,9 @@
                 </table>
             </ul>
 
-            @if ($newhire->notes)
-                <div class="panel panel-default">
-                    <textarea v-model="notes" class="form-control" @blur="updateNotes()"></textarea>
-                </div>
-            @endif
+            <div class="panel panel-default">
+                <textarea v-model="notes" class="form-control" rows="5" @blur="updateNotes()"></textarea>
+            </div>
 
             <h3>Orders</h3>
             <ul class="list-group">
