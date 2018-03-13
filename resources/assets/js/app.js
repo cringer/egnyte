@@ -15,9 +15,8 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', require('./components/Example.vue'));
+Vue.component('example', require('./components/ExampleComponent.vue'));
 Vue.component('tasklist-draggable', require('./components/TasklistDraggable.vue'));
-Vue.component('inline-textarea-editor', require('./components/InlineTextareaEditor.vue'));
 
 // const app = new Vue({
 //     el: '#app'
