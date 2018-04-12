@@ -42,7 +42,6 @@ class NewHireController extends Controller
         // Persist new hire to the database
         $newhire = NewHire::create([
             'name' => $request->input('name'),
-            'slug' => str_slug($request->input('name')),
             'position_id' => $request->input('position_id'),
             'hire_date' => $request->input('hire_date'),
             'notes' => $request->input('notes')
