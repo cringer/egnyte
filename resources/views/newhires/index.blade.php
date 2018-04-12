@@ -15,7 +15,7 @@
                     </a>
                 </div>
                 <div class="box box2 flex">
-                    {{-- if newhire has an assignment --}}
+                {{-- if newhire has an assignment --}}
                     @if (count($newhire->assignment))
                         {{-- if newhire assignment is for new equipment --}}
                         @if ($newhire->assignment->method->id == 1)
@@ -24,7 +24,11 @@
                                 @foreach ($newhire->assignment->orders as $order)
                                     <a href="/orders/{{ $order->id }}" target="_blank">
                                         <div class="flex iconbox">
-                                            <i class="fa fa-shopping-cart fa-2x"></i>
+                                            @if ($order->order_status_id == 4)
+                                                <i class="fa fa-check fa-2x complete"></i>
+                                            @else
+                                                <i class="fa fa-shopping-cart fa-2x"></i>
+                                            @endif
                                         </div>
                                     </a>
                                 @endforeach
