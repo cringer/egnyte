@@ -21,6 +21,15 @@ Route::get('/taskcomplete/{id}', function ($id) {
 
     return back();
 });
+Route::get('/newhirecomplete/{id}', function ($id) {
+    $newhire = \App\NewHire::findOrFail($id);
+    $completed = !$newhire->completed;
+    
+    $newhire->completed = !$newhire->completed;
+    $newhire->save();
+
+    return back();
+});
 
 Route::get('user/{id}', function ($id) {
     return 'User '.$id;
