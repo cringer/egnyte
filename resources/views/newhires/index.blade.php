@@ -15,7 +15,7 @@
                     </a>
                 </div>
                 <div class="box box2 flex">
-                {{-- if newhire has an assignment --}}
+                    {{-- if newhire has an assignment --}}
                     @if (@count($newhire->assignment))
                         {{-- if newhire assignment is for new equipment --}}
                         @if ($newhire->assignment->method->id == 1)
@@ -50,6 +50,18 @@
                             <i class="fa fa-question fa-2x"></i>
                         </div>
                     @endif
+                    {{-- if newhire onboarding is complete --}}
+                    <a href="/newhirecomplete/{{ $newhire->id }}">
+                        @if ($newhire->completed)
+                            <div class="flex iconbox">
+                                <i class="fa fa-list fa-2x complete"></i>
+                            </div>
+                        @else
+                        <div class="flex iconbox">
+                            <i class="fa fa-list fa-2x danger"></i>
+                        </div>
+                        @endif
+                    </a>
                 </div>
             </article>
 
