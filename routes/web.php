@@ -1,6 +1,5 @@
 <?php
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,7 +24,12 @@ Route::get('/newhirecomplete/{id}', function ($id) {
     $newhire = \App\NewHire::findOrFail($id);
     $completed = !$newhire->completed;
     
-    $newhire->completed = !$newhire->completed;
+    $newhire->completed = $completed;
+    if ($completed) {
+        $newhire->completed_at = \Carbon\Carbon::now();
+    } else {
+        $newhire->completed_at = NULL;
+    }
     $newhire->save();
 
     return back();
