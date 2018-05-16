@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\NewHire;
 use App\Position;
+use Carbon\Carbon;
 use App\ActiveTask;
 use Illuminate\Http\Request;
 use App\Mail\NewHireAnnounced;
@@ -18,7 +19,17 @@ class NewHireController extends Controller
      */
     public function index()
     {
-        $newhires = NewHire::orderBy('hire_date', 'dsc')->paginate(5);
+        $date = Carbon::now();
+
+        if (request('filter') == 'all') {
+            $newhires = NewHire::orderBy('hire_date', 'dsc')->paginate(5);
+        } else {
+            $newhires = NewHire::where('hire_date', '>=', $date->subDays(14))
+                ->where('completed', 0)
+                ->orderBy('hire_date', 'dsc')
+                ->paginate(5);  
+        }
+
         $positions = Position::orderBy('name', 'asc')->get();
 
         return view('newhires.index', compact('newhires', 'positions'));
