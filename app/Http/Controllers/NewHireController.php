@@ -21,9 +21,14 @@ class NewHireController extends Controller
     {
         $date = Carbon::now();
 
-        $newhires = NewHire::where('hire_date', '>=', $date->subDays(14))
-                        ->orderBy('hire_date', 'dsc')
-                        ->paginate(5);
+        if (request('filter') == 'all') {
+            $newhires = NewHire::orderBy('hire_date', 'dsc')->paginate(5);
+        } else {
+            $newhires = NewHire::where('completed', 0)
+                ->where('hire_date', '>=', $date->subDays(14))
+                ->orderBy('hire_date', 'dsc')
+                ->paginate(5);  
+        }
 
         $positions = Position::orderBy('name', 'asc')->get();
 

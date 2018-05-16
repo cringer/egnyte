@@ -4,6 +4,7 @@
 <div class="row">
     <div class="col-md-8">
         <h3>New Hires</h3>
+        &nbsp;&nbsp;&nbsp;(<a href="/">default</a> | <a href="index.php?filter=all">all</a>)
 
         @foreach ($newhires as $newhire)
             <article class="flex" style="border: 1px solid #ccc;">
@@ -67,8 +68,11 @@
 
         @endforeach
 
+        @if (request('filter'))
+            {{ $newhires->appends(['filter' => 'all'])->links() }}
+        @else
             {{ $newhires->links() }}
-        </ul>
+        @endif
     </div>
 
     @include('newhires.new-employee')
